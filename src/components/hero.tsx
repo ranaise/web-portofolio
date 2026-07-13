@@ -146,8 +146,8 @@ export function Hero() {
             <div className="h-[1px] w-16 bg-primary/20 mx-auto my-1" />
 
             {/* Tagline */}
-            <p className="text-[10px] sm:text-xs font-bold text-muted-foreground tracking-widest uppercase">
-              Backend Engineering &middot; Applied AI &middot; Systems
+            <p className="text-[11px] sm:text-xs font-medium text-muted-foreground/70 tracking-widest italic">
+              Theory refined. Solutions deployed.
             </p>
           </div>
         </motion.div>

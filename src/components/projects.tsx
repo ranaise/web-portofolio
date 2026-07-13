@@ -312,18 +312,34 @@ export function Projects() {
   const [activeCategory, setActiveCategory] = React.useState("All");
   const [lightbox, setLightbox] = React.useState<{ src: string; title: string } | null>(null);
 
-  const categories = ["All", "Backend", "Fullstack", "System API"];
+  const categories = ["All", "AI / ML", "Fullstack", "Mobile", "Web"];
 
   const filteredProjects = projectsData.filter((project) => {
     if (activeCategory === "All") return true;
-    if (activeCategory === "Backend") {
-      return project.technologies.includes("FastAPI") || project.technologies.includes("Python");
+    if (activeCategory === "AI / ML") {
+      // Only actual LLM/ML-based projects — excludes traditional CV (OpenCV)
+      return project.technologies.some((t) =>
+        ["Llama 3", "Groq API", "LLM"].includes(t)
+      );
     }
     if (activeCategory === "Fullstack") {
-      return project.technologies.includes("Laravel") || project.technologies.includes("Flutter");
+      return (
+        (project.technologies.includes("Laravel") || project.technologies.includes("Spring Boot")) &&
+        (project.technologies.includes("Flutter") || project.technologies.includes("Next.js") || project.technologies.includes("TypeScript"))
+      );
     }
-    if (activeCategory === "System API") {
-      return project.technologies.includes("Next.js") || project.technologies.includes("Spring Boot");
+    if (activeCategory === "Mobile") {
+      return project.technologies.includes("Flutter");
+    }
+    if (activeCategory === "Web") {
+      // Web projects: Spring Boot, Next.js, Laravel (web backend), Streamlit (web app)
+      return (
+        project.technologies.includes("Spring Boot") ||
+        project.technologies.includes("Next.js") ||
+        project.technologies.includes("TypeScript") ||
+        project.technologies.includes("Laravel") ||
+        project.technologies.includes("Streamlit")
+      );
     }
     return true;
   });
@@ -392,12 +408,25 @@ export function Projects() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-default"
           >
+            {/* Close button */}
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              aria-label="Close image"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center gap-4"
             >
               <img

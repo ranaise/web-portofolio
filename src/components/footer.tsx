@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto max-w-5xl px-6 sm:px-8">
 
         {/* Cinematic "fin." watermark block */}
-        <div className="relative py-14 text-center space-y-2 select-none pointer-events-none">
+        <div className="relative py-14 text-center space-y-3 select-none pointer-events-none">
           <p className="text-[9px] font-mono tracking-[0.35em] text-muted-foreground/35 uppercase">
             &mdash;&nbsp;credits end&nbsp;&mdash;
           </p>
@@ -43,7 +43,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border/20 py-6">
           <p className="text-[10px] font-mono tracking-wider uppercase text-center sm:text-left text-muted-foreground/50">
-            &copy; {new Date().getFullYear()}&nbsp; Rafa&apos;Na&apos;ilah Septia &nbsp;&middot;&nbsp; Backend Systems Portfolio
+            &copy; {new Date().getFullYear()} Ranaise&apos;s Portfolio. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-[10px] font-mono tracking-widest uppercase">
             <a

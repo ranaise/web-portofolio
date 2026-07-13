@@ -240,20 +240,20 @@ export function Certifications() {
         </div>
 
         {/* 1-by-1 Widescreen Slide Carousel with looping wrap around */}
-        <div className="relative w-full flex flex-col items-center gap-6">
-          
+        <div className="relative w-full flex flex-col items-center gap-5">
+
           <div className="relative w-full flex items-center justify-between gap-4 sm:gap-6">
-            
-            {/* Left Button */}
+
+            {/* Left Button — desktop only, hidden on mobile */}
             <button
               onClick={handlePrev}
-              className="p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:scale-105 transition-all outline-none cursor-pointer focus-visible:ring-1 focus-visible:ring-primary shrink-0 z-10"
+              className="hidden sm:flex p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:scale-105 transition-all outline-none cursor-pointer focus-visible:ring-1 focus-visible:ring-primary shrink-0 z-10"
               aria-label="Previous certificate"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
 
-            {/* Viewport for Active Widescreen Card */}
+            {/* Viewport — full width on mobile (no side buttons) */}
             <div className="flex-1 overflow-hidden py-2">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -273,18 +273,18 @@ export function Certifications() {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   className="w-full cursor-grab active:cursor-grabbing"
                 >
-                  <WidescreenTicketCard 
-                    cert={certificationsData[activeIndex]} 
-                    onViewImage={(src, title) => setLightbox({ src, title })} 
+                  <WidescreenTicketCard
+                    cert={certificationsData[activeIndex]}
+                    onViewImage={(src, title) => setLightbox({ src, title })}
                   />
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Right Button */}
+            {/* Right Button — desktop only, hidden on mobile */}
             <button
               onClick={handleNext}
-              className="p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:scale-105 transition-all outline-none cursor-pointer focus-visible:ring-1 focus-visible:ring-primary shrink-0 z-10"
+              className="hidden sm:flex p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:scale-105 transition-all outline-none cursor-pointer focus-visible:ring-1 focus-visible:ring-primary shrink-0 z-10"
               aria-label="Next certificate"
             >
               <ChevronRight className="h-5 w-5" />
@@ -292,27 +292,47 @@ export function Certifications() {
 
           </div>
 
-          {/* Navigation Dots Indicator */}
-          <div className="flex gap-2.5 justify-center">
-            {certificationsData.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveIndex(i)}
-                className={`h-2.5 rounded-full transition-all duration-300 outline-none ${
-                  activeIndex === i 
-                    ? "w-7 bg-primary" 
-                    : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                }`}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
+          {/* Bottom nav: mobile arrows + dots */}
+          <div className="flex items-center justify-center gap-4">
+            {/* Prev — mobile only */}
+            <button
+              onClick={handlePrev}
+              className="sm:hidden p-2.5 rounded-full border border-border bg-card text-muted-foreground hover:text-primary transition-all outline-none cursor-pointer"
+              aria-label="Previous certificate"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex gap-2.5 justify-center">
+              {certificationsData.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  className={`h-2.5 rounded-full transition-all duration-300 outline-none ${
+                    activeIndex === i
+                      ? "w-7 bg-primary"
+                      : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Next — mobile only */}
+            <button
+              onClick={handleNext}
+              className="sm:hidden p-2.5 rounded-full border border-border bg-card text-muted-foreground hover:text-primary transition-all outline-none cursor-pointer"
+              aria-label="Next certificate"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
 
         </div>
 
       </div>
 
-      {/* Dynamic Animated Lightbox Modal */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
@@ -320,12 +340,24 @@ export function Certifications() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-default"
           >
+            {/* Close button */}
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              aria-label="Close image"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center gap-4"
             >
               <img

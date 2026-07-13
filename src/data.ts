@@ -163,7 +163,7 @@ export const projectsData: ProjectItem[] = [
     year: "2026",
     overview: "Developed a child growth monitoring system with LLM-powered health insights using Next.js and TypeScript.",
     contribution: "Co-authored Next.js interactive chart wrappers, established TypeScript type contracts, and parsed JSON payload structures.",
-    technologies: ["Next.js", "TypeScript"],
+    technologies: ["Next.js", "TypeScript", "LLM"],
     github: "https://github.com/ranaise/Posyandu_Pintar",
     demo: "https://posyandu-web-app.vercel.app",
     screenshot: "/projects/posyandu-ceria.jpg",

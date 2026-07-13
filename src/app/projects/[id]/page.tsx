@@ -966,7 +966,6 @@ export default function ProjectDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Interactive Swipeable Lightbox Modal */}
       <AnimatePresence>
         {activeLightbox && (
           <motion.div
@@ -974,8 +973,20 @@ export default function ProjectDetailPage({ params }: PageProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveLightbox(null)}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-default"
           >
+            {/* Close button */}
+            <button
+              onClick={() => setActiveLightbox(null)}
+              className="absolute top-4 right-4 z-30 h-9 w-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              aria-label="Close image"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
