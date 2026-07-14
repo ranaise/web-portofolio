@@ -33,6 +33,8 @@ function ProfilePhoto() {
             alt="Rafa'Na'ilah Septia"
             className="w-full h-auto max-h-[360px] object-contain opacity-95"
             onError={() => setError(true)}
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="flex flex-col items-center gap-4 p-8 py-10">

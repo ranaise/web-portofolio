@@ -87,6 +87,8 @@ function CertificationImage({
           alt={alt}
           className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
           onError={() => setError(true)}
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <ZoomIn className="h-6 w-6 text-white drop-shadow-md" />

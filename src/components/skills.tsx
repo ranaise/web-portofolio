@@ -114,15 +114,12 @@ export function Skills() {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
-              {activeCategory.skills.map((skill, index) => {
+              {activeCategory.skills.map((skill) => {
                 const isCore = coreEmphasis.includes(skill.name);
                 
                 return (
-                  <motion.div
+                  <div
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.25, delay: index * 0.04 }}
                     className={`group rounded-2xl p-4 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border ${
                       isCore ? "bg-card/70 border-primary/30 shadow-premium-md" : "bg-card/40 border-primary/10 shadow-sm hover:border-primary/30"
                     }`}
@@ -144,7 +141,7 @@ export function Skills() {
                     <span className={`text-[10px] ${isCore ? "font-bold text-foreground" : "font-semibold text-muted-foreground"}`}>
                       {skill.name}
                     </span>
-                  </motion.div>
+                  </div>
                 );
               })}
             </motion.div>

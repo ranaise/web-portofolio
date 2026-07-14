@@ -45,6 +45,8 @@ function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onV
               alt={alt}
               className="w-full h-auto max-h-[280px] object-contain transition-transform duration-500 group-hover:scale-105"
               onError={() => setError(true)}
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
               <ZoomIn className="h-6 w-6 text-white drop-shadow-md" />
@@ -222,6 +224,8 @@ export function Experience() {
                       src="/projects/logo telkom university.png"
                       alt="Telkom University Logo"
                       className="h-full w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div className="space-y-1 text-left">

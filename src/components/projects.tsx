@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ImageIcon, ZoomIn, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { projectsData } from "@/data";
@@ -86,26 +86,15 @@ export function TechIcon({ name }: { name: string }) {
 // Project Card with explicit flip trigger for accessibility
 function ProjectCard({
   project,
-  index,
-  shouldReduceMotion,
   onViewImage,
 }: {
   project: typeof projectsData[0];
-  index: number;
-  shouldReduceMotion: boolean;
   onViewImage: (src: string, title: string) => void;
 }) {
   const [showDetails, setShowDetails] = React.useState(false);
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full relative group min-h-[440px]"
-    >
+    <div className="w-full relative group min-h-[440px]">
       <div className="w-full h-full relative solid-surface bg-card/60 rounded-3xl border border-primary/20 shadow-premium-lg overflow-hidden flex flex-col justify-between p-5">
         
         {/* Toggle between image view and details view */}
@@ -259,12 +248,11 @@ function ProjectCard({
           )}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function Projects() {
-  const shouldReduceMotion = useReducedMotion() ?? false;
   const [activeCategory, setActiveCategory] = React.useState("All");
   const [activeGallery, setActiveGallery] = React.useState<{
     isOpen: boolean;
@@ -369,13 +357,11 @@ export function Projects() {
 
         {/* 2-Column strict vertical grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {filteredProjects.map((project, index) => {
+          {filteredProjects.map((project) => {
             return (
               <ProjectCard
                 key={project.id}
                 project={project}
-                index={index}
-                shouldReduceMotion={shouldReduceMotion}
                 onViewImage={openLightbox}
               />
             );

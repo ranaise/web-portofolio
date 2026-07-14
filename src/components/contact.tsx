@@ -77,7 +77,7 @@ export function Contact() {
 
         {/* Contact Actions Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {contactLinks.map((link, index) => {
+          {contactLinks.map((link) => {
             const Icon = link.icon;
             return (
                <motion.a
@@ -85,10 +85,6 @@ export function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
                 className={`relative group rounded-2xl p-5 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm`}
                 aria-label={`Contact via ${link.name}`}
