@@ -2,10 +2,9 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Mail, Phone, ExternalLink } from "lucide-react";
+import { Mail, ExternalLink } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
-// Inline WhatsApp SVG brand icon
 function WhatsappIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
@@ -17,15 +16,7 @@ function WhatsappIcon({ className }: { className?: string }) {
 export function Contact() {
   const shouldReduceMotion = useReducedMotion();
 
-  // Contact list targets from official CV data
   const contactLinks = [
-    {
-      name: "WhatsApp",
-      label: "+62 882-1502-7255",
-      href: "https://wa.me/6288215027255",
-      icon: WhatsappIcon,
-      color: "hover:border-[#25D366]/40 text-[#25D366] bg-[#25D366]/5",
-    },
     {
       name: "Email",
       label: "rafasepti06@gmail.com",
@@ -47,32 +38,49 @@ export function Contact() {
       icon: GithubIcon,
       color: "hover:border-foreground/40 text-foreground bg-foreground/5",
     },
+    {
+      name: "WhatsApp",
+      label: "+62 882-1502-7255",
+      href: "https://wa.me/6288215027255",
+      icon: WhatsappIcon,
+      color: "hover:border-[#25D366]/40 text-[#25D366] bg-[#25D366]/5",
+    },
   ];
 
   return (
-    <section id="contact" className="py-24 px-6 sm:px-8 bg-background transition-colors duration-300">
-      <div className="container mx-auto max-w-4xl text-center space-y-16">
+    <section id="contact" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
+      {/* Decorative Motif: Closing path and converging nodes */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
+        <svg viewBox="0 0 1000 400" className="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,0 C300,100 700,100 1000,0" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="5 5" />
+          <path d="M500,50 L500,400" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 4" />
+          <circle cx="500" cy="50" r="4" fill="var(--primary)" />
+          <circle cx="500" cy="200" r="2" fill="var(--accent)" />
+          <circle cx="500" cy="350" r="3" fill="var(--primary)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-4xl text-center space-y-16 relative z-10">
         
         {/* Section Heading */}
         <div className="max-w-2xl mx-auto space-y-2">
-          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
-            ✨ Contact
+          <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
+            Contact
           </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
-            Get in Touch
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-foreground leading-[1.05]">
+            Let’s build something useful.
           </h3>
-          <div className="h-0.5 w-8 bg-primary/40 mx-auto mt-2 rounded-full" />
-          <p className="text-xs sm:text-sm text-muted-foreground pt-3 leading-relaxed max-w-[55ch] mx-auto">
-            Direct access to my channels. Click any item below to message me, check repositories, or connect professionally.
+          <p className="text-sm sm:text-base text-muted-foreground pt-3 leading-relaxed max-w-[55ch] mx-auto font-medium">
+            I’m open to backend, software engineering, and applied AI opportunities where reliable systems and thoughtful implementation matter.
           </p>
         </div>
 
-        {/* Dynamic Recruiter Contact Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Contact Actions Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {contactLinks.map((link, index) => {
             const Icon = link.icon;
             return (
-              <motion.a
+               <motion.a
                 key={link.name}
                 href={link.href}
                 target="_blank"
@@ -81,27 +89,23 @@ export function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={shouldReduceMotion ? {} : {
-                  scale: 1.05,
-                  y: -4,
-                }}
-                className={`relative group rounded-2xl p-6 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm`}
+                whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
+                className={`relative group rounded-2xl p-5 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm`}
+                aria-label={`Contact via ${link.name}`}
               >
-                {/* Micro-glow background on hover */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary/3 to-accent/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                {/* Brand Icon wrapper */}
-                <div className="p-3.5 rounded-2xl bg-card border border-border/85 flex items-center justify-center transition-all group-hover:scale-110 shadow-xs text-current">
-                  <Icon className="h-6 w-6" />
+                <div className="p-3 rounded-xl bg-card border border-border flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm text-current">
+                  <Icon className="h-5 w-5" />
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[9px] font-mono tracking-widest uppercase font-extrabold block text-muted-foreground">
+                  <span className="text-[10px] font-mono tracking-widest uppercase font-extrabold block text-muted-foreground">
                     {link.name}
                   </span>
                   <span className="text-[11px] font-semibold text-foreground tracking-tight truncate max-w-[140px] inline-flex items-center gap-1">
                     {link.name === "WhatsApp" ? "+6288215027255" : link.label.replace("https://", "")}
-                    <ExternalLink className="h-3 w-3 text-muted-foreground opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="h-2.5 w-2.5 opacity-50 group-hover:opacity-100 transition-opacity" />
                   </span>
                 </div>
               </motion.a>

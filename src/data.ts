@@ -290,3 +290,205 @@ export const certificationsData: CertificationItem[] = [
     image: "/cert-kaggle.png"
   }
 ];
+
+export interface ProjectInterface {
+  id: string;
+  title: string;
+  image: string;
+  alt: string;
+  description: string;
+  workflow: string;
+  coreLogic: string[];
+  gallery: {
+    mobile?: { label: string; images: string[] }[];
+    web?: { label: string; images: string[] }[];
+  };
+  features: { title: string; desc: string }[];
+}
+
+export const projectDetails: Record<string, ProjectInterface> = {
+  "nexevent-2026": {
+    id: "nexevent-2026",
+    title: "NexEvent",
+    image: "/projects/nexevent.jpg",
+    alt: "NexEvent platform screenshot",
+    description: "NexEvent utilizes a role-based approval pipeline designed to coordinate university event planning across three user roles: Superadmins, Admins, and Students.",
+    workflow: "Organization Presidents submit event proposals, which wait for final review by the Student Affairs Directorate before being published. Organization Members can also propose events, undergoing a two-stage process. Regular students cannot submit events, only view and register.",
+    coreLogic: [
+      "Auto-Promote Waitlist: Promotes first candidate when someone cancels.",
+      "Time Clash Prevention: Prevents overlapping schedules.",
+      "Spam & Duplicate Protection: Database-level uniqueness validation."
+    ],
+    gallery: {
+      mobile: [
+        { label: "Register Account Flow", images: ["/projects/nexevent/Register mobile1.jpg", "/projects/nexevent/Register mobile2.jpg"] },
+        { label: "Mobile Authentication Gate", images: ["/projects/nexevent/Login mobile.jpg"] },
+        { label: "Explore Events Hub", images: ["/projects/nexevent/Dashboard mobile.jpg"] },
+        { label: "Event Submission Form", images: ["/projects/nexevent/Ajukan acara mobile1.jpg", "/projects/nexevent/Ajukan acara mobile2.jpg"] },
+        { label: "Event Details Panel", images: ["/projects/nexevent/Detail acara mobile.jpg"] },
+        { label: "Digital Event Ticket", images: ["/projects/nexevent/Mytickets mobile.jpg"] },
+        { label: "User Profile Panel", images: ["/projects/nexevent/Profile mobile.jpg", "/projects/nexevent/Profile mobile2.jpg"] }
+      ],
+      web: [
+        { label: "Admin Login Portal", images: ["/projects/nexevent/Login admin dan superadmin.jpg"] },
+        { label: "Admin Account Registration", images: ["/projects/nexevent/Register admin.jpg"] },
+        { label: "Organization Dashboard Statistics", images: ["/projects/nexevent/Dashboard admin.jpg"] },
+        { label: "Superadmin Control Center", images: ["/projects/nexevent/Dashboard superadmin.jpg"] },
+        { label: "Admin Event Submission Desk", images: ["/projects/nexevent/Ajukan acara admin1.jpg", "/projects/nexevent/Ajukan acara admin2.jpg"] },
+        { label: "Admin Edit Event Panel", images: ["/projects/nexevent/Edit acara admin1.jpg", "/projects/nexevent/Edit acara admin2.jpg"] },
+        { label: "Organization Event Catalog", images: ["/projects/nexevent/Page acara admin.jpg"] },
+        { label: "Superadmin Approval Desk", images: ["/projects/nexevent/All events superadmin.jpg", "/projects/nexevent/Pusat approval superadmin.jpg"] },
+        { label: "Committee Management Panel", images: ["/projects/nexevent/Manajemen panitia admin.jpg"] },
+        { label: "Participant Registry Matrix", images: ["/projects/nexevent/Manajemen peserta admin.jpg"] },
+        { label: "QR Attendance Verification", images: ["/projects/nexevent/Verifikasi kehadiran admin.jpg"] },
+        { label: "Superadmin Organization Manager", images: ["/projects/nexevent/Manajemen organisasi superadmin.jpg"] }
+      ]
+    },
+    features: [
+      { title: "Auto-Promote Waitlist", desc: "Ensures maximum event occupancy." },
+      { title: "Time Clash Prevention", desc: "Maintains student calendar integrity." },
+      { title: "Spam & Duplicate Protection", desc: "Enforces fair registration allocation." },
+      { title: "Auto-Archive Engine", desc: "Keeps event explorers clean." }
+    ]
+  },
+  "posyandu-pintar": {
+    id: "posyandu-pintar",
+    title: "Posyandu Pintar",
+    image: "/projects/posyandu-ceria.jpg",
+    alt: "Posyandu Pintar dashboard",
+    description: "Posyandu Pintar provides a health data logging dashboard for infant records, offering automated BMI/growth chart rendering and Groq AI diet suggestions.",
+    workflow: "Health cadres record physical developmental metrics during monthly sessions. The system parses statistics against WHO datasets and queries LLM models for nutritional diagnoses.",
+    coreLogic: [
+      "Growth Tracker Charts: Visualizes metrics over historical periods.",
+      "Groq AI Nutrition Assistant: Generates diagnostic tips.",
+      "Excel Report Engine: Aggregates monthly data to generate sheets."
+    ],
+    gallery: {
+      web: [
+        { label: "Kader Authentication Portal", images: ["/projects/posyandu-ceria/login.png"] },
+        { label: "Kader Account Registration", images: ["/projects/posyandu-ceria/registrasi.png"] },
+        { label: "Growth Metrics Overview Dashboard", images: ["/projects/posyandu-ceria/dashboard.png"] },
+        { label: "Child Patient Registry", images: ["/projects/posyandu-ceria/daftar balita.png"] },
+        { label: "New Child Account Wizard", images: ["/projects/posyandu-ceria/tambah balita.png", "/projects/posyandu-ceria/tambah balita2.png", "/projects/posyandu-ceria/tambah balita3.png"] },
+        { label: "Growth Analytics Details & Charts", images: ["/projects/posyandu-ceria/detail balita.png"] },
+        { label: "Growth Parameter Entry Form", images: ["/projects/posyandu-ceria/input pengukuran balita.png"] },
+        { label: "Edit Bio & Measurements Form", images: ["/projects/posyandu-ceria/edit data balita.png"] },
+        { label: "Monthly Attendance Sheet", images: ["/projects/posyandu-ceria/absensi balita.png"] },
+        { label: "Integrated Periodic Excel Reporting", images: ["/projects/posyandu-ceria/laporan data balita.png", "/projects/posyandu-ceria/laporan data balita2.png"] },
+        { label: "End Active Session Modal", images: ["/projects/posyandu-ceria/logout.png"] }
+      ]
+    },
+    features: [
+      { title: "Growth Tracker Charts", desc: "Visualizes infant developmental progress." },
+      { title: "Groq AI Nutrition Assistant", desc: "Generates custom diagnostic tips." },
+      { title: "Excel Report Engine", desc: "Streamlines government compliance." },
+      { title: "Monthly Absensi Verification", desc: "Maintains active rosters." }
+    ]
+  },
+  "microplast-2026": {
+    id: "microplast-2026",
+    title: "Microplast",
+    image: "/projects/microplast.jpg",
+    alt: "Microplast application",
+    description: "MicroPlast automates microplastic fragment analysis under microscopic views using OpenCV binarization, Otsu filters, and circularity calculations.",
+    workflow: "Loads raw microscopic lens photographs, segments particles using adaptive thresholding, extracts contours, and calculates geometry to classify contaminants.",
+    coreLogic: [
+      "Illumination Correction: Compensates for uneven microscope lighting.",
+      "Adaptive & Otsu's Thresholding: Segments objects cleanly.",
+      "Circularity Classification: Classifies plastic morphologies into fragments or fibers."
+    ],
+    gallery: {},
+    features: [
+      { title: "Illumination Correction", desc: "Compensates for uneven microscope lighting." },
+      { title: "Adaptive & Otsu's Thresholding", desc: "Segments objects cleanly." },
+      { title: "Morphological Closing", desc: "Cleans up binarized images." },
+      { title: "Circularity Classification", desc: "Classifies plastic morphologies." }
+    ]
+  },
+  "gpt-ner-2026": {
+    id: "gpt-ner-2026",
+    title: "GPT-NER",
+    image: "/projects/gpt-ner.jpg",
+    alt: "GPT-NER application",
+    description: "GPT-NER converts plain English documents into structured JSON entity labels, querying Groq Llama-3 models with evaluation metrics.",
+    workflow: "Loads text files, coordinates API queries with custom templates to extract key tokens, parses LLM responses, and compares extractions against CoNLL-2003 benchmarks.",
+    coreLogic: [
+      "Sequence Labeling Conversion: Bypasses training models from scratch.",
+      "Regex Extraction Filter: Isolates target keywords using boundaries.",
+      "seqeval Accuracy Matrix: Computes F1, Precision, and Recall."
+    ],
+    gallery: {},
+    features: [
+      { title: "Sequence Labeling Conversion", desc: "Simplifies extraction logic." },
+      { title: "Tag Insertion Schema", desc: "Formats model targets." },
+      { title: "Regex Extraction Filter", desc: "Parses model outputs." },
+      { title: "seqeval Accuracy Matrix", desc: "Computes system performance." }
+    ]
+  },
+  "my-dormitory-2025": {
+    id: "my-dormitory-2025",
+    title: "My Dormitory",
+    image: "/projects/mydormitory.png",
+    alt: "My Dormitory application",
+    description: "My Dormitory manages resident check-in/check-out confirmations using localized GPS fence validation and camera-verified QR code scans.",
+    workflow: "Residents scan dynamic QR codes using mobile camera. The mobile client tracks GPS coordinates to verify location. Building managers process entries.",
+    coreLogic: [
+      "QR Code Presensi System: Automates room check-ins securely.",
+      "GPS Location Validation: Prevents remote check-ins outside the dorm.",
+      "Infrastructure Issue Desk: Speeds up facility repairs."
+    ],
+    gallery: {
+      mobile: [
+        { label: "Resident Mobile Workspace", images: ["/projects/mydormitory/dashboard mobile.png"] },
+        { label: "QR Scanning Camera Verification", images: ["/projects/mydormitory/izin kamera mobile.png", "/projects/mydormitory/berhasil presensi mobile.png"] },
+        { label: "Attendance Activity logs", images: ["/projects/mydormitory/history absensi mobile.png"] }
+      ],
+      web: [
+        { label: "Admin Login Interface", images: ["/projects/mydormitory/login admin web.png"] },
+        { label: "Admin Dashboard Overview", images: ["/projects/mydormitory/dashboard admin web.png"] },
+        { label: "Resident Profile Registry", images: ["/projects/mydormitory/kelola penghuni web.png"] },
+        { label: "QR Code Attendance Log", images: ["/projects/mydormitory/presensi penghuni web.png"] },
+        { label: "Excel Export Reporting Hub", images: ["/projects/mydormitory/laporan presensi web.png"] },
+        { label: "Infrastructure Problem Reports", images: ["/projects/mydormitory/laporan masalah web.png"] }
+      ]
+    },
+    features: [
+      { title: "QR Code Presensi System", desc: "Automates room check-ins." },
+      { title: "GPS Location Validation", desc: "Prevents remote check-ins." },
+      { title: "Infrastructure Issue Desk", desc: "Speeds up facility repairs." },
+      { title: "Resident Registry & Room Allocation", desc: "Simplifies building allocation." }
+    ]
+  },
+  "telyutalks-2025": {
+    id: "telyutalks-2025",
+    title: "TelyuTalks",
+    image: "/projects/telyutalks.png",
+    alt: "TelyuTalks application",
+    description: "TelyuTalks serves as a campus question-and-answer discussion forum, integrating Telkom SSO login and admin content moderation queues.",
+    workflow: "Students and faculty authenticate via SSO to publish inquiries. Automated filters check for flag words and pipe reports into an administrative review desk.",
+    coreLogic: [
+      "SSO Email Authentication: Validates against Telkom University emails.",
+      "Academic Thread Discussion: Allows Q&A loops with voting.",
+      "Content Report & Moderation: Queues records for admin inspection."
+    ],
+    gallery: {
+      web: [
+        { label: "Academic Landing Page", images: ["/projects/telyutalks/landing page.png", "/projects/telyutalks/landing page2.png"] },
+        { label: "Authentication Portal", images: ["/projects/telyutalks/login.png"] },
+        { label: "Student Account Sign Up", images: ["/projects/telyutalks/register mahasiswa.png"] },
+        { label: "Lecturer Account Sign Up", images: ["/projects/telyutalks/register dosen.png"] },
+        { label: "Academic Thread Submission", images: ["/projects/telyutalks/ajukan pertanyaan.png"] },
+        { label: "Q&A Answer Submission Form", images: ["/projects/telyutalks/ajukan jawaban.png"] },
+        { label: "Content Moderation Reporting Dialog", images: ["/projects/telyutalks/report pertanyaan.png", "/projects/telyutalks/report jawaban.png"] },
+        { label: "User Profile Dashboard", images: ["/projects/telyutalks/profile.png"] },
+        { label: "Edit Bio & Danger Zone Account Removal", images: ["/projects/telyutalks/edit profile.png", "/projects/telyutalks/hapus akun.png"] }
+      ]
+    },
+    features: [
+      { title: "SSO Email Authentication", desc: "Ensures campus exclusivity." },
+      { title: "Academic Thread Discussion", desc: "Enables question & answer loops." },
+      { title: "Content Report & Moderation", desc: "Maintains platform code of conduct." },
+      { title: "Spring Security Auth Filter", desc: "Isolates administrative controls." }
+    ]
+  }
+};

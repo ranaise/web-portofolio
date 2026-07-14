@@ -4,6 +4,7 @@ import * as React from "react";
 import { Award, Copy, Check, ExternalLink, Landmark, ZoomIn, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { certificationsData } from "@/data";
+import { LightboxDialog } from "@/components/ui/lightbox-dialog";
 
 function CertificateVectorPlaceholder({ title, issuer, date }: { title: string; issuer: string; date: string }) {
   return (
@@ -118,12 +119,10 @@ function WidescreenTicketCard({
   };
 
   return (
-    <div className="w-full relative overflow-hidden p-6 sm:p-10 solid-surface rounded-3xl border border-primary/20 bg-card/45 shadow-premium-xl flex flex-col md:flex-row gap-8 items-center select-none">
-      {/* Ticket Notches */}
+    <div className="w-[85vw] max-w-[800px] mx-auto relative overflow-hidden p-6 sm:p-10 solid-surface rounded-3xl border border-primary/20 bg-card/60 shadow-premium-xl flex flex-col md:flex-row gap-8 items-center select-none">
       <div className="ticket-notch-left hidden md:block" />
       <div className="ticket-notch-right hidden md:block" />
 
-      {/* Left Column: Certificate Image preview (clickable to trigger lightbox) */}
       <div 
         className="w-full md:w-[48%] flex justify-center cursor-zoom-in shrink-0"
         onClick={() => onViewImage(cert.image, `${cert.issuer} - ${cert.title}`)}
@@ -137,7 +136,6 @@ function WidescreenTicketCard({
         />
       </div>
 
-      {/* Right Column: Details text & Verification tools */}
       <div className="flex-1 space-y-5 text-left w-full">
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-[10px] font-heading font-extrabold text-primary tracking-widest uppercase">
@@ -162,7 +160,6 @@ function WidescreenTicketCard({
           </div>
         </div>
 
-        {/* Foot actions */}
         <div className="space-y-3 pt-2">
           {cert.credentialId && cert.credentialId !== "N/A" && (
             <div className="flex items-center justify-between gap-3 bg-muted/40 p-2.5 rounded-xl border border-border/50 max-w-md">
@@ -204,14 +201,23 @@ function WidescreenTicketCard({
 }
 
 export function Certifications() {
-  const [lightbox, setLightbox] = React.useState<{ src: string; title: string } | null>(null);
+  const [activeGallery, setActiveGallery] = React.useState<{
+    isOpen: boolean;
+    title: string;
+    images: string[];
+  }>({
+    isOpen: false,
+    title: "",
+    images: [],
+  });
+
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const handleNext = () => {
     if (activeIndex < certificationsData.length - 1) {
       setActiveIndex(activeIndex + 1);
     } else {
-      setActiveIndex(0); // loop wrap around to the first slide
+      setActiveIndex(0);
     }
   };
 
@@ -219,14 +225,33 @@ export function Certifications() {
     if (activeIndex > 0) {
       setActiveIndex(activeIndex - 1);
     } else {
-      setActiveIndex(certificationsData.length - 1); // loop wrap around to the last slide
+      setActiveIndex(certificationsData.length - 1);
     }
   };
 
+  const openLightbox = (src: string, title: string) => {
+    setActiveGallery({
+      isOpen: true,
+      title,
+      images: [src],
+    });
+  };
+
   return (
-    <section id="certifications" className="py-24 px-6 sm:px-8 bg-background transition-colors duration-300">
-      <div className="container mx-auto max-w-5xl space-y-12">
-        {/* Section Heading */}
+    <section id="certifications" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
+      
+      {/* Decorative Motif: Quieter guide lines and scanning marks */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 flex items-center justify-center overflow-hidden" aria-hidden="true">
+        <svg viewBox="0 0 1000 600" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
+          <line x1="0" y1="300" x2="1000" y2="300" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="5 10" />
+          <line x1="500" y1="0" x2="500" y2="600" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="5 10" />
+          <rect x="495" y="295" width="10" height="10" fill="none" stroke="var(--accent)" strokeWidth="1" />
+          <circle cx="100" cy="300" r="2" fill="var(--primary)" />
+          <circle cx="900" cy="300" r="2" fill="var(--primary)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-5xl space-y-12 relative z-10">
         <div className="max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
           <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
             ✨ Credentials
@@ -234,17 +259,13 @@ export function Certifications() {
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
             Certifications
           </h3>
-          <p className="text-xs text-muted-foreground pt-1">
+          <p className="text-xs text-muted-foreground pt-1 font-medium">
             Swipe or use arrows to slide through certifications. Click certificates to zoom.
           </p>
         </div>
 
-        {/* 1-by-1 Widescreen Slide Carousel with looping wrap around */}
         <div className="relative w-full flex flex-col items-center gap-5">
-
-          <div className="relative w-full flex items-center justify-between gap-4 sm:gap-6">
-
-            {/* Left Button — desktop only, hidden on mobile */}
+          <div className="relative w-full flex items-center justify-between gap-2 sm:gap-6">
             <button
               onClick={handlePrev}
               className="hidden sm:flex p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:scale-105 transition-all outline-none cursor-pointer focus-visible:ring-1 focus-visible:ring-primary shrink-0 z-10"
@@ -253,35 +274,30 @@ export function Certifications() {
               <ChevronLeft className="h-5 w-5" />
             </button>
 
-            {/* Viewport — full width on mobile (no side buttons) */}
-            <div className="flex-1 overflow-hidden py-2">
+            <div className="flex-1 overflow-hidden py-2 w-full max-w-full">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
                   onDragEnd={(event, info) => {
-                    if (info.offset.x < -50) {
-                      handleNext();
-                    } else if (info.offset.x > 50) {
-                      handlePrev();
-                    }
+                    if (info.offset.x < -50) handleNext();
+                    else if (info.offset.x > 50) handlePrev();
                   }}
                   initial={{ opacity: 0, x: 60 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="w-full cursor-grab active:cursor-grabbing"
+                  className="w-full cursor-grab active:cursor-grabbing flex justify-center"
                 >
                   <WidescreenTicketCard
                     cert={certificationsData[activeIndex]}
-                    onViewImage={(src, title) => setLightbox({ src, title })}
+                    onViewImage={openLightbox}
                   />
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Right Button — desktop only, hidden on mobile */}
             <button
               onClick={handleNext}
               className="hidden sm:flex p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:scale-105 transition-all outline-none cursor-pointer focus-visible:ring-1 focus-visible:ring-primary shrink-0 z-10"
@@ -289,12 +305,9 @@ export function Certifications() {
             >
               <ChevronRight className="h-5 w-5" />
             </button>
-
           </div>
 
-          {/* Bottom nav: mobile arrows + dots */}
-          <div className="flex items-center justify-center gap-4">
-            {/* Prev — mobile only */}
+          <div className="flex items-center justify-center gap-4 pt-2">
             <button
               onClick={handlePrev}
               className="sm:hidden p-2.5 rounded-full border border-border bg-card text-muted-foreground hover:text-primary transition-all outline-none cursor-pointer"
@@ -303,7 +316,6 @@ export function Certifications() {
               <ChevronLeft className="h-4 w-4" />
             </button>
 
-            {/* Dots */}
             <div className="flex gap-2.5 justify-center">
               {certificationsData.map((_, i) => (
                 <button
@@ -319,7 +331,6 @@ export function Certifications() {
               ))}
             </div>
 
-            {/* Next — mobile only */}
             <button
               onClick={handleNext}
               className="sm:hidden p-2.5 rounded-full border border-border bg-card text-muted-foreground hover:text-primary transition-all outline-none cursor-pointer"
@@ -328,50 +339,16 @@ export function Certifications() {
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
-
         </div>
-
       </div>
 
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-default"
-          >
-            {/* Close button */}
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-              aria-label="Close image"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center gap-4"
-            >
-              <img
-                src={lightbox.src}
-                alt={lightbox.title}
-                className="max-w-full max-h-[78vh] object-contain rounded-2xl shadow-premium-2xl border border-white/10"
-              />
-              <div className="text-white/80 text-[10px] font-mono tracking-widest uppercase bg-black/60 border border-white/10 px-4 py-2 rounded-full select-none shadow-md">
-                {lightbox.title}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <LightboxDialog
+        isOpen={activeGallery.isOpen}
+        onClose={() => setActiveGallery((prev) => ({ ...prev, isOpen: false }))}
+        title={activeGallery.title}
+        images={activeGallery.images}
+        description={null}
+      />
     </section>
   );
 }

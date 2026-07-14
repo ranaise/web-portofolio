@@ -1,9 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { quickFacts } from "@/data";
 
 // Light-mode-aware sprocket holes
 function SprocketHoles({ className = "" }: { className?: string }) {
@@ -21,16 +19,13 @@ function SprocketHoles({ className = "" }: { className?: string }) {
   );
 }
 
-// Profile photo with graceful fallback — frame adapts to image size
+// Profile photo with graceful fallback
 function ProfilePhoto() {
   const [error, setError] = React.useState(false);
 
   return (
     <div className="w-full max-w-[280px] mx-auto rounded-2xl overflow-hidden border border-primary/25 bg-rose-50/70 dark:bg-[#1A1114] shadow-premium-lg flex flex-col select-none">
-      {/* Top sprocket */}
       <SprocketHoles className="bg-rose-100/60 dark:bg-black/70" />
-
-      {/* Photo */}
       <div className="relative w-full flex items-center justify-center overflow-hidden min-h-[220px]">
         {!error ? (
           <img
@@ -54,14 +49,9 @@ function ProfilePhoto() {
             </div>
           </div>
         )}
-        {/* Subtle vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none dark:from-black/40" />
       </div>
-
-      {/* Bottom sprocket */}
       <SprocketHoles className="bg-rose-100/60 dark:bg-black/70" />
-
-      {/* Film strip label */}
       <div className="py-2 px-3 bg-rose-100/50 dark:bg-black/60 flex items-center justify-between">
         <span className="text-[7.5px] font-mono text-muted-foreground/50 dark:text-white/35 tracking-[0.18em] uppercase">
           Frame 01
@@ -76,8 +66,21 @@ function ProfilePhoto() {
 
 export function About() {
   return (
-    <section id="about" className="py-20 px-4 sm:px-8 bg-background transition-colors duration-300">
-      <div className="container mx-auto max-w-5xl space-y-12 sm:space-y-16">
+    <section id="about" className="relative py-20 px-4 sm:px-8 bg-transparent transition-colors duration-300">
+      
+      {/* Decorative Motif: Open bracket and partial grid */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden flex justify-center" aria-hidden="true">
+        <svg viewBox="0 0 1000 600" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
+          <path d="M250,100 L150,100 L150,500 L250,500" fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeDasharray="3 6" />
+          <path d="M150,300 L850,300" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 4" opacity="0.5" />
+          <circle cx="150" cy="100" r="3" fill="var(--primary)" />
+          <circle cx="150" cy="500" r="3" fill="var(--primary)" />
+          <circle cx="850" cy="300" r="2" fill="var(--accent)" />
+          <circle cx="150" cy="300" r="2" fill="var(--accent)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-5xl space-y-12 sm:space-y-16 relative z-10">
 
         {/* Section Heading */}
         <div className="max-w-2xl text-left space-y-2 border-b border-border/40 pb-4">
@@ -92,34 +95,28 @@ export function About() {
           </p>
         </div>
 
-        {/* Main grid: photo + facts left, bio + focus right */}
+        {/* Main grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-
-          {/* Left Column: Profile photo */}
           <div className="lg:col-span-2 flex flex-col items-center lg:items-stretch">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55 }}
-              className="w-full flex justify-center animate-fade-in"
+              className="w-full flex justify-center"
             >
               <ProfilePhoto />
             </motion.div>
           </div>
 
-          {/* Right Column: Bio & Core Focus */}
           <div className="lg:col-span-3 space-y-6">
-
-            {/* Bio card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="rounded-3xl bg-card border border-primary/15 p-6 sm:p-8 shadow-premium-md space-y-5 hover:border-primary/35 transition-colors duration-300"
+              className="rounded-3xl solid-surface bg-card/60 border border-primary/15 p-6 sm:p-8 shadow-premium-md space-y-5 hover:border-primary/35 transition-colors duration-300"
             >
-              {/* Film-style header */}
               <div className="flex items-center justify-between pb-3 border-b border-border/30">
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1.5">
@@ -134,7 +131,7 @@ export function About() {
                 <span className="text-[9px] font-mono text-muted-foreground/35">01</span>
               </div>
 
-              <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <div className="space-y-3 text-sm leading-relaxed text-muted-foreground font-medium">
                 <p>
                   My name is{" "}
                   <strong className="text-foreground font-semibold">Rafa&apos;Na&apos;ilah Septia</strong>, a
@@ -154,13 +151,12 @@ export function About() {
               </div>
             </motion.div>
 
-            {/* Core Focus grid */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.22 }}
-              className="rounded-3xl bg-card border border-primary/15 p-6 shadow-premium-md space-y-4 hover:border-primary/35 transition-colors duration-300"
+              className="rounded-3xl solid-surface bg-card/60 border border-primary/15 p-6 shadow-premium-md space-y-4 hover:border-primary/35 transition-colors duration-300"
             >
               <h4 className="text-sm font-heading font-bold italic text-foreground border-b border-border/30 pb-2 flex items-center gap-2">
                 <span className="h-4 w-0.5 rounded-full bg-primary" />
@@ -175,7 +171,7 @@ export function About() {
                   "Computer Vision & ML Pipelines",
                   "Full-stack Mobile Development",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-xs text-muted-foreground">
+                  <div key={item} className="flex items-center gap-2.5 text-xs text-muted-foreground font-medium">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary/70 shrink-0" />
                     {item}
                   </div>

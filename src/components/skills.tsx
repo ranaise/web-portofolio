@@ -47,37 +47,54 @@ function CustomSkillIcon({ name }: { name: string }) {
 export function Skills() {
   const [activeTab, setActiveTab] = React.useState(hardSkillsCategories[0].title);
   const activeCategory = hardSkillsCategories.find(c => c.title === activeTab) || hardSkillsCategories[0];
+  
+  // Core Emphasis list from plan
+  const coreEmphasis = ["Python", "FastAPI", "Laravel", "MySQL", "Java", "Flutter", "Groq API", "Llama 3"];
 
   return (
-    <section id="skills" className="py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300 relative z-10">
-      <div className="container mx-auto max-w-5xl space-y-12">
+    <section id="skills" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300 z-10">
+      
+      {/* Decorative Motif: Orbit fragments, modular grid marks, small matrix points */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
+        <svg viewBox="0 0 1000 800" className="w-full h-full max-w-[1200px] mx-auto" preserveAspectRatio="xMidYMid slice">
+          <path d="M800,200 A300,300 0 0,0 200,800" fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="3 6" opacity="0.6" />
+          <rect x="100" y="100" width="20" height="20" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 4" />
+          <rect x="900" y="700" width="20" height="20" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="2 4" />
+          <circle cx="500" cy="400" r="2" fill="var(--primary)" />
+          <circle cx="550" cy="400" r="2" fill="var(--primary)" />
+          <circle cx="600" cy="400" r="2" fill="var(--primary)" />
+          <circle cx="500" cy="450" r="2" fill="var(--primary)" />
+          <circle cx="550" cy="450" r="2" fill="var(--accent)" />
+          <circle cx="600" cy="450" r="2" fill="var(--primary)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-5xl space-y-12 relative z-10">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border">
-          <div className="text-left space-y-3">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
-              Capabilities
-            </h2>
-            <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
-              Technical Skills &amp; Stack
-            </h3>
-            <p className="text-sm text-muted-foreground max-w-lg">
-              The tools and technologies I use to build robust and scalable systems.
-            </p>
-          </div>
+        <div className="max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
+          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
+            ✨ Capabilities
+          </h2>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
+            Technical Matrix
+          </h3>
+          <p className="text-xs text-muted-foreground pt-1">
+            The tools, languages, and frameworks I use to build robust and scalable systems.
+          </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 pb-2">
           {hardSkillsCategories.map((category) => {
             const active = activeTab === category.title;
             return (
               <button
                 key={category.title}
                 onClick={() => setActiveTab(category.title)}
-                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                className={`px-4 py-2 rounded-xl text-[11px] font-bold tracking-wide transition-all duration-300 outline-none focus-visible:ring-1 focus-visible:ring-primary ${
                   active 
-                    ? "bg-primary text-primary-foreground shadow-sm" 
-                    : "bg-card text-muted-foreground hover:bg-muted border border-border"
+                    ? "bg-card text-foreground shadow-xs border border-border/40" 
+                    : "bg-transparent text-muted-foreground hover:text-foreground border border-transparent hover:border-border/20"
                 }`}
               >
                 {category.title}
@@ -86,7 +103,7 @@ export function Skills() {
           })}
         </div>
 
-        {/* Skills Grid */}
+        {/* Skills Grid - auto-fill CSS grid, compact chips */}
         <div className="min-h-[280px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -95,47 +112,56 @@ export function Skills() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
-              {activeCategory.skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="group rounded-2xl p-6 solid-surface flex flex-col items-center justify-center text-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
-                >
-                  <div className="h-12 w-12 flex items-center justify-center grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                    {skill.custom ? (
-                      <CustomSkillIcon name={skill.name} />
-                    ) : (
-                      <img
-                        src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.devicon}`}
-                        alt={skill.name}
-                        className="max-h-full max-w-full object-contain"
-                        onError={(e) => { e.currentTarget.style.display = "none"; }}
-                      />
-                    )}
-                  </div>
-                  <span className="text-xs font-semibold text-foreground">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
+              {activeCategory.skills.map((skill, index) => {
+                const isCore = coreEmphasis.includes(skill.name);
+                
+                return (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.25, delay: index * 0.04 }}
+                    className={`group rounded-2xl p-4 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border ${
+                      isCore ? "bg-card/70 border-primary/30 shadow-premium-md" : "bg-card/40 border-primary/10 shadow-sm hover:border-primary/30"
+                    }`}
+                  >
+                    <div className={`h-8 w-8 flex items-center justify-center transition-all duration-300 ${
+                      isCore ? "grayscale-0 opacity-100 scale-110" : "grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                    }`}>
+                      {skill.custom ? (
+                        <CustomSkillIcon name={skill.name} />
+                      ) : (
+                        <img
+                          src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.devicon}`}
+                          alt={skill.name}
+                          className="max-h-full max-w-full object-contain"
+                          onError={(e) => { e.currentTarget.style.display = "none"; }}
+                        />
+                      )}
+                    </div>
+                    <span className={`text-[10px] ${isCore ? "font-bold text-foreground" : "font-semibold text-muted-foreground"}`}>
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Soft Skills */}
-        <div className="pt-8 border-t border-border">
-          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-            Soft Skills
+        <div className="pt-8 border-t border-border/40">
+          <h4 className="text-[10px] font-heading font-bold text-muted-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span className="h-1 w-1 rounded-full bg-primary" />
+            Soft Skills &amp; Competencies
           </h4>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {softSkillsList.map((skill) => (
               <span
                 key={skill}
-                className="px-4 py-2 text-xs font-semibold rounded-lg bg-card border border-border text-foreground shadow-sm"
+                className="px-3 py-1.5 text-[10px] font-bold rounded-lg solid-surface bg-card/40 border border-border/50 text-foreground shadow-xs"
               >
                 {skill}
               </span>

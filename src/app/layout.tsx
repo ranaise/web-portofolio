@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const playfairDisplay = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
 });
 
 const inter = Inter({
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${playfairDisplay.variable} ${inter.variable} antialiased min-h-screen text-foreground transition-colors duration-300 font-sans`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen text-foreground transition-colors duration-300 font-sans`}
       >
         <ThemeProvider
           attribute="class"
@@ -55,7 +55,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="noise-overlay" />
           {children}
         </ThemeProvider>
       </body>

@@ -7,14 +7,13 @@ import { Experience } from "@/components/experience";
 import { Certifications } from "@/components/certifications";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
-import { ContinuousLine } from "@/components/continuous-line";
 
 export default function Home() {
   return (
     <>
-      <ContinuousLine />
       <Navbar />
-      <main className="flex-1 flex flex-col relative z-10">
+      <main className="portfolio-canvas flex-1 flex flex-col relative z-10">
+        <div className="noise-overlay" />
         <Hero />
         <About />
         <Experience />

@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Menu, Moon, Sun, Terminal } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { navigationItems } from "@/data";
@@ -15,9 +15,7 @@ export function Navbar() {
   const [activeSection, setActiveSection] = React.useState("home");
   const [isOpen, setIsOpen] = React.useState(false);
 
-  // Scroll visibility and dimensions tracking states
   const [lastScrollY, setLastScrollY] = React.useState(0);
-  const [isVisible, setIsVisible] = React.useState(true);
   const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -26,7 +24,6 @@ export function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Active section tracking
       const sections = navigationItems.map((item) => {
         const el = document.getElementById(item.href.substring(1));
         if (el) {
@@ -49,12 +46,7 @@ export function Navbar() {
         setActiveSection(currentSection.id);
       }
 
-      // Navbar shrink & hide checks
       setIsScrolled(currentScrollY > 20);
-
-      // Navbar hide check removed as per user request
-      setIsScrolled(currentScrollY > 20);
-
       setLastScrollY(currentScrollY);
     };
 
@@ -66,22 +58,39 @@ export function Navbar() {
 
   return (
     <motion.div
-      animate={{
-        y: 0, // Never hide
-        scale: 1, // Keep scale constant
-      }}
+      animate={{ y: 0, scale: 1 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 w-full"
     >
-      <header className={`w-full transition-all duration-300 ${isScrolled ? "bg-card border-b border-border shadow-md" : "bg-transparent"}`}>
-        <div className="flex h-16 items-center justify-between px-6 md:px-12 max-w-7xl mx-auto">
+      <header className={`w-full transition-all duration-300 ${isScrolled ? "bg-card/80 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"}`}>
+        <div className="flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+          
+          {/* Logo */}
           <div className="flex-1 flex justify-start">
             <Link 
               href="#home" 
-              className="flex items-center hover:opacity-85 transition-opacity focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1 outline-none text-2xl font-heading font-bold text-foreground italic"
+              className="flex items-center hover:opacity-85 transition-opacity focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1 outline-none text-xl sm:text-2xl font-heading font-bold text-foreground italic"
+              aria-label="Home"
             >
               R.
             </Link>
+          </div>
+
+          {/* Mobile Current Section Indicator (Center) */}
+          <div className="flex-1 flex justify-center md:hidden overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={activeSection}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2 }}
+                className="text-[10px] font-mono font-bold tracking-widest uppercase text-muted-foreground truncate max-w-[100px]"
+                aria-hidden="true"
+              >
+                {activeSection}
+              </motion.span>
+            </AnimatePresence>
           </div>
 
           {/* Desktop Nav */}
@@ -96,6 +105,7 @@ export function Navbar() {
                   className={`relative text-xs font-semibold tracking-wider transition-colors duration-200 hover:text-foreground py-1 outline-none focus-visible:ring-1 focus-visible:ring-primary rounded-sm ${
                     isActive ? "text-foreground font-bold" : "text-muted-foreground"
                   }`}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {item.label}
                   {isActive && (
@@ -107,7 +117,7 @@ export function Navbar() {
           </nav>
 
           {/* Actions */}
-          <div className="flex-1 flex justify-end items-center gap-2">
+          <div className="flex-1 flex justify-end items-center gap-1.5 sm:gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -128,7 +138,7 @@ export function Navbar() {
                 className="inline-flex items-center justify-center rounded-full w-8 h-8 sm:w-9 sm:h-9 md:hidden text-muted-foreground hover:text-foreground hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-primary outline-none cursor-pointer transition-colors"
                 aria-label="Open navigation menu"
               >
-                <Menu className="h-4.5 w-4.5" />
+                <Menu className="h-4 w-4" />
               </SheetTrigger>
               <SheetContent side="right" className="w-[280px] border-l border-border bg-background/95 backdrop-blur-md">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
@@ -155,6 +165,7 @@ export function Navbar() {
                               ? "bg-primary/10 text-foreground font-bold"
                               : "text-muted-foreground hover:bg-muted hover:text-foreground"
                           }`}
+                          aria-current={isActive ? "page" : undefined}
                         >
                           {item.label}
                         </Link>

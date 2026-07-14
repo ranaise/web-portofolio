@@ -4,8 +4,8 @@ import * as React from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Award, Briefcase, GraduationCap, Camera, ZoomIn } from "lucide-react";
 import { experienceData, orgExperienceData, educationDetails } from "@/data";
+import { LightboxDialog } from "@/components/ui/lightbox-dialog";
 
-// Parse **text** markdown bold syntax into <strong> JSX
 function renderBoldText(text: string) {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return (
@@ -23,21 +23,17 @@ function renderBoldText(text: string) {
   );
 }
 
-// Resilient gallery image loader with click-to-zoom support
 function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onViewImage: (src: string, title: string) => void }) {
-
   const [error, setError] = React.useState(false);
 
   return (
     <div className="w-full bg-rose-50/60 dark:bg-[#1A1114] border border-primary/25 rounded-2xl p-2.5 shadow-premium-md flex flex-col gap-2 transition-all duration-300 hover:border-primary/55 select-none">
-      {/* Top film roll sprocket holes */}
       <div className="flex items-center justify-between px-2 py-1">
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className="w-2.5 h-3 rounded-[2px] bg-rose-200/50 dark:bg-black/50 border border-rose-300/30 dark:border-white/8" />
         ))}
       </div>
 
-      {/* Film image frame — height adapts to image */}
       <div
         className="relative w-full overflow-hidden rounded bg-rose-100/40 dark:bg-black/80 cursor-zoom-in group"
         onClick={() => onViewImage(src, alt)}
@@ -64,7 +60,6 @@ function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onV
         )}
       </div>
 
-      {/* Bottom film roll sprocket holes */}
       <div className="flex items-center justify-between px-2 py-1">
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className="w-2.5 h-3 rounded-[2px] bg-rose-200/50 dark:bg-black/50 border border-rose-300/30 dark:border-white/8" />
@@ -74,7 +69,6 @@ function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onV
   );
 }
 
-// Helper component for work experience milestone cards
 function MilestoneCard({ 
   item, 
   index,
@@ -90,11 +84,10 @@ function MilestoneCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="rounded-3xl bg-card p-6 sm:p-10 space-y-6 border border-primary/20 relative overflow-hidden text-left shadow-premium-md"
+      className="rounded-3xl solid-surface bg-card/60 p-6 sm:p-10 space-y-6 border border-primary/20 relative overflow-hidden text-left shadow-premium-md"
     >
       <div className="absolute inset-0 bg-gradient-to-tr from-primary/3 to-accent/3 pointer-events-none" />
 
-      {/* Card Header */}
       <div className="space-y-3 pb-4 border-b border-border/40 select-none">
         <span className="text-[10px] font-heading font-extrabold tracking-[0.25em] text-primary uppercase block">
           {item.role}
@@ -107,17 +100,15 @@ function MilestoneCard({
         </p>
       </div>
 
-      {/* Achievements list with bold parsing */}
       <ul className="space-y-4 py-2">
         {item.achievements.map((achievement, idx) => (
-          <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed font-medium">
             <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0 mt-[7px]" />
             <span>{renderBoldText(achievement)}</span>
           </li>
         ))}
       </ul>
 
-      {/* Interactive Activity Photos Gallery - Rearranged vertically below text for maximum visibility */}
       {item.photos && item.photos.length > 0 && (
         <div className="space-y-4 pt-6 border-t border-border/40 text-left">
           <div className="flex items-center justify-between">
@@ -146,13 +137,42 @@ function MilestoneCard({
 }
 
 export function Experience() {
-  const [lightbox, setLightbox] = React.useState<{ src: string; title: string } | null>(null);
+  const [activeGallery, setActiveGallery] = React.useState<{
+    isOpen: boolean;
+    title: string;
+    images: string[];
+  }>({
+    isOpen: false,
+    title: "",
+    images: [],
+  });
+
+  const openLightbox = (src: string, title: string) => {
+    setActiveGallery({
+      isOpen: true,
+      title,
+      images: [src],
+    });
+  };
 
   return (
-    <section id="experience" className="py-24 px-6 sm:px-8 bg-muted/10 transition-colors duration-300">
-      <div className="container mx-auto max-w-5xl space-y-16">
+    <section id="experience" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
+      
+      {/* Decorative Motif: Subtle diagonal or vertical route marks */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
+        <svg viewBox="0 0 1000 1200" className="w-full h-full max-w-[1200px] mx-auto" preserveAspectRatio="xMidYMid slice">
+          <path d="M150,100 L150,1100" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="4 8" />
+          <path d="M850,200 L850,1000" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="4 8" opacity="0.6" />
+          <circle cx="150" cy="300" r="3" fill="var(--primary)" />
+          <circle cx="150" cy="700" r="3" fill="var(--primary)" />
+          <circle cx="850" cy="400" r="2" fill="var(--accent)" />
+          <circle cx="850" cy="800" r="2" fill="var(--accent)" />
+          <path d="M150,300 L250,400" fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="2 4" opacity="0.5" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-5xl space-y-16 relative z-10">
         
-        {/* Section Heading */}
         <div className="max-w-2xl text-left space-y-2">
           <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
             ✨ Timeline
@@ -164,7 +184,6 @@ export function Experience() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Work Milestones */}
           <div className="lg:col-span-7 space-y-8 text-left">
             <h4 className="text-sm font-heading uppercase tracking-wider text-foreground font-bold flex items-center gap-2 border-b border-border/60 pb-2 italic">
               <Briefcase className="h-4 w-4 text-primary shrink-0" />
@@ -176,26 +195,22 @@ export function Experience() {
                   key={item.id} 
                   item={item} 
                   index={index} 
-                  onViewImage={(src, title) => setLightbox({ src, title })} 
+                  onViewImage={openLightbox} 
                 />
               ))}
             </div>
           </div>
 
-          {/* Right Column: Education & Organizations */}
           <div className="lg:col-span-5 space-y-8 text-left">
             <h4 className="text-sm font-heading uppercase tracking-wider text-foreground font-bold flex items-center gap-2 border-b border-border/60 pb-2 italic">
               <GraduationCap className="h-4 w-4 text-primary shrink-0" />
               Education &amp; Organizations
             </h4>
 
-            {/* Vintage Ticket Stub Container */}
-            <div className="relative border border-primary/25 bg-card rounded-3xl p-6 sm:p-8 space-y-6 shadow-premium-md overflow-hidden select-none">
-              {/* Ticket Notches */}
+            <div className="relative border border-primary/20 solid-surface bg-card/60 rounded-3xl p-6 sm:p-8 space-y-6 shadow-premium-md overflow-hidden select-none">
               <div className="ticket-notch-left" />
               <div className="ticket-notch-right" />
 
-              {/* Ticket Header: Education */}
               <div className="space-y-4">
                 <span className="text-[9px] font-heading font-extrabold tracking-[0.2em] text-primary uppercase block">
                   🎀 EDUCATION &amp; AWARDS
@@ -213,7 +228,7 @@ export function Experience() {
                     <h5 className="text-sm sm:text-base font-heading font-bold text-foreground leading-tight">
                       {educationDetails.degree}
                     </h5>
-                    <p className="text-xs text-muted-foreground leading-normal">
+                    <p className="text-xs text-muted-foreground leading-normal font-medium">
                       {educationDetails.institution}
                     </p>
                     <span className="inline-block px-2 py-0.5 rounded-full text-[9px] font-bold bg-primary/10 text-primary uppercase mt-1">
@@ -228,7 +243,7 @@ export function Experience() {
                   </span>
                   <ul className="space-y-1.5">
                     {educationDetails.awards.map((award) => (
-                      <li key={award} className="text-xs text-muted-foreground flex items-center gap-2">
+                      <li key={award} className="text-xs text-muted-foreground flex items-center gap-2 font-medium">
                         <Award className="h-3.5 w-3.5 text-primary shrink-0" />
                         {award}
                       </li>
@@ -237,10 +252,8 @@ export function Experience() {
                 </div>
               </div>
 
-              {/* Perforated dashed divider inside the ticket stub */}
               <div className="border-t border-dashed border-primary/20 my-6" />
 
-              {/* Ticket Body: Organizations */}
               <div className="space-y-6">
                 <span className="text-[9px] font-heading font-extrabold tracking-[0.2em] text-primary uppercase block">
                   ✧ ORGANIZATIONAL EXPERIENCE
@@ -260,7 +273,7 @@ export function Experience() {
 
                       <ul className="space-y-1">
                         {item.tasks.map((task, i) => (
-                          <li key={i} className="text-[11px] text-muted-foreground leading-relaxed flex items-start gap-1.5">
+                          <li key={i} className="text-[11px] text-muted-foreground leading-relaxed flex items-start gap-1.5 font-medium">
                             <span className="h-1 w-1 rounded-full mt-1.5 bg-primary shrink-0" />
                             <span>{task}</span>
                           </li>
@@ -271,58 +284,23 @@ export function Experience() {
                 </div>
               </div>
 
-              {/* Perforated dashed divider for barcode */}
               <div className="border-t border-dashed border-primary/20 my-6" />
 
-              {/* Decorative Starburst icon separator */}
               <div className="flex justify-center items-center gap-2 text-primary/40 text-xs">
                 <span>✦</span><span>✧</span><span>✦</span>
               </div>
-
             </div>
           </div>
         </div>
       </div>
 
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-default"
-          >
-            {/* Close button */}
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-              aria-label="Close image"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center gap-4"
-            >
-              <img
-                src={lightbox.src}
-                alt={lightbox.title}
-                className="max-w-full max-h-[78vh] object-contain rounded-2xl shadow-premium-2xl border border-white/10"
-              />
-              <div className="text-white/80 text-[10px] font-mono tracking-widest uppercase bg-black/60 border border-white/10 px-4 py-2 rounded-full select-none shadow-md">
-                {lightbox.title}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <LightboxDialog
+        isOpen={activeGallery.isOpen}
+        onClose={() => setActiveGallery((prev) => ({ ...prev, isOpen: false }))}
+        title={activeGallery.title}
+        images={activeGallery.images}
+        description={null}
+      />
     </section>
   );
 }

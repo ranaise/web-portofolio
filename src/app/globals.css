@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-playfair);
+  --font-heading: var(--font-heading);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -45,6 +45,10 @@
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
+
+  /* Responsive Spacing Tokens */
+  --spacing-section-mobile: 4rem;
+  --spacing-section-desktop: 6rem;
 }
 
 :root {
@@ -106,26 +110,69 @@
   }
   body {
     background-color: var(--background);
-    /* Clean topographic curved lines */
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q25,25 50,50 T100,50' fill='none' stroke='%230ea5e9' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M0,70 Q25,45 50,70 T100,70' fill='none' stroke='%23db2777' stroke-width='0.5' stroke-opacity='0.1'/%3E%3Cpath d='M0,30 Q25,5 50,30 T100,30' fill='none' stroke='%230ea5e9' stroke-width='0.5' stroke-opacity='0.15'/%3E%3C/svg%3E");
-    background-size: 150px 150px;
     @apply text-foreground font-sans antialiased selection:bg-primary/20 transition-colors duration-300;
   }
   .dark body {
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q25,25 50,50 T100,50' fill='none' stroke='%2338bdf8' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M0,70 Q25,45 50,70 T100,70' fill='none' stroke='%23f472b6' stroke-width='0.5' stroke-opacity='0.1'/%3E%3Cpath d='M0,30 Q25,5 50,30 T100,30' fill='none' stroke='%2338bdf8' stroke-width='0.5' stroke-opacity='0.15'/%3E%3C/svg%3E");
+    background-color: var(--background);
   }
   html {
     @apply font-sans;
   }
+  
+  /* Fluid Typography Clamps */
+  h1 {
+    font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+  }
+  p {
+    line-height: 1.6;
+    max-width: 65ch;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight font-bold;
   }
 }
 
+/* Noise Overlay */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+.dark .noise-overlay {
+  opacity: 0.05;
+}
+
+/* Continuous Canvas Gradient Field */
+.portfolio-canvas {
+  background: radial-gradient(circle at top left, var(--primary) 0%, transparent 40%),
+              radial-gradient(circle at bottom right, var(--accent) 0%, transparent 40%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.9;
+}
+.dark .portfolio-canvas {
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
+              radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.1) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
 /* Solid Surface Component (replaces glass-surface) */
 .solid-surface {
-  background-color: var(--solid-bg);
-  border: 1px solid var(--solid-border);
+  background-color: var(--card);
+  border: 1px solid var(--border);
   box-shadow: 0 4px 20px -2px var(--solid-shadow);
   border-radius: var(--radius-2xl);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
