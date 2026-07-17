@@ -30,7 +30,7 @@ function ProfilePhoto() {
         {!error ? (
           <img
             src="/projects/about-profile.png"
-            alt="Rafa'Na'ilah Septia"
+            alt="Rafa’Na’ilah Septia"
             className="w-full h-auto max-h-[360px] object-contain opacity-95"
             onError={() => setError(true)}
             loading="lazy"
@@ -42,8 +42,8 @@ function ProfilePhoto() {
               R
             </div>
             <div className="text-center space-y-1">
-              <p className="text-xs font-heading font-bold text-foreground italic">
-                Rafa&apos;Na&apos;ilah Septia
+              <p className="text-xs font-heading font-bold text-foreground">
+                Rafa’Na’ilah Septia
               </p>
               <p className="text-[9px] font-mono text-muted-foreground/50 tracking-widest uppercase">
                 Informatics &bull; 2026
@@ -68,7 +68,7 @@ function ProfilePhoto() {
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 px-4 sm:px-8 bg-transparent transition-colors duration-300">
+    <section id="about" className="relative py-14 sm:py-16 px-4 sm:px-8 bg-transparent transition-colors duration-300">
       
       {/* Decorative Motif: Open bracket and partial grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden flex justify-center" aria-hidden="true">
@@ -82,14 +82,14 @@ export function About() {
         </svg>
       </div>
 
-      <div className="container mx-auto max-w-5xl space-y-12 sm:space-y-16 relative z-10">
+      <div className="container mx-auto max-w-5xl space-y-8 relative z-10">
 
         {/* Section Heading */}
         <div className="max-w-2xl text-left space-y-2 border-b border-border/40 pb-4">
-          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
+          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Profile
           </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             About Me
           </h3>
           <p className="text-xs text-muted-foreground pt-1">
@@ -98,7 +98,7 @@ export function About() {
         </div>
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10 items-start">
           <div className="lg:col-span-2 flex flex-col items-center lg:items-stretch">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -117,7 +117,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="rounded-3xl solid-surface bg-card/60 border border-primary/15 p-6 sm:p-8 shadow-premium-md space-y-5 hover:border-primary/35 transition-colors duration-300"
+              className="rounded-2xl solid-surface bg-card/50 border border-primary/15 p-5 sm:p-6 shadow-premium-md space-y-4 hover:border-primary/35 transition-colors duration-300"
             >
               <div className="flex items-center justify-between pb-3 border-b border-border/30">
                 <div className="flex items-center gap-3">
@@ -135,20 +135,10 @@ export function About() {
 
               <div className="space-y-3 text-sm leading-relaxed text-muted-foreground font-medium">
                 <p>
-                  My name is{" "}
-                  <strong className="text-foreground font-semibold">Rafa&apos;Na&apos;ilah Septia</strong>, a
-                  sixth-semester Informatics student at{" "}
-                  <strong className="text-foreground font-semibold">Telkom University</strong>.
+              I’m an Informatics student at Telkom University focused on backend engineering, API design, relational databases, and applied AI. I enjoy turning complex workflows into maintainable products that work reliably in real use.
                 </p>
-                <p>
-                  My core interests lie in building robust backend services, designing efficient API systems,
-                  and exploring applied AI. Currently interning at{" "}
-                  <strong className="text-foreground font-semibold">Medusa Technology</strong>, where I build
-                  real-time virtual systems and AI-powered moderation tools.
-                </p>
-                <p>
-                  I focus on relational data schema design, query optimization, and building clean system
-                  architectures. The goal is always maintainable, scalable code built for the real world.
+                <p className="text-xs text-muted-foreground/80">
+                  Currently interning at <strong className="text-foreground font-semibold">Medusa Technology</strong>.
                 </p>
               </div>
             </motion.div>
@@ -158,22 +148,20 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.22 }}
-              className="rounded-3xl solid-surface bg-card/60 border border-primary/15 p-6 shadow-premium-md space-y-4 hover:border-primary/35 transition-colors duration-300"
+              className="rounded-2xl solid-surface bg-card/40 border border-primary/15 p-5 shadow-premium-md space-y-3 hover:border-primary/35 transition-colors duration-300"
             >
-              <h4 className="text-sm font-heading font-bold italic text-foreground border-b border-border/30 pb-2 flex items-center gap-2">
+              <h4 className="text-sm font-heading font-bold text-foreground border-b border-border/30 pb-2 flex items-center gap-2">
                 <span className="h-4 w-0.5 rounded-full bg-primary" />
                 Core Focus
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {[
-                  "Backend API Engineering",
-                  "AI & LLM Integration",
-                  "Relational Database Design",
-                  "Real-time System Architecture",
-                  "Computer Vision & ML Pipelines",
-                  "Full-stack Mobile Development",
+                  "Backend & API Engineering",
+                  "Database Design",
+                  "Applied AI Integration",
+                  "Real-time & Mobile Systems",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-xs text-muted-foreground font-medium">
+                  <div key={item} className="flex items-center gap-2.5 text-xs text-muted-foreground font-medium py-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary/70 shrink-0" />
                     {item}
                   </div>

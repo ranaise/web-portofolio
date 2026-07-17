@@ -99,17 +99,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
               </p>
             </div>
 
-            {/* 2. Role and Scope */}
-            <div className="space-y-3">
-              <strong className="text-xs uppercase tracking-wider text-foreground font-mono block">
-                Role &amp; Contribution
-              </strong>
-              <p className="text-sm sm:text-base text-muted-foreground">
-                {project.contribution}
-              </p>
-            </div>
-
-            {/* 3. Key Capabilities */}
+            {/* 2. Key Capabilities */}
             <div className="space-y-3">
               <strong className="text-xs uppercase tracking-wider text-foreground font-mono block">
                 Key Capabilities
@@ -131,7 +121,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* 4. Interface Gallery */}
+          {/* 3. Interface Gallery */}
           {details.gallery && (details.gallery.mobile?.length || details.gallery.web?.length) ? (
             <div className="space-y-6 pt-8 border-t border-border/40">
               <div className="space-y-1">
@@ -209,10 +199,26 @@ export default function ProjectDetailPage({ params }: PageProps) {
             </div>
           ) : null}
 
-          {/* 5. Technology Stack */}
+          {project.videoDemo && (
+            <div className="space-y-3 pt-6 border-t border-border/40">
+              <strong className="text-xs uppercase tracking-wider text-foreground font-mono block">
+                Demo Video
+              </strong>
+              <video
+                controls
+                preload="metadata"
+                poster={project.screenshot}
+                className="w-full aspect-video rounded-xl border border-border bg-black/10 object-contain"
+              >
+                <source src={project.videoDemo} type="video/mp4" />
+              </video>
+            </div>
+          )}
+
+          {/* 4. Technologies */}
           <div className="space-y-3 pt-8 border-t border-border/40">
             <strong className="text-xs uppercase tracking-wider text-foreground font-mono block">
-              Technology Stack
+              Technologies
             </strong>
             <div className="flex flex-wrap gap-2.5">
               {project.technologies.map((tag) => (
@@ -221,7 +227,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* 6. Repository & Live Links */}
+          {/* 5. Repository / Live Demo */}
           <div className="pt-8 border-t border-border/40 flex flex-wrap gap-4">
             {project.github && (
               <a

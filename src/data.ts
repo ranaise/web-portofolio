@@ -213,7 +213,7 @@ export const projectsData: ProjectItem[] = [
 
 export const hardSkillsCategories = [
   {
-    title: "Programming Languages",
+    title: "Languages",
     skills: [
       { name: "Python", devicon: "python/python-original.svg" },
       { name: "C++", devicon: "cplusplus/cplusplus-original.svg" },
@@ -228,7 +228,7 @@ export const hardSkillsCategories = [
     ]
   },
   {
-    title: "Frameworks & Platforms",
+    title: "Backend & Frameworks",
     skills: [
       { name: "FastAPI", devicon: "fastapi/fastapi-original.svg" },
       { name: "Java Spring Boot", devicon: "spring/spring-original.svg" },
@@ -239,16 +239,26 @@ export const hardSkillsCategories = [
     ]
   },
   {
-    title: "Databases & Tools",
+    title: "Databases",
     skills: [
       { name: "MySQL", devicon: "mysql/mysql-original.svg" },
       { name: "PostgreSQL", devicon: "postgresql/postgresql-original.svg" },
-      { name: "MariaDB", devicon: "mariadb/mariadb-original.svg" },
-      { name: "Linux", devicon: "linux/linux-original.svg" },
-      { name: "Figma", devicon: "figma/figma-original.svg" },
-      { name: "Git", devicon: "git/git-original.svg" },
+      { name: "MariaDB", devicon: "mariadb/mariadb-original.svg" }
+    ]
+  },
+  {
+    title: "AI & Data",
+    skills: [
       { name: "Groq API", custom: true },
       { name: "OpenCV", devicon: "opencv/opencv-original.svg" }
+    ]
+  },
+  {
+    title: "Tools & Platforms",
+    skills: [
+      { name: "Linux", devicon: "linux/linux-original.svg" },
+      { name: "Figma", devicon: "figma/figma-original.svg" },
+      { name: "Git", devicon: "git/git-original.svg" }
     ]
   }
 ];

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { hardSkillsCategories, softSkillsList } from "@/data";
+import { hardSkillsCategories } from "@/data";
 
 // Helper component for Custom SVGs that Devicon doesn't cover
 function CustomSkillIcon({ name }: { name: string }) {
@@ -52,34 +52,29 @@ export function Skills() {
   const coreEmphasis = ["Python", "FastAPI", "Laravel", "MySQL", "Java", "Flutter", "Groq API", "Llama 3"];
 
   return (
-    <section id="skills" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300 z-10">
+    <section id="skills" className="relative py-14 sm:py-16 px-6 sm:px-8 bg-transparent transition-colors duration-300 z-10">
       
       {/* Decorative Motif: Orbit fragments, modular grid marks, small matrix points */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
         <svg viewBox="0 0 1000 800" className="w-full h-full max-w-[1200px] mx-auto" preserveAspectRatio="xMidYMid slice">
-          <path d="M800,200 A300,300 0 0,0 200,800" fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="3 6" opacity="0.6" />
-          <rect x="100" y="100" width="20" height="20" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 4" />
-          <rect x="900" y="700" width="20" height="20" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="2 4" />
-          <circle cx="500" cy="400" r="2" fill="var(--primary)" />
-          <circle cx="550" cy="400" r="2" fill="var(--primary)" />
-          <circle cx="600" cy="400" r="2" fill="var(--primary)" />
-          <circle cx="500" cy="450" r="2" fill="var(--primary)" />
-          <circle cx="550" cy="450" r="2" fill="var(--accent)" />
-          <circle cx="600" cy="450" r="2" fill="var(--primary)" />
+          <path d="M160,160 H340 V260 M840,640 H660 V540" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="5 10" />
+          <path d="M460,350 H540 V430 H460 Z" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 5" />
+          <circle cx="340" cy="260" r="3" fill="var(--primary)" />
+          <circle cx="660" cy="540" r="3" fill="var(--primary)" />
         </svg>
       </div>
 
-      <div className="container mx-auto max-w-5xl space-y-12 relative z-10">
+      <div className="container mx-auto max-w-5xl space-y-8 relative z-10">
         
         <div className="max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
-          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
+          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Capabilities
           </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
-            Technical Matrix
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
+            Tools &amp; Technologies
           </h3>
           <p className="text-xs text-muted-foreground pt-1">
-            The tools, languages, and frameworks I use to build robust and scalable systems.
+            A compact overview of the technologies I use across backend, mobile, data, and AI projects.
           </p>
         </div>
 
@@ -104,7 +99,7 @@ export function Skills() {
         </div>
 
         {/* Skills Grid - auto-fill CSS grid, compact chips */}
-        <div className="min-h-[280px]">
+        <div className="min-h-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -112,7 +107,7 @@ export function Skills() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3"
             >
               {activeCategory.skills.map((skill) => {
                 const isCore = coreEmphasis.includes(skill.name);
@@ -120,11 +115,11 @@ export function Skills() {
                 return (
                   <div
                     key={skill.name}
-                    className={`group rounded-2xl p-4 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border ${
+                    className={`group rounded-xl p-2.5 min-h-12 solid-surface flex items-center justify-start text-left gap-2 transition-all duration-300 border ${
                       isCore ? "bg-card/70 border-primary/30 shadow-premium-md" : "bg-card/40 border-primary/10 shadow-sm hover:border-primary/30"
                     }`}
                   >
-                    <div className={`h-8 w-8 flex items-center justify-center transition-all duration-300 ${
+                    <div className={`h-6 w-6 flex items-center justify-center shrink-0 transition-all duration-300 ${
                       isCore ? "grayscale-0 opacity-100 scale-110" : "grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                     }`}>
                       {skill.custom ? (
@@ -138,7 +133,7 @@ export function Skills() {
                         />
                       )}
                     </div>
-                    <span className={`text-[10px] ${isCore ? "font-bold text-foreground" : "font-semibold text-muted-foreground"}`}>
+                    <span className={`text-[9px] leading-tight ${isCore ? "font-bold text-foreground" : "font-semibold text-muted-foreground"}`}>
                       {skill.name}
                     </span>
                   </div>
@@ -148,23 +143,6 @@ export function Skills() {
           </AnimatePresence>
         </div>
 
-        {/* Soft Skills */}
-        <div className="pt-8 border-t border-border/40">
-          <h4 className="text-[10px] font-heading font-bold text-muted-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
-            <span className="h-1 w-1 rounded-full bg-primary" />
-            Soft Skills &amp; Competencies
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {softSkillsList.map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 text-[10px] font-bold rounded-lg solid-surface bg-card/40 border border-border/50 text-foreground shadow-xs"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

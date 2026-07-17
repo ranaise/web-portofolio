@@ -156,17 +156,15 @@
 
 /* Continuous Canvas Gradient Field */
 .portfolio-canvas {
-  background: radial-gradient(circle at top left, var(--primary) 0%, transparent 40%),
-              radial-gradient(circle at bottom right, var(--accent) 0%, transparent 40%);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  opacity: 0.9;
+  background-color: var(--background);
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--border) 32%, transparent) 1px, transparent 1px),
+                    linear-gradient(to bottom, color-mix(in srgb, var(--border) 32%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-attachment: scroll;
 }
 .dark .portfolio-canvas {
-  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
-              radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.1) 0%, transparent 40%);
-  background-attachment: fixed;
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--border) 24%, transparent) 1px, transparent 1px),
+                    linear-gradient(to bottom, color-mix(in srgb, var(--border) 24%, transparent) 1px, transparent 1px);
 }
 
 /* Solid Surface Component (replaces glass-surface) */

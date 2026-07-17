@@ -27,7 +27,7 @@ function CertificateVectorPlaceholder({ title, issuer, date }: { title: string; 
       </div>
 
       <div className="text-center space-y-2 z-10 py-1">
-        <span className="text-[8px] sm:text-[9px] text-muted-foreground italic font-serif">
+        <span className="text-[8px] sm:text-[9px] text-muted-foreground font-serif">
           This is proudly presented to
         </span>
         <h5 className="text-[12px] sm:text-[14px] font-heading font-extrabold text-foreground tracking-tight">
@@ -255,10 +255,10 @@ export function Certifications() {
 
       <div className="container mx-auto max-w-5xl space-y-12 relative z-10">
         <div className="max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
-          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
+          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Credentials
           </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             Certifications
           </h3>
           <p className="text-xs text-muted-foreground pt-1 font-medium">

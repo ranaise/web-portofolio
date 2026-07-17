@@ -48,7 +48,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
+    <section id="contact" className="relative py-14 sm:py-16 px-5 sm:px-8 bg-transparent transition-colors duration-300">
       {/* Decorative Motif: Closing path and converging nodes */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
         <svg viewBox="0 0 1000 400" className="w-full h-full" preserveAspectRatio="none">
@@ -60,7 +60,7 @@ export function Contact() {
         </svg>
       </div>
 
-      <div className="container mx-auto max-w-4xl text-center space-y-16 relative z-10">
+      <div className="container mx-auto max-w-4xl text-center space-y-10 relative z-10">
         
         {/* Section Heading */}
         <div className="max-w-2xl mx-auto space-y-2">
@@ -76,8 +76,8 @@ export function Contact() {
         </div>
 
         {/* Contact Actions Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {contactLinks.map((link) => {
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          {contactLinks.map((link, index) => {
             const Icon = link.icon;
             return (
                <motion.a
@@ -86,13 +86,13 @@ export function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
-                className={`relative group rounded-2xl p-5 solid-surface flex flex-col items-center justify-center text-center gap-3 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm`}
+                className={`relative group rounded-xl p-3 sm:p-4 min-h-12 solid-surface flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm ${index === 0 ? "col-span-2 md:col-span-1" : ""}`}
                 aria-label={`Contact via ${link.name}`}
               >
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary/3 to-accent/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 <div className="p-3 rounded-xl bg-card border border-border flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm text-current">
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
 
                 <div className="space-y-1">

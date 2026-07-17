@@ -95,7 +95,7 @@ function ProjectCard({
 
   return (
     <div className="w-full relative group min-h-[440px]">
-      <div className="w-full h-full relative solid-surface bg-card/60 rounded-3xl border border-primary/20 shadow-premium-lg overflow-hidden flex flex-col justify-between p-5">
+      <div className="w-full h-full relative solid-surface bg-card/45 rounded-2xl border border-primary/15 shadow-premium-md overflow-hidden flex flex-col justify-between p-4">
         
         {/* Toggle between image view and details view */}
         <AnimatePresence mode="wait">
@@ -108,7 +108,7 @@ function ProjectCard({
               transition={{ duration: 0.2 }}
               className="flex-1 flex flex-col justify-between"
             >
-              <div className="flex items-center justify-between text-muted-foreground text-[10px] font-heading font-bold italic uppercase tracking-wider">
+              <div className="flex items-center justify-between text-muted-foreground text-[10px] font-heading font-bold uppercase tracking-wider">
                 <span>✦ PROJECT</span>
                 <span>{project.year}</span>
               </div>
@@ -144,7 +144,7 @@ function ProjectCard({
                 <span className="text-[7.5px] font-heading font-bold text-primary/70 tracking-[0.25em] uppercase block">
                   ✦ {project.year}
                 </span>
-                <h4 className="text-2xl sm:text-3xl font-heading font-bold italic text-foreground leading-none tracking-tight">
+                <h4 className="text-xl sm:text-2xl font-heading font-bold text-foreground leading-none tracking-tight">
                   {project.title}
                 </h4>
                 <span className="text-[10px] font-heading font-bold text-primary tracking-wider uppercase block">
@@ -173,7 +173,7 @@ function ProjectCard({
               className="flex-1 flex flex-col justify-between text-left"
             >
               <div className="border-b border-border/30 pb-3">
-                <h4 className="text-xl font-heading font-bold italic text-foreground leading-tight">
+                <h4 className="text-xl font-heading font-bold text-foreground leading-tight">
                   {project.title}
                 </h4>
                 <span className="text-[9px] font-heading font-bold text-primary uppercase tracking-wider block mt-0.5">
@@ -239,7 +239,7 @@ function ProjectCard({
                     href={`/projects/${project.id}`}
                     className="flex-1 text-center text-[10px] font-heading font-bold text-primary-foreground tracking-widest uppercase inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-primary bg-primary hover:bg-primary/90 transition-colors shadow-sm outline-none focus-visible:ring-1 focus-visible:ring-primary"
                   >
-                    Case Details
+                  Project Details
                     <ExternalLink className="h-3.5 w-3.5" />
                   </Link>
                 </div>
@@ -303,7 +303,7 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
+    <section id="projects" className="relative py-16 sm:py-20 px-6 sm:px-8 bg-transparent transition-colors duration-300">
       
       {/* Decorative Motif: Restrained routing paths, connector fragments */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
@@ -320,14 +320,14 @@ export function Projects() {
         </svg>
       </div>
 
-      <div className="container mx-auto max-w-5xl space-y-12 relative z-10">
+      <div className="container mx-auto max-w-5xl space-y-8 relative z-10">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border/40">
           <div className="text-left space-y-2">
-            <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
+            <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
               ✨ Portfolio
             </h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
               Featured Projects
             </h3>
             <p className="text-xs text-muted-foreground pt-1">
@@ -356,7 +356,7 @@ export function Projects() {
         </div>
 
         {/* 2-Column strict vertical grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {filteredProjects.map((project) => {
             return (
               <ProjectCard

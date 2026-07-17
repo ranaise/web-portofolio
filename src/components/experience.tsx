@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Award, Briefcase, GraduationCap, Camera, ZoomIn } from "lucide-react";
 import { experienceData, orgExperienceData, educationDetails } from "@/data";
 import { LightboxDialog } from "@/components/ui/lightbox-dialog";
@@ -55,7 +55,7 @@ function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onV
         ) : (
           <div className="h-[140px] flex flex-col items-center justify-center text-center p-4">
             <Camera className="h-6 w-6 text-primary/40 mb-2" />
-            <span className="text-[9px] font-heading font-bold text-primary/60 italic uppercase tracking-wider">
+              <span className="text-[9px] font-heading font-bold text-primary/60 uppercase tracking-wider">
               Photo Frame
             </span>
           </div>
@@ -86,7 +86,7 @@ function MilestoneCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="rounded-3xl solid-surface bg-card/60 p-6 sm:p-10 space-y-6 border border-primary/20 relative overflow-hidden text-left shadow-premium-md"
+      className="rounded-2xl solid-surface bg-card/45 p-5 sm:p-6 space-y-4 border border-primary/15 relative overflow-hidden text-left shadow-premium-md"
     >
       <div className="absolute inset-0 bg-gradient-to-tr from-primary/3 to-accent/3 pointer-events-none" />
 
@@ -94,7 +94,7 @@ function MilestoneCard({
         <span className="text-[10px] font-heading font-extrabold tracking-[0.25em] text-primary uppercase block">
           {item.role}
         </span>
-        <h5 className="text-2xl sm:text-3xl font-heading font-bold italic text-foreground tracking-tight leading-none">
+        <h5 className="text-2xl sm:text-3xl font-heading font-bold text-foreground tracking-tight leading-none">
           {item.company}
         </h5>
         <p className="text-[11px] font-heading tracking-widest text-muted-foreground uppercase pt-1">
@@ -158,40 +158,37 @@ export function Experience() {
   };
 
   return (
-    <section id="experience" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
+    <section id="experience" className="relative py-16 sm:py-20 px-6 sm:px-8 bg-transparent transition-colors duration-300">
       
       {/* Decorative Motif: Subtle diagonal or vertical route marks */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
         <svg viewBox="0 0 1000 1200" className="w-full h-full max-w-[1200px] mx-auto" preserveAspectRatio="xMidYMid slice">
-          <path d="M150,100 L150,1100" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="4 8" />
-          <path d="M850,200 L850,1000" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="4 8" opacity="0.6" />
-          <circle cx="150" cy="300" r="3" fill="var(--primary)" />
-          <circle cx="150" cy="700" r="3" fill="var(--primary)" />
-          <circle cx="850" cy="400" r="2" fill="var(--accent)" />
-          <circle cx="850" cy="800" r="2" fill="var(--accent)" />
-          <path d="M150,300 L250,400" fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="2 4" opacity="0.5" />
+          <path d="M180,140 V1040 H300" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="4 10" />
+          <path d="M820,260 H700 V720" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="3 9" opacity="0.6" />
+          <circle cx="180" cy="340" r="3" fill="var(--primary)" />
+          <circle cx="700" cy="720" r="3" fill="var(--accent)" />
         </svg>
       </div>
 
-      <div className="container mx-auto max-w-5xl space-y-16 relative z-10">
+      <div className="container mx-auto max-w-5xl space-y-10 relative z-10">
         
         <div className="max-w-2xl text-left space-y-2">
-          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary italic">
+          <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Timeline
           </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal italic">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             Work Experience
           </h3>
           <div className="h-0.5 w-8 bg-primary/40 rounded-full mt-2" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-7 space-y-8 text-left">
-            <h4 className="text-sm font-heading uppercase tracking-wider text-foreground font-bold flex items-center gap-2 border-b border-border/60 pb-2 italic">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <h4 className="text-sm font-heading uppercase tracking-wider text-foreground font-bold flex items-center gap-2 border-b border-border/60 pb-2">
               <Briefcase className="h-4 w-4 text-primary shrink-0" />
               Work Milestones
             </h4>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {experienceData.map((item, index) => (
                 <MilestoneCard 
                   key={item.id} 
@@ -203,17 +200,15 @@ export function Experience() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 space-y-8 text-left">
-            <h4 className="text-sm font-heading uppercase tracking-wider text-foreground font-bold flex items-center gap-2 border-b border-border/60 pb-2 italic">
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <h4 className="text-sm font-heading uppercase tracking-wider text-foreground font-bold flex items-center gap-2 border-b border-border/60 pb-2">
               <GraduationCap className="h-4 w-4 text-primary shrink-0" />
               Education &amp; Organizations
             </h4>
 
-            <div className="relative border border-primary/20 solid-surface bg-card/60 rounded-3xl p-6 sm:p-8 space-y-6 shadow-premium-md overflow-hidden select-none">
-              <div className="ticket-notch-left" />
-              <div className="ticket-notch-right" />
+            <div className="relative border border-border/60 solid-surface bg-card/30 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm overflow-hidden select-none">
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <span className="text-[9px] font-heading font-extrabold tracking-[0.2em] text-primary uppercase block">
                   🎀 EDUCATION &amp; AWARDS
                 </span>
@@ -241,7 +236,7 @@ export function Experience() {
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-2">
+                <div className="space-y-2 pt-1">
                   <span className="text-[9px] font-heading tracking-wider text-muted-foreground uppercase font-bold block mb-1">
                     Scholarships &amp; Honors
                   </span>
@@ -256,14 +251,14 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="border-t border-dashed border-primary/20 my-6" />
+              <div className="border-t border-dashed border-primary/20 my-4" />
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <span className="text-[9px] font-heading font-extrabold tracking-[0.2em] text-primary uppercase block">
                   ✧ ORGANIZATIONAL EXPERIENCE
                 </span>
 
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {orgExperienceData.map((item) => (
                     <div key={item.id} className="space-y-2 text-left relative pl-4 border-l border-primary/20">
                       <div>
@@ -288,7 +283,7 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="border-t border-dashed border-primary/20 my-6" />
+              <div className="border-t border-dashed border-primary/20 my-4" />
 
               <div className="flex justify-center items-center gap-2 text-primary/40 text-xs">
                 <span>✦</span><span>✧</span><span>✦</span>

@@ -1,14 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRight, TerminalSquare, Download } from "lucide-react";
+import { ArrowRight, TerminalSquare } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-  const animateY = shouldReduceMotion ? 0 : 20;
+  // Keep the initial render identical on server and client so reduced-motion
+  // media-query resolution cannot create a hydration mismatch.
+  const animateY = 20;
   
   const transitionDelay = (delay: number) => ({
     duration: 0.6,
@@ -19,40 +20,28 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 sm:px-8 overflow-hidden"
+      className="relative min-h-[680px] md:min-h-[760px] flex items-center justify-center pt-24 pb-12 px-6 sm:px-8 overflow-hidden"
     >
       {/* Decorative Motif: Prominent curved trajectory and sparse nodes */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 flex items-center justify-center" aria-hidden="true">
         <svg viewBox="0 0 1000 1000" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
-          <motion.path 
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-            d="M-200,800 C200,800 400,200 800,200 C1000,200 1200,400 1200,400" 
+          <path
+            d="M120,190 H360 M120,190 V430 M120,810 H360 M120,810 V570 M880,190 H640 M880,190 V430"
             fill="none" 
             stroke="var(--primary)" 
             strokeWidth="1.5" 
-            strokeDasharray="4 4"
+            strokeDasharray="8 12"
           />
-          <motion.circle 
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            cx="400" cy="500" r="4" fill="var(--accent)" 
-          />
-          <motion.circle 
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.5, duration: 0.5 }}
-            cx="800" cy="200" r="6" fill="var(--primary)" 
-          />
+          <path d="M120,500 H430 L520,410 H880" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="3 9" />
+          <circle cx="430" cy="500" r="4" fill="var(--accent)" />
+          <circle cx="520" cy="410" r="4" fill="var(--primary)" />
         </svg>
       </div>
 
       <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="grid grid-cols-1 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-8 items-center">
           
-          <div className="flex flex-col items-center text-center space-y-8">
+          <div className="flex flex-col items-center text-center space-y-6">
             
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -62,7 +51,7 @@ export function Hero() {
             >
               <TerminalSquare className="w-4 h-4" />
               <span className="text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase">
-                BACKEND ENGINEER &middot; APPLIED AI &middot; INFORMATICS STUDENT
+                BACKEND ENGINEER &middot; APPLIED AI
               </span>
             </motion.div>
 
@@ -70,11 +59,10 @@ export function Hero() {
               initial={{ opacity: 0, y: animateY }}
               animate={{ opacity: 1, y: 0 }}
               transition={transitionDelay(0.2)}
-              className="space-y-6"
+              className="space-y-4"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold tracking-tight text-foreground leading-[1.1]">
-                Building the systems behind <br className="hidden sm:block" />
-                <span className="text-primary">reliable digital products.</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight text-foreground leading-[1.02]">
+                Rafa’Na’ilah Septia
               </h1>
             </motion.div>
 
@@ -84,7 +72,16 @@ export function Hero() {
               transition={transitionDelay(0.3)}
               className="max-w-[60ch] text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed font-medium"
             >
-              I design backend services, intelligent integrations, and data-driven applications that turn complex requirements into dependable user experiences.
+              Backend engineer focused on reliable systems, practical AI integration, and thoughtful product implementation.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: animateY }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={transitionDelay(0.35)}
+              className="max-w-[56ch] text-sm sm:text-base text-muted-foreground leading-relaxed font-medium"
+            >
+              I’m an Informatics student at Telkom University working across API engineering, relational databases, real-time systems, and mobile applications.
             </motion.p>
 
             <motion.div
@@ -128,9 +125,6 @@ export function Hero() {
               </a>
               <a href="https://linkedin.com/in/ranaise/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-semibold" aria-label="LinkedIn">
                 <LinkedinIcon className="w-4 h-4" /> LinkedIn
-              </a>
-              <a href="/CV.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-1.5 text-xs font-semibold" aria-label="Download CV">
-                <Download className="w-4 h-4" /> Download CV
               </a>
             </motion.div>
 
