@@ -13,7 +13,6 @@ export default function Home() {
     <>
       <Navbar />
       <main className="portfolio-canvas flex-1 flex flex-col relative z-10">
-        <div className="noise-overlay" />
         <Hero />
         <About />
         <Experience />

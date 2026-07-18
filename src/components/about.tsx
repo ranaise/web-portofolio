@@ -3,30 +3,13 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
-// Light-mode-aware sprocket holes
-function SprocketHoles({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`flex items-center justify-between px-3 w-full select-none py-1.5 ${className}`}
-    >
-      {Array.from({ length: 7 }).map((_, i) => (
-        <div
-          key={i}
-          className="w-2.5 h-3.5 rounded-[2px] shrink-0 bg-rose-200/60 dark:bg-black/50 border border-rose-300/40 dark:border-white/8"
-        />
-      ))}
-    </div>
-  );
-}
-
 // Profile photo with graceful fallback
 function ProfilePhoto() {
   const [error, setError] = React.useState(false);
 
   return (
-    <div className="w-full max-w-[280px] mx-auto rounded-2xl overflow-hidden border border-primary/25 bg-rose-50/70 dark:bg-[#1A1114] shadow-premium-lg flex flex-col select-none">
-      <SprocketHoles className="bg-rose-100/60 dark:bg-black/70" />
-      <div className="relative w-full flex items-center justify-center overflow-hidden min-h-[220px]">
+    <div className="quiet-bloom-profile relative w-full max-w-[280px] mx-auto overflow-hidden rounded-2xl bg-background/25 p-3 select-none">
+      <div className="relative w-full flex items-center justify-center overflow-hidden min-h-[220px] rounded-xl border border-primary/20 border-l-primary/50 border-t-primary/50">
         {!error ? (
           <img
             src="/projects/about-profile.png"
@@ -53,14 +36,9 @@ function ProfilePhoto() {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none dark:from-black/40" />
       </div>
-      <SprocketHoles className="bg-rose-100/60 dark:bg-black/70" />
-      <div className="py-2 px-3 bg-rose-100/50 dark:bg-black/60 flex items-center justify-between">
-        <span className="text-[7.5px] font-mono text-muted-foreground/50 dark:text-white/35 tracking-[0.18em] uppercase">
-          Frame 01
-        </span>
-        <span className="text-[7.5px] font-mono text-muted-foreground/50 dark:text-white/35 tracking-[0.18em] uppercase">
-          Biography
-        </span>
+      <div className="flex items-center justify-between px-1 pt-3">
+        <span className="text-[8px] font-mono text-muted-foreground/70 tracking-[0.16em] uppercase">Profile / 01</span>
+        <span className="h-px w-10 bg-accent/50" />
       </div>
     </div>
   );
@@ -70,25 +48,24 @@ export function About() {
   return (
     <section id="about" className="relative py-14 sm:py-16 px-4 sm:px-8 bg-transparent transition-colors duration-300">
       
-      {/* Decorative Motif: Open bracket and partial grid */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden flex justify-center" aria-hidden="true">
+      {/* Quiet Bloom motif: open corner, partial grid, and a soft handoff from Hero. */}
+      <div className="quiet-bloom quiet-bloom-about absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden flex justify-center" aria-hidden="true">
         <svg viewBox="0 0 1000 600" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
-          <path d="M250,100 L150,100 L150,500 L250,500" fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeDasharray="3 6" />
-          <path d="M150,300 L850,300" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 4" opacity="0.5" />
-          <circle cx="150" cy="100" r="3" fill="var(--primary)" />
-          <circle cx="150" cy="500" r="3" fill="var(--primary)" />
-          <circle cx="850" cy="300" r="2" fill="var(--accent)" />
-          <circle cx="150" cy="300" r="2" fill="var(--accent)" />
+          <path d="M250 110 H150 V420 H250" fill="none" stroke="var(--primary)" strokeWidth="1.25" />
+          <path d="M170 150 H270 M170 190 H270 M170 230 H270 M170 150 V230 M220 150 V230 M270 150 V230" fill="none" stroke="var(--primary)" strokeWidth="0.7" opacity="0.55" />
+          <path d="M150 420 H310" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.7" />
+          <circle cx="150" cy="420" r="3" fill="var(--accent)" />
         </svg>
       </div>
 
       <div className="container mx-auto max-w-5xl space-y-8 relative z-10">
 
         {/* Section Heading */}
-        <div className="max-w-2xl text-left space-y-2 border-b border-border/40 pb-4">
+        <div className="section-anchor max-w-2xl text-left space-y-2 border-b border-border/40 pb-4">
           <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Profile
           </h2>
+          <span className="section-anchor-mark" aria-hidden="true" />
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             About Me
           </h3>

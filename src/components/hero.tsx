@@ -22,19 +22,17 @@ export function Hero() {
       id="home" 
       className="relative min-h-[680px] md:min-h-[760px] flex items-center justify-center pt-24 pb-12 px-6 sm:px-8 overflow-hidden"
     >
-      {/* Decorative Motif: Prominent curved trajectory and sparse nodes */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 flex items-center justify-center" aria-hidden="true">
+      {/* Quiet Bloom motif: incomplete orbit, compact nodes, and one architectural segment. */}
+      <div className="quiet-bloom quiet-bloom-hero absolute inset-0 z-0 pointer-events-none opacity-30 dark:opacity-40 flex items-center justify-center" aria-hidden="true">
         <svg viewBox="0 0 1000 1000" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
-          <path
-            d="M120,190 H360 M120,190 V430 M120,810 H360 M120,810 V570 M880,190 H640 M880,190 V430"
-            fill="none" 
-            stroke="var(--primary)" 
-            strokeWidth="1.5" 
-            strokeDasharray="8 12"
-          />
-          <path d="M120,500 H430 L520,410 H880" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="3 9" />
-          <circle cx="430" cy="500" r="4" fill="var(--accent)" />
-          <circle cx="520" cy="410" r="4" fill="var(--primary)" />
+          <path d="M620 110 A330 260 0 0 1 930 365" fill="none" stroke="var(--primary)" strokeWidth="1.5" />
+          <path d="M700 150 A245 190 0 0 1 930 285" fill="none" stroke="var(--primary)" strokeWidth="1" opacity="0.65" />
+          <path d="M660 260 H760 V330" fill="none" stroke="var(--primary)" strokeWidth="1" />
+          <path d="M758 330 H840" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.65" />
+          <circle cx="760" cy="330" r="4" fill="var(--primary)" />
+          <circle cx="840" cy="330" r="3" fill="var(--accent)" />
+          <circle cx="690" cy="260" r="3" fill="var(--primary)" />
+          <circle cx="900" cy="210" r="3" fill="var(--primary)" />
         </svg>
       </div>
 

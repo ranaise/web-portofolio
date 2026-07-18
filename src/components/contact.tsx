@@ -49,24 +49,26 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative py-14 sm:py-16 px-5 sm:px-8 bg-transparent transition-colors duration-300">
-      {/* Decorative Motif: Closing path and converging nodes */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
+      {/* Quiet Bloom motif: an incomplete orbit that fades toward the Footer. */}
+      <div className="quiet-bloom quiet-bloom-contact absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
         <svg viewBox="0 0 1000 400" className="w-full h-full" preserveAspectRatio="none">
-          <path d="M0,0 C300,100 700,100 1000,0" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="5 5" />
-          <path d="M500,50 L500,400" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 4" />
-          <circle cx="500" cy="50" r="4" fill="var(--primary)" />
-          <circle cx="500" cy="200" r="2" fill="var(--accent)" />
-          <circle cx="500" cy="350" r="3" fill="var(--primary)" />
+          <path d="M170 330 A340 250 0 0 1 820 80" fill="none" stroke="var(--primary)" strokeWidth="1.2" />
+          <path d="M820 80 A210 160 0 0 1 980 150" fill="none" stroke="var(--primary)" strokeWidth="1" opacity="0.55" />
+          <path d="M430 220 H510 L550 185" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.7" />
+          <circle cx="430" cy="220" r="4" fill="var(--primary)" />
+          <circle cx="550" cy="185" r="3" fill="var(--accent)" />
+          <circle cx="820" cy="80" r="3" fill="var(--primary)" opacity="0.7" />
         </svg>
       </div>
 
       <div className="container mx-auto max-w-4xl text-center space-y-10 relative z-10">
         
         {/* Section Heading */}
-        <div className="max-w-2xl mx-auto space-y-2">
+        <div className="section-anchor max-w-2xl mx-auto space-y-2">
           <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
             Contact
           </h2>
+          <span className="section-anchor-mark" aria-hidden="true" />
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-foreground leading-[1.05]">
             Let’s build something useful.
           </h3>

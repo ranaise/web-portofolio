@@ -127,7 +127,16 @@ function WidescreenTicketCard({
 
       <div 
         className="w-full md:w-[48%] flex justify-center cursor-zoom-in shrink-0"
+        role="button"
+        tabIndex={0}
+        aria-label={`View certificate: ${cert.title}`}
         onClick={() => onViewImage(cert.image, `${cert.issuer} - ${cert.title}`)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            onViewImage(cert.image, `${cert.issuer} - ${cert.title}`);
+          }
+        }}
       >
         <CertificationImage
           src={cert.image}
@@ -242,22 +251,23 @@ export function Certifications() {
   return (
     <section id="certifications" className="relative py-24 px-6 sm:px-8 bg-transparent transition-colors duration-300">
       
-      {/* Decorative Motif: Quieter guide lines and scanning marks */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 flex items-center justify-center overflow-hidden" aria-hidden="true">
+      {/* Quiet Bloom motif: a sparse orbit that hands off into Contact. */}
+      <div className="quiet-bloom quiet-bloom-certifications absolute inset-0 z-0 pointer-events-none opacity-15 dark:opacity-25 flex items-center justify-center overflow-hidden" aria-hidden="true">
         <svg viewBox="0 0 1000 600" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
-          <line x1="0" y1="300" x2="1000" y2="300" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="5 10" />
-          <line x1="500" y1="0" x2="500" y2="600" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="5 10" />
-          <rect x="495" y="295" width="10" height="10" fill="none" stroke="var(--accent)" strokeWidth="1" />
-          <circle cx="100" cy="300" r="2" fill="var(--primary)" />
-          <circle cx="900" cy="300" r="2" fill="var(--primary)" />
+          <path d="M180 420 A330 230 0 0 1 820 180" fill="none" stroke="var(--primary)" strokeWidth="1" opacity="0.7" />
+          <path d="M820 180 A190 130 0 0 1 930 260" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.55" />
+          <path d="M170 420 H260 M820 180 H875" fill="none" stroke="var(--primary)" strokeWidth="0.8" />
+          <circle cx="260" cy="420" r="3" fill="var(--primary)" />
+          <circle cx="875" cy="180" r="3" fill="var(--accent)" />
         </svg>
       </div>
 
       <div className="container mx-auto max-w-5xl space-y-12 relative z-10">
-        <div className="max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
+        <div className="section-anchor max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
           <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Credentials
           </h2>
+          <span className="section-anchor-mark" aria-hidden="true" />
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             Certifications
           </h3>

@@ -66,10 +66,11 @@ export function Skills() {
 
       <div className="container mx-auto max-w-5xl space-y-8 relative z-10">
         
-        <div className="max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
+        <div className="section-anchor max-w-2xl text-left space-y-2 pb-4 border-b border-border/40">
           <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Capabilities
           </h2>
+          <span className="section-anchor-mark" aria-hidden="true" />
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             Tools &amp; Technologies
           </h3>

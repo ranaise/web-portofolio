@@ -3,16 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ImageIcon, ZoomIn, Info } from "lucide-react";
+import { ExternalLink, ZoomIn, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { projectsData } from "@/data";
 import { LightboxDialog } from "@/components/ui/lightbox-dialog";
-
-interface MockupProps {
-  id: string;
-  src: string;
-  alt: string;
-}
 
 const appDetailsShort: Record<string, string> = {
   "nexevent-2026": "Coordinates campus event approvals across Student Affairs (Superadmin), Organization Presidents (Admin), and Students.",
@@ -323,10 +317,11 @@ export function Projects() {
       <div className="container mx-auto max-w-5xl space-y-8 relative z-10">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border/40">
-          <div className="text-left space-y-2">
+          <div className="section-anchor text-left space-y-2">
             <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
               ✨ Portfolio
             </h2>
+            <span className="section-anchor-mark" aria-hidden="true" />
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
               Featured Projects
             </h3>

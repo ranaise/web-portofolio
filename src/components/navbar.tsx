@@ -62,10 +62,10 @@ export function Navbar() {
           <div className="flex-1 flex justify-start">
             <Link 
               href="#home" 
-              className="flex items-center hover:opacity-85 transition-opacity focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1 outline-none text-base sm:text-lg font-heading font-bold text-foreground"
+              className="rn-wordmark flex items-center hover:opacity-85 transition-opacity focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1 outline-none text-base sm:text-lg text-foreground"
               aria-label="Rafa’Na’ilah Septia — Home"
             >
-              RNS
+              RN
             </Link>
           </div>
 

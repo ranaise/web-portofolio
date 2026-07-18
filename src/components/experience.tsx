@@ -23,19 +23,13 @@ function renderBoldText(text: string) {
   );
 }
 
-function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onViewImage: (src: string, title: string) => void }) {
+function GalleryImage({ src, alt, caption, onViewImage }: { src: string; alt: string; caption?: string; onViewImage: (src: string, title: string) => void }) {
   const [error, setError] = React.useState(false);
 
   return (
-    <div className="w-full bg-rose-50/60 dark:bg-[#1A1114] border border-primary/25 rounded-2xl p-2.5 shadow-premium-md flex flex-col gap-2 transition-all duration-300 hover:border-primary/55 select-none">
-      <div className="flex items-center justify-between px-2 py-1">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="w-2.5 h-3 rounded-[2px] bg-rose-200/50 dark:bg-black/50 border border-rose-300/30 dark:border-white/8" />
-        ))}
-      </div>
-
+    <figure className="group w-full select-none">
       <div
-        className="relative w-full overflow-hidden rounded bg-rose-100/40 dark:bg-black/80 cursor-zoom-in group"
+        className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl border border-primary/20 bg-card/20 cursor-zoom-in"
         onClick={() => onViewImage(src, alt)}
       >
         {!error ? (
@@ -43,7 +37,7 @@ function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onV
             <img
               src={src}
               alt={alt}
-              className="w-full h-auto max-h-[280px] object-contain transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               onError={() => setError(true)}
               loading="lazy"
               decoding="async"
@@ -61,24 +55,22 @@ function GalleryImage({ src, alt, onViewImage }: { src: string; alt: string; onV
           </div>
         )}
       </div>
-
-      <div className="flex items-center justify-between px-2 py-1">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="w-2.5 h-3 rounded-[2px] bg-rose-200/50 dark:bg-black/50 border border-rose-300/30 dark:border-white/8" />
-        ))}
-      </div>
-    </div>
+      {caption && (
+        <figcaption className="flex items-center gap-2 pt-2 text-[9px] font-mono uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="h-px w-6 bg-primary/60" />
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   );
 }
 
 function MilestoneCard({ 
   item, 
-  index,
-  onViewImage
+  index
 }: { 
   item: typeof experienceData[0]; 
-  index: number; 
-  onViewImage: (src: string, title: string) => void;
+  index: number;
 }) {
   return (
     <motion.div
@@ -111,29 +103,6 @@ function MilestoneCard({
         ))}
       </ul>
 
-      {item.photos && item.photos.length > 0 && (
-        <div className="space-y-4 pt-6 border-t border-border/40 text-left">
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-heading tracking-widest text-foreground font-bold uppercase flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              Activity Gallery
-            </span>
-            <span className="text-[8px] font-mono text-muted-foreground/60 uppercase">
-              medusa_dev_log.jpg
-            </span>
-          </div>
-          <div className="flex flex-col gap-6 w-full">
-            {item.photos.map((src, idx) => (
-              <GalleryImage 
-                key={idx} 
-                src={src} 
-                alt={`${item.company} Activity - Photo ${idx + 1}`} 
-                onViewImage={onViewImage}
-              />
-            ))}
-          </div>
-        </div>
-      )}
     </motion.div>
   );
 }
@@ -160,22 +129,25 @@ export function Experience() {
   return (
     <section id="experience" className="relative py-16 sm:py-20 px-6 sm:px-8 bg-transparent transition-colors duration-300">
       
-      {/* Decorative Motif: Subtle diagonal or vertical route marks */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
+      {/* Quiet Bloom motif: a restrained rail, short connectors, and one offset node. */}
+      <div className="quiet-bloom quiet-bloom-experience absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30 overflow-hidden" aria-hidden="true">
         <svg viewBox="0 0 1000 1200" className="w-full h-full max-w-[1200px] mx-auto" preserveAspectRatio="xMidYMid slice">
-          <path d="M180,140 V1040 H300" fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="4 10" />
-          <path d="M820,260 H700 V720" fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="3 9" opacity="0.6" />
-          <circle cx="180" cy="340" r="3" fill="var(--primary)" />
-          <circle cx="700" cy="720" r="3" fill="var(--accent)" />
+          <path d="M170 150 V980" fill="none" stroke="var(--primary)" strokeWidth="1" />
+          <path d="M170 270 H245 M170 500 H280 M170 760 H235" fill="none" stroke="var(--primary)" strokeWidth="1" />
+          <path d="M245 270 V310 H300" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.7" />
+          <circle cx="170" cy="270" r="4" fill="var(--primary)" />
+          <circle cx="280" cy="500" r="3" fill="var(--accent)" />
+          <circle cx="170" cy="760" r="3" fill="var(--primary)" />
         </svg>
       </div>
 
       <div className="container mx-auto max-w-5xl space-y-10 relative z-10">
         
-        <div className="max-w-2xl text-left space-y-2">
+        <div className="section-anchor max-w-2xl text-left space-y-2">
           <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-primary">
             ✨ Timeline
           </h2>
+          <span className="section-anchor-mark" aria-hidden="true" />
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-foreground leading-[1.05] font-normal">
             Work Experience
           </h3>
@@ -193,11 +165,31 @@ export function Experience() {
                 <MilestoneCard 
                   key={item.id} 
                   item={item} 
-                  index={index} 
-                  onViewImage={openLightbox} 
+                  index={index}
                 />
               ))}
             </div>
+
+            {experienceData[0]?.photos?.length ? (
+              <div className="relative space-y-4 border-t border-border/40 pt-7 text-left">
+                <div className="absolute -top-7 left-0 hidden h-7 w-px bg-primary/50 lg:block" aria-hidden="true" />
+                <div>
+                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-primary">Medusa Technology · Internship</p>
+                  <h4 className="mt-1 text-xl font-heading font-bold text-foreground">Internship Moments</h4>
+                </div>
+                <div className="grid grid-cols-[1.15fr_0.85fr] gap-4 max-sm:grid-cols-1">
+                  {experienceData[0].photos.map((src, idx) => (
+                    <GalleryImage
+                      key={src}
+                      src={src}
+                      alt={`Medusa Technology internship moment ${idx + 1}`}
+                      caption={idx === 0 ? "Jun 2026 — Aug 2026 · Jakarta, Indonesia" : undefined}
+                      onViewImage={openLightbox}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
 
           <div className="lg:col-span-5 space-y-6 text-left">
@@ -206,9 +198,8 @@ export function Experience() {
               Education &amp; Organizations
             </h4>
 
-            <div className="relative border border-border/60 solid-surface bg-card/30 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm overflow-hidden select-none">
-
-              <div className="space-y-3">
+            <div className="space-y-5">
+              <div className="solid-surface bg-card/30 rounded-2xl border border-border/60 p-5 sm:p-6 space-y-3 shadow-sm overflow-hidden select-none">
                 <span className="text-[9px] font-heading font-extrabold tracking-[0.2em] text-primary uppercase block">
                   🎀 EDUCATION &amp; AWARDS
                 </span>
@@ -251,9 +242,7 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="border-t border-dashed border-primary/20 my-4" />
-
-              <div className="space-y-4">
+              <div className="solid-surface bg-card/25 rounded-2xl border border-border/60 p-5 sm:p-6 space-y-4 shadow-sm overflow-hidden select-none">
                 <span className="text-[9px] font-heading font-extrabold tracking-[0.2em] text-primary uppercase block">
                   ✧ ORGANIZATIONAL EXPERIENCE
                 </span>
@@ -283,14 +272,13 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="border-t border-dashed border-primary/20 my-4" />
-
               <div className="flex justify-center items-center gap-2 text-primary/40 text-xs">
                 <span>✦</span><span>✧</span><span>✦</span>
               </div>
             </div>
           </div>
         </div>
+
       </div>
 
       <LightboxDialog

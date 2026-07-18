@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Instrument_Serif, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -13,6 +13,13 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["400", "500", "600", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-logo",
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen text-foreground transition-colors duration-300 font-sans`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${instrumentSerif.variable} antialiased min-h-screen text-foreground transition-colors duration-300 font-sans`}
       >
         <ThemeProvider
           attribute="class"
