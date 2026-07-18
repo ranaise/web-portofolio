@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, ZoomIn, CheckCircle2, Layers } from "lucide-react";
-import { projectsData, projectDetails } from "@/data";
+import { projectsData, projectDetails, ProjectGalleryItem } from "@/data";
 import { TechIcon } from "@/components/projects";
 import { GithubIcon } from "@/components/icons";
 import { LightboxDialog } from "@/components/ui/lightbox-dialog";
@@ -28,24 +28,24 @@ export default function ProjectDetailPage({ params }: PageProps) {
     isOpen: boolean;
     title: string;
     images: string[];
-    description: React.ReactNode;
+    feature: ProjectGalleryItem | null;
   }>({
     isOpen: false,
     title: "",
     images: [],
-    description: null,
+    feature: null,
   });
 
   if (!project || !details) {
     notFound();
   }
 
-  const openLightbox = (title: string, images: string[], desc: string) => {
+  const openLightbox = (feature: ProjectGalleryItem) => {
     setActiveGallery({
       isOpen: true,
-      title,
-      images,
-      description: <p className="text-sm leading-relaxed">{desc}</p>,
+      title: feature.label,
+      images: feature.images,
+      feature,
     });
   };
 
@@ -89,7 +89,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             {/* 1. Project Summary */}
             <div className="space-y-3">
               <strong className="text-xs uppercase tracking-wider text-foreground font-mono block">
-                Overview
+                Project Summary
               </strong>
               <p className="text-sm sm:text-base text-muted-foreground">
                 {project.overview}
@@ -105,10 +105,10 @@ export default function ProjectDetailPage({ params }: PageProps) {
                 Key Capabilities
               </strong>
               <ul className="space-y-2">
-                {details.coreLogic.map((logic, idx) => {
+                {details.coreLogic.map((logic) => {
                   const [title, desc] = logic.split(": ");
                   return (
-                    <li key={idx} className="flex gap-3 text-sm sm:text-base text-muted-foreground">
+                    <li key={`${project.id}-${logic}`} className="flex gap-3 text-sm sm:text-base text-muted-foreground">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                       <span>
                         <strong className="text-foreground font-medium">{title}</strong>
@@ -140,11 +140,11 @@ export default function ProjectDetailPage({ params }: PageProps) {
                     Mobile Interfaces
                   </span>
                   <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin snap-x">
-                    {details.gallery.mobile.map((item, idx) => (
+                    {details.gallery.mobile.map((item) => (
                       <button 
-                        key={idx} 
+                        key={item.id}
                         className="w-36 aspect-[9/19.5] relative rounded-xl overflow-hidden border border-border shadow-xs shrink-0 cursor-zoom-in group/img snap-start focus:outline-none focus:ring-2 focus:ring-primary text-left"
-                        onClick={() => openLightbox(item.label, item.images, details.workflow)}
+                        onClick={() => openLightbox(item)}
                         aria-label={`View ${item.label} gallery`}
                       >
                         <Image src={item.images[0]} alt={item.label} fill sizes="144px" className="object-cover transition-transform duration-500 group-hover/img:scale-105" />
@@ -172,11 +172,11 @@ export default function ProjectDetailPage({ params }: PageProps) {
                     Web Interfaces
                   </span>
                   <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin snap-x">
-                    {details.gallery.web.map((item, idx) => (
+                    {details.gallery.web.map((item) => (
                       <button 
-                        key={idx} 
+                        key={item.id}
                         className="w-64 aspect-[16/10] relative rounded-xl overflow-hidden border border-border shadow-xs shrink-0 cursor-zoom-in group/img snap-start focus:outline-none focus:ring-2 focus:ring-primary text-left"
-                        onClick={() => openLightbox(item.label, item.images, details.workflow)}
+                        onClick={() => openLightbox(item)}
                         aria-label={`View ${item.label} gallery`}
                       >
                         <Image src={item.images[0]} alt={item.label} fill sizes="256px" className="object-cover transition-transform duration-500 group-hover/img:scale-105" />
@@ -261,7 +261,21 @@ export default function ProjectDetailPage({ params }: PageProps) {
         onClose={() => setActiveGallery((prev) => ({ ...prev, isOpen: false }))}
         title={activeGallery.title}
         images={activeGallery.images}
-        description={activeGallery.description}
+        description={activeGallery.feature ? (
+          <div className="space-y-5 text-sm leading-relaxed">
+            <p>{activeGallery.feature.description}</p>
+            <div>
+              <h4 className="mb-1 text-xs font-mono font-bold uppercase tracking-wider text-foreground">Workflow</h4>
+              <p>{activeGallery.feature.workflow}</p>
+            </div>
+            <div>
+              <h4 className="mb-2 text-xs font-mono font-bold uppercase tracking-wider text-foreground">Core Logic</h4>
+              <ul className="space-y-1.5 list-disc pl-4">
+                {activeGallery.feature.coreLogic.map((logic) => <li key={`${activeGallery.feature?.id}-${logic}`}>{logic}</li>)}
+              </ul>
+            </div>
+          </div>
+        ) : null}
       />
     </div>
   );

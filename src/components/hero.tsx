@@ -73,15 +73,6 @@ export function Hero() {
               Backend engineer focused on reliable systems, practical AI integration, and thoughtful product implementation.
             </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: animateY }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={transitionDelay(0.35)}
-              className="max-w-[56ch] text-sm sm:text-base text-muted-foreground leading-relaxed font-medium"
-            >
-              I’m an Informatics student at Telkom University working across API engineering, relational databases, real-time systems, and mobile applications.
-            </motion.p>
-
             <motion.div
               initial={{ opacity: 0, y: animateY }}
               animate={{ opacity: 1, y: 0 }}

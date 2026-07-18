@@ -78,8 +78,8 @@ export function Contact() {
         </div>
 
         {/* Contact Actions Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          {contactLinks.map((link, index) => {
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-3 md:grid-cols-4 md:gap-4">
+          {contactLinks.map((link) => {
             const Icon = link.icon;
             return (
                <motion.a
@@ -88,12 +88,12 @@ export function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
-                className={`relative group rounded-xl p-3 sm:p-4 min-h-12 solid-surface flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm ${index === 0 ? "col-span-2 md:col-span-1" : ""}`}
-                aria-label={`Contact via ${link.name}`}
+                className={`relative group rounded-xl p-2.5 sm:p-4 min-h-[112px] sm:min-h-[120px] solid-surface flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2 transition-all duration-300 border border-border/80 ${link.color} shadow-premium-sm`}
+                aria-label={`Contact via ${link.name}: ${link.label}`}
               >
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary/3 to-accent/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                <div className="p-3 rounded-xl bg-card border border-border flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm text-current">
+                <div className="h-10 w-10 rounded-xl bg-card border border-border flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm text-current">
                   <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
 
@@ -101,7 +101,7 @@ export function Contact() {
                   <span className="text-[10px] font-mono tracking-widest uppercase font-extrabold block text-muted-foreground">
                     {link.name}
                   </span>
-                  <span className="text-[11px] font-semibold text-foreground tracking-tight truncate max-w-[140px] inline-flex items-center gap-1">
+                  <span className="hidden sm:inline-flex text-[11px] font-semibold text-foreground tracking-tight truncate max-w-[190px] items-center gap-1">
                     {link.name === "WhatsApp" ? "+6288215027255" : link.label.replace("https://", "")}
                     <ExternalLink className="h-2.5 w-2.5 opacity-50 group-hover:opacity-100 transition-opacity" />
                   </span>

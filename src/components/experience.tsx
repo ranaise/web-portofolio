@@ -23,13 +23,13 @@ function renderBoldText(text: string) {
   );
 }
 
-function GalleryImage({ src, alt, caption, onViewImage }: { src: string; alt: string; caption?: string; onViewImage: (src: string, title: string) => void }) {
+function GalleryImage({ src, alt, objectPosition = "center", onViewImage }: { src: string; alt: string; objectPosition?: string; onViewImage: (src: string, title: string) => void }) {
   const [error, setError] = React.useState(false);
 
   return (
     <figure className="group w-full select-none">
       <div
-        className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl border border-primary/20 bg-card/20 cursor-zoom-in"
+        className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-primary/20 bg-card/20 cursor-zoom-in"
         onClick={() => onViewImage(src, alt)}
       >
         {!error ? (
@@ -38,6 +38,7 @@ function GalleryImage({ src, alt, caption, onViewImage }: { src: string; alt: st
               src={src}
               alt={alt}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              style={{ objectPosition }}
               onError={() => setError(true)}
               loading="lazy"
               decoding="async"
@@ -55,12 +56,6 @@ function GalleryImage({ src, alt, caption, onViewImage }: { src: string; alt: st
           </div>
         )}
       </div>
-      {caption && (
-        <figcaption className="flex items-center gap-2 pt-2 text-[9px] font-mono uppercase tracking-[0.14em] text-muted-foreground">
-          <span className="h-px w-6 bg-primary/60" />
-          {caption}
-        </figcaption>
-      )}
     </figure>
   );
 }
@@ -176,14 +171,15 @@ export function Experience() {
                 <div>
                   <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-primary">Medusa Technology · Internship</p>
                   <h4 className="mt-1 text-xl font-heading font-bold text-foreground">Internship Moments</h4>
+                  <p className="mt-2 text-[9px] font-mono uppercase tracking-[0.14em] text-muted-foreground">JUN 2026 — AUG 2026 · JAKARTA, INDONESIA</p>
                 </div>
-                <div className="grid grid-cols-[1.15fr_0.85fr] gap-4 max-sm:grid-cols-1">
+                <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
                   {experienceData[0].photos.map((src, idx) => (
                     <GalleryImage
                       key={src}
                       src={src}
                       alt={`Medusa Technology internship moment ${idx + 1}`}
-                      caption={idx === 0 ? "Jun 2026 — Aug 2026 · Jakarta, Indonesia" : undefined}
+                      objectPosition={idx === 0 ? "center 35%" : "center"}
                       onViewImage={openLightbox}
                     />
                   ))}
@@ -272,9 +268,6 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="flex justify-center items-center gap-2 text-primary/40 text-xs">
-                <span>✦</span><span>✧</span><span>✦</span>
-              </div>
             </div>
           </div>
         </div>
