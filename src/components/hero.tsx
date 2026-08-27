@@ -16,7 +16,7 @@ export function Hero() {
     <section className="home-hero" aria-labelledby="hero-title">
       <motion.div className="home-hero-copy" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease }}>
         <p className="hero-eyebrow"><TerminalSquare className="size-4" /><span>Informatics student, Telkom University.</span></p>
-        <h1 id="hero-title">Rafa&apos;Na&apos;ilah <em>Septia.</em></h1>
+        <h1 id="hero-title">Rafa&apos;Na&apos;ilah <em>Septia</em></h1>
         <p className="hero-tagline">I build backend systems, AI tools, and interactive applications.</p>
         <p className="hero-summary">I enjoy turning ideas into useful software, from APIs and databases to virtual world systems.</p>
         <div className="hero-actions">
