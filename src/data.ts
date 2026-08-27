@@ -52,9 +52,10 @@ export interface EducationItem {
 }
 
 export const navigationItems = [
-  { label: "Work", href: "/#projects" },
-  { label: "Experience", href: "/#experience" },
-  { label: "About", href: "/#about" },
+  { label: "Home", href: "/" },
+  { label: "Work", href: "/projects" },
+  { label: "Experience", href: "/experience" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -342,6 +343,7 @@ export interface ProjectInterface {
   alt: string;
   description: string;
   workflow: string;
+  keyLearning?: string;
   architecture?: string[];
   coreLogic: string[];
   gallery: {
@@ -359,6 +361,7 @@ export const projectDetails: Record<string, ProjectInterface> = {
     alt: "AI Moderator monitoring dashboard overview",
     description: "An internship case study in connecting public chat from a virtual world to a backend moderation workflow without hiding the operational states behind the interface.",
     workflow: "Public chat is sent by the LSL moderation object to FastAPI. The backend normalizes the message, checks safe and blocked terms, and requests AI analysis when required. A violation creates a prison session; the jailer can process an apology and release the avatar to the stored location. Dashboard endpoints expose the current state for monitoring.",
+    keyLearning: "A useful AI-assisted system still needs deterministic rules, explicit state transitions, and operational visibility around the model response.",
     architecture: [
       "LSL Chat Object",
       "HTTP Request",
@@ -411,6 +414,7 @@ export const projectDetails: Record<string, ProjectInterface> = {
     alt: "MEDUSA Algorithm Simulator monitor, control panel, and leaderboard",
     description: "An internship case study in turning submitted program results into synchronized, visible behavior inside a virtual world.",
     workflow: "A learner selects one of 12 questions, checks or submits Python code, receives a structured evaluation and score, then plays the actual result through the Simulator Master. Scene controllers and actors execute the mapped sequence and acknowledge completion, while timeout handling protects the shared state.",
+    keyLearning: "Turning program output into a shared visual sequence requires the evaluator, backend state, controller, and in-world actors to agree on one traceable run lifecycle.",
     architecture: [
       "Web Monitor",
       "FastAPI Backend",
