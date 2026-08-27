@@ -30,6 +30,7 @@ export interface ExperienceItem {
   company: string;
   location: string;
   duration: string;
+  status: "Completed" | "Ongoing";
   isFeatured: boolean;
   achievements: string[];
   photos: string[];
@@ -51,12 +52,9 @@ export interface EducationItem {
 }
 
 export const navigationItems = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
+  { label: "Work", href: "/#projects" },
   { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Certifications", href: "/#certifications" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -66,8 +64,8 @@ export const profileDetails = {
   phone: "+6288215027255",
   linkedin: "https://linkedin.com/in/ranaise/",
   github: "https://github.com/ranaise/",
-  education: "Sixth-semester Informatics student at Telkom University",
-  interests: "Artificial Intelligence, Cyber Security, and building scalable real-time applications",
+  education: "Informatics student at Telkom University",
+  interests: "AI-assisted systems, real-time services, virtual worlds, and interactive applications",
 };
 
 export const educationDetails: EducationItem = {
@@ -82,7 +80,7 @@ export const educationDetails: EducationItem = {
 
 export const quickFacts = [
   "Informatics Student (GPA 3.73/4.00)",
-  "Programming Intern at Medusa",
+  "Completed Programming Internship at Medusa Technology",
   "Scholarship Awardee 2023 & 2025",
   "Adaptive Network Lab Member",
 ];
@@ -93,13 +91,14 @@ export const experienceData: ExperienceItem[] = [
     role: "Programming Intern",
     company: "Medusa Technology",
     location: "Jakarta, Indonesia",
-    duration: "Jun 2026 - Aug 2026",
+    duration: "June 2026 - August 2026",
+    status: "Completed",
     isFeatured: true,
     achievements: [
-      "Modified and repackaged the Firestorm Viewer (**C++, XML**) to create a custom, ready-to-use client that streamlines onboarding for new Metaverse users.",
-      "Built a real-time virtual attendance API connecting in-game LSL scripts to external servers using **Python (FastAPI) and MariaDB**.",
-      "Developed an **AI Auto-Moderator** using a local LLM (**Ollama, Qwen**) to automatically monitor chat logs, filter toxic content, and enforce moderation rules in real-time.",
-      "Programmed interactive 3D in-world objects using **LSL**, including an optimized virtual fashion catalog that improves user inventory management without lagging the server."
+      "Built and integrated **LSL objects** with **Python/FastAPI** backend services through HTTP and JSON communication.",
+      "Developed an **AI-assisted moderation workflow** with automated violation handling, prison sessions, and dashboard monitoring.",
+      "Contributed to an interactive algorithm simulator with code execution, evaluation, scoring, state synchronization, and scene playback.",
+      "Developed interactive virtual-world systems for attendance, wardrobe, supermarket flows, and educational simulations."
     ],
     photos: ["/medusa/photo-1.jpg", "/medusa/photo-2.jpg"]
   }
@@ -129,6 +128,32 @@ export const orgExperienceData: OrgExperienceItem[] = [
 ];
 
 export const projectsData: ProjectItem[] = [
+  {
+    id: "ai-moderator-2026",
+    title: "AI Moderator",
+    subtitle: "AI-Assisted Chat Moderation for Virtual Worlds",
+    year: "2026",
+    overview: "Built an integrated moderation system connecting interactive LSL objects, a FastAPI backend, AI-assisted analysis, an automated prison workflow, and a monitoring dashboard.",
+    contribution: "Integrated the in-world chat and jail objects with moderation logic, session state, AI-assisted review, and a reusable Flet monitoring interface.",
+    technologies: ["LSL", "Python", "FastAPI", "Flet", "HTTP/JSON", "Ollama", "Qwen"],
+    github: "",
+    demo: "",
+    screenshot: "/projects/ai-moderator/ai-moderator-dashboard.webp",
+    featured: true,
+  },
+  {
+    id: "medusa-simulator-2026",
+    title: "MEDUSA Algorithm Simulator",
+    subtitle: "Interactive Algorithm Learning Platform for Virtual Worlds",
+    year: "2026",
+    overview: "Built an interactive algorithm-learning simulator combining a web interface, FastAPI backend, code evaluation, scoring, and actual-result playback inside Firestorm/OpenSim scenes.",
+    contribution: "Worked across safe code execution, structured evaluators, attempt state, ACK and timeout handling, scene control, and virtual-world animation playback.",
+    technologies: ["Python", "FastAPI", "LSL", "Firestorm/OpenSim", "State Machines", "HTTP/JSON"],
+    github: "",
+    demo: "",
+    screenshot: "/projects/medusa-simulator/simulator-overview.webp",
+    featured: true,
+  },
   {
     id: "nexevent-2026",
     title: "NexEvent",
@@ -167,7 +192,7 @@ export const projectsData: ProjectItem[] = [
     github: "https://github.com/ranaise/Posyandu_Pintar",
     demo: "https://posyandu-web-app.vercel.app",
     screenshot: "/projects/posyandu-ceria.jpg",
-    featured: false,
+    featured: true,
   },
   {
     id: "microplast-2026",
@@ -317,6 +342,7 @@ export interface ProjectInterface {
   alt: string;
   description: string;
   workflow: string;
+  architecture?: string[];
   coreLogic: string[];
   gallery: {
     mobile?: ProjectGalleryItem[];
@@ -326,6 +352,102 @@ export interface ProjectInterface {
 }
 
 export const projectDetails: Record<string, ProjectInterface> = {
+  "ai-moderator-2026": {
+    id: "ai-moderator-2026",
+    title: "AI Moderator",
+    image: "/projects/ai-moderator/ai-moderator-dashboard.webp",
+    alt: "AI Moderator monitoring dashboard overview",
+    description: "An internship case study in connecting public chat from a virtual world to a backend moderation workflow without hiding the operational states behind the interface.",
+    workflow: "Public chat is sent by the LSL moderation object to FastAPI. The backend normalizes the message, checks safe and blocked terms, and requests AI analysis when required. A violation creates a prison session; the jailer can process an apology and release the avatar to the stored location. Dashboard endpoints expose the current state for monitoring.",
+    architecture: [
+      "LSL Chat Object",
+      "HTTP Request",
+      "FastAPI Backend",
+      "Rule Normalization",
+      "AI Analysis",
+      "Violation State",
+      "Prison / AI Jailer",
+      "Dashboard Monitoring",
+    ],
+    coreLogic: [
+      "Moderation handoff: The LSL object sends avatar identity, region, position, and chat as JSON.",
+      "Selective analysis: Normalization and safe or blocked terms handle deterministic cases before AI-assisted review.",
+      "Session continuity: Prison state retains the context needed to return an avatar to the original location.",
+      "Operational visibility: Dashboard clients validate responses and preserve empty or unavailable states without invented data.",
+    ],
+    gallery: {
+      web: [
+        {
+          id: "ai-moderator-world-object",
+          label: "Virtual-World Moderation Objects",
+          images: ["/projects/ai-moderator/ai-moderator-world-object.webp"],
+          description: "The documented moderation and jailer objects placed beside the prison area in the virtual world.",
+          workflow: "The chat object forwards public messages for evaluation while the jailer handles messages from avatars inside the prison workflow.",
+          coreLogic: ["LSL chat listeners", "HTTP/JSON requests", "Teleport and release actions"],
+        },
+        {
+          id: "ai-moderator-dashboard",
+          label: "Monitoring Dashboard",
+          images: ["/projects/ai-moderator/ai-moderator-dashboard.webp"],
+          description: "A cropped, privacy-conscious view of the documented Flet operations dashboard.",
+          workflow: "The dashboard client retrieves summaries, violations, prisoners, regions, and timestamps from backend endpoints and refreshes on the selected interval.",
+          coreLogic: ["Reusable cards and tables", "Filters and empty states", "Theme and refresh controls"],
+        },
+      ],
+    },
+    features: [
+      { title: "Real-Time Chat Monitoring", desc: "Public chat moves from an interactive world object to the moderation backend." },
+      { title: "Rule-Based + AI Evaluation", desc: "Deterministic normalization precedes AI-assisted analysis when needed." },
+      { title: "Automated Prison Workflow", desc: "Violation state and location context coordinate restriction and return." },
+      { title: "AI Jailer Interaction", desc: "Apology messages can be reviewed before a release action is returned." },
+      { title: "Monitoring Dashboard", desc: "Overview, analytics, prisoners, violations, and settings expose system state." },
+      { title: "Reusable UI Components", desc: "Cards, filters, tables, navigation, empty states, and badges are separated by role." },
+    ],
+  },
+  "medusa-simulator-2026": {
+    id: "medusa-simulator-2026",
+    title: "MEDUSA Algorithm Simulator",
+    image: "/projects/medusa-simulator/simulator-overview.webp",
+    alt: "MEDUSA Algorithm Simulator monitor, control panel, and leaderboard",
+    description: "An internship case study in turning submitted program results into synchronized, visible behavior inside a virtual world.",
+    workflow: "A learner selects one of 12 questions, checks or submits Python code, receives a structured evaluation and score, then plays the actual result through the Simulator Master. Scene controllers and actors execute the mapped sequence and acknowledge completion, while timeout handling protects the shared state.",
+    architecture: [
+      "Web Monitor",
+      "FastAPI Backend",
+      "Attempt + Code Runner",
+      "Evaluator",
+      "Score + Actual Result",
+      "Simulator Master",
+      "Scene Controller",
+      "Virtual-World Actors",
+      "Animated Result",
+    ],
+    coreLogic: [
+      "Bounded execution: Submitted source is validated and run in a subprocess with time and resource limits.",
+      "Technique-aware evaluation: AST checks are used only where a question explicitly requires a method such as BFS or recursion.",
+      "Actual-result mapping: Stored execution output is serialized into a scene-specific visual sequence.",
+      "State synchronization: Station state, run identifiers, ACK messages, resets, and timeouts coordinate web and world components.",
+    ],
+    gallery: {
+      web: [
+        { id: "simulator-overview", label: "Monitor, Controls, and Leaderboard", images: ["/projects/medusa-simulator/simulator-overview.webp"], description: "The documented simulator entry point combines the web monitor, a physical control panel, and leaderboard media.", workflow: "A player starts a session, chooses a question on the monitor, checks or submits code, and requests playback from the control panel.", coreLogic: ["Station ownership", "Monitor URL routing", "Start, play, reset, and home controls"] },
+        { id: "simulator-idle", label: "Idle Scene", images: ["/projects/medusa-simulator/simulator-idle.webp"], description: "The simulator's idle scene establishes the visual state before a result-specific scene is shown.", workflow: "Visibility controllers preserve home transforms and coordinate the robot, code core, and algorithm blocks.", coreLogic: ["Saved HOME transforms", "Show and hide commands", "Safe reset state"] },
+        { id: "simulator-traffic", label: "Traffic Scene", images: ["/projects/medusa-simulator/simulator-traffic.webp"], description: "Traffic evaluation results control the documented road, lights, and vehicle scene.", workflow: "The scene controller validates a result sequence before actors show light changes and safe vehicle actions.", coreLogic: ["Traffic output parsing", "Sequence validation", "Actor reset"] },
+        { id: "simulator-parking", label: "Parking Scene", images: ["/projects/medusa-simulator/simulator-parking.webp"], description: "Parking questions convert calculations and loop results into barrier and vehicle behavior.", workflow: "Mapped parking steps present successful or failed transactions before the controller restores the scene.", coreLogic: ["Fee evaluation", "Loop-based sessions", "Parking serialization"] },
+        { id: "simulator-river", label: "River Scene", images: ["/projects/medusa-simulator/simulator-river.webp"], description: "River questions visualize the actual sequence of loads, crossings, and unloads.", workflow: "The controller validates each trip and keeps actor positions consistent across the full result sequence.", coreLogic: ["BFS and recursion questions", "Trip state", "Terminal validation"] },
+        { id: "simulator-package-sort", label: "Package Sort Scene", images: ["/projects/medusa-simulator/simulator-package-sort.webp"], description: "Package results drive the documented robot arm, package groups, labels, and target slots.", workflow: "The controller applies labels and runs pick, move, drop, and highlight actions in sequence.", coreLogic: ["Structured package data", "Grouped object motion", "Exact serialization"] },
+        { id: "simulator-rescue", label: "Rescue Scene", images: ["/projects/medusa-simulator/simulator-rescue.webp"], description: "Rescue questions map path decisions onto a robot navigating the documented grid toward a goal.", workflow: "Each move is verified before the actor receives it, and the run ends in a correlated terminal state such as goal or invalid step.", coreLogic: ["Path validation", "BFS and route selection", "ACK and timeout correlation"] },
+      ],
+    },
+    features: [
+      { title: "Safe Code Runner", desc: "Submitted Python is validated and executed with time and resource limits." },
+      { title: "Structured Evaluation", desc: "Question-specific evaluators verify outputs, techniques, and route decisions." },
+      { title: "Actual-Result Playback", desc: "A learner's own result becomes a sequence inside the matching virtual-world scene." },
+      { title: "Multi-Level Curriculum", desc: "Twelve questions span EASY, MEDIUM, HARD, and EXTREME levels." },
+      { title: "Scene + Actor Architecture", desc: "Controllers and actors coordinate visibility, movement, reset, and terminal states." },
+      { title: "State Synchronization", desc: "Backend state, world objects, ACK messages, and timeouts keep playback coherent." },
+    ],
+  },
   "nexevent-2026": {
     id: "nexevent-2026",
     title: "NexEvent",

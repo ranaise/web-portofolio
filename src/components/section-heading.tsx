@@ -1,0 +1,2 @@
+import { cn } from "@/lib/utils";
+export function SectionHeading({ index, label, title, description, className }: { index: string; label: string; title: string; description?: string; className?: string }) { return <header className={cn("section-heading", className)}><div className="eyebrow"><span>{index}</span><span>{label}</span></div><div><h2>{title}</h2>{description && <p>{description}</p>}</div></header>; }

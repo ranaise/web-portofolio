@@ -1,0 +1,2 @@
+import { ArrowDown, ArrowRight } from "lucide-react";
+export function ArchitectureFlow({ steps }: { steps: string[] }) { return <ol className="architecture-flow">{steps.map((step, index) => <li key={`${index}-${step}`}><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong>{index < steps.length - 1 && <><ArrowRight className="flow-right" /><ArrowDown className="flow-down" /></>}</li>)}</ol>; }

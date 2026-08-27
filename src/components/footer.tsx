@@ -1,14 +1,3 @@
-"use client";
-
-export function Footer() {
-  return (
-    <footer className="bg-transparent transition-colors duration-300">
-      <div className="container mx-auto px-6 py-6 text-center flex flex-col items-center justify-center space-y-2">
-        <div className="h-px w-8 bg-primary/20 rounded-full" />
-        <p className="text-[9px] font-mono tracking-widest text-muted-foreground/80 uppercase font-bold">
-          &copy; 2026 Rafa&apos;Na&apos;ilah Septia
-        </p>
-      </div>
-    </footer>
-  );
-}
+import Link from "next/link";
+import { profileDetails } from "@/data";
+export function Footer() { return <footer className="border-t border-border"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-5 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:px-8 lg:px-12"><p>© 2026 Rafa&apos;Na&apos;ilah Septia</p><div className="flex gap-5"><Link href={profileDetails.github} target="_blank" rel="noreferrer">GitHub</Link><Link href={profileDetails.linkedin} target="_blank" rel="noreferrer">LinkedIn</Link><Link href="#home">Back to top</Link></div></div></footer>; }

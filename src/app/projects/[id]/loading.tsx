@@ -1,0 +1,1 @@
+export default function Loading() { return <main className="section-shell min-h-svh animate-pulse pt-28"><div className="h-4 w-40 bg-muted" /><div className="mt-16 grid gap-10 md:grid-cols-2"><div><div className="h-20 max-w-md bg-muted" /><div className="mt-6 h-24 max-w-lg bg-muted" /></div><div className="min-h-[440px] bg-muted" /></div></main>; }

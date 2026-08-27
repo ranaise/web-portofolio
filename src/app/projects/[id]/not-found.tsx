@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound() { return <main className="grid min-h-svh place-items-center px-6"><div className="text-center"><p className="eyebrow justify-center">404 / Case file missing</p><h1 className="mt-6 font-serif text-6xl">Nothing filed here.</h1><Link href="/#projects" className="mt-8 inline-block underline underline-offset-4">Return to selected work</Link></div></main>; }

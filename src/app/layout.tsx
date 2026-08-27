@@ -17,20 +17,20 @@ const inter = Inter({
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-logo",
+  variable: "--font-instrument",
   weight: "400",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Rafa'Na'ilah Septia | Backend Engineer & AI Enthusiast",
-  description: "Creative developer portfolio of Rafa'Na'ilah Septia, specializing in backend systems, AI-powered applications, and scalable software architectures.",
+  title: { default: "Rafa'Na'ilah Septia — Interactive Systems Portfolio", template: "%s — Rafa'Na'ilah Septia" },
+  description: "Case files documenting the backend services, AI-assisted workflows, and real-time interfaces behind interactive digital worlds.",
   keywords: ["Backend Engineer", "AI Enthusiast", "FastAPI", "LLM Integration", "Next.js", "TypeScript", "Developer Portfolio", "Software Engineer"],
   authors: [{ name: "Rafa'Na'ilah Septia" }],
   metadataBase: new URL("https://rafanailah.dev"),
   openGraph: {
-    title: "Rafa'Na'ilah Septia | Backend Engineer & AI Enthusiast",
-    description: "Creative developer portfolio of Rafa'Na'ilah Septia, specializing in backend systems, AI-powered applications, and scalable software architectures.",
+    title: "Rafa'Na'ilah Septia — Interactive Systems Portfolio",
+    description: "Case files documenting systems behind interactive digital worlds.",
     url: "https://rafanailah.dev",
     siteName: "Rafa'Na'ilah Septia Portfolio",
     type: "website",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rafa'Na'ilah Septia | Backend Engineer & AI Enthusiast",
-    description: "Creative developer portfolio of Rafa'Na'ilah Septia, specializing in backend systems, AI-powered applications, and scalable software architectures.",
+    title: "Rafa'Na'ilah Septia — Interactive Systems Portfolio",
+    description: "Case files documenting systems behind interactive digital worlds.",
   },
   icons: {
     icon: "/favicon.ico",
@@ -52,13 +52,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${instrumentSerif.variable} antialiased min-h-screen text-foreground transition-colors duration-300 font-sans`}
-      >
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${inter.variable} ${instrumentSerif.variable}`}>
+      <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >

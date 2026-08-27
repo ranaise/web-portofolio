@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
+import { projectsData } from "@/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rafanailah.dev"; // Place-holder domain name for Rafa
+  const baseUrl = "https://rafanailah.dev";
   return [
     {
       url: baseUrl,
@@ -9,5 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    ...projectsData.map((project) => ({
+      url: `${baseUrl}/projects/${project.id}`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: project.featured ? 0.8 : 0.6,
+    })),
   ];
 }
