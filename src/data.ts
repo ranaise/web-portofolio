@@ -52,10 +52,12 @@ export interface EducationItem {
 }
 
 export const navigationItems = [
-  { label: "Home", href: "/" },
-  { label: "Work", href: "/projects" },
-  { label: "Experience", href: "/experience" },
-  { label: "About", href: "/about" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Certifications", href: "/#certifications" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -65,8 +67,8 @@ export const profileDetails = {
   phone: "+6288215027255",
   linkedin: "https://linkedin.com/in/ranaise/",
   github: "https://github.com/ranaise/",
-  education: "Informatics student at Telkom University",
-  interests: "AI-assisted systems, real-time services, virtual worlds, and interactive applications",
+  education: "Sixth-semester Informatics student at Telkom University",
+  interests: "Artificial Intelligence, Cyber Security, and building scalable real-time applications",
 };
 
 export const educationDetails: EducationItem = {
@@ -81,7 +83,7 @@ export const educationDetails: EducationItem = {
 
 export const quickFacts = [
   "Informatics Student (GPA 3.73/4.00)",
-  "Completed Programming Internship at Medusa Technology",
+  "Programming Intern at Medusa",
   "Scholarship Awardee 2023 & 2025",
   "Adaptive Network Lab Member",
 ];
@@ -92,14 +94,14 @@ export const experienceData: ExperienceItem[] = [
     role: "Programming Intern",
     company: "Medusa Technology",
     location: "Jakarta, Indonesia",
-    duration: "June 2026 - August 2026",
+    duration: "Jun 2026 - Aug 2026",
     status: "Completed",
     isFeatured: true,
     achievements: [
-      "Built and integrated **LSL objects** with **Python/FastAPI** backend services through HTTP and JSON communication.",
-      "Developed an **AI-assisted moderation workflow** with automated violation handling, prison sessions, and dashboard monitoring.",
-      "Contributed to an interactive algorithm simulator with code execution, evaluation, scoring, state synchronization, and scene playback.",
-      "Developed interactive virtual-world systems for attendance, wardrobe, supermarket flows, and educational simulations."
+      "Modified and repackaged the Firestorm Viewer (**C++, XML**) to create a custom, ready-to-use client that streamlines onboarding for new Metaverse users.",
+      "Built a real-time virtual attendance API connecting in-game LSL scripts to external servers using **Python (FastAPI) and MariaDB**.",
+      "Developed an **AI Auto-Moderator** using a local LLM (**Ollama, Qwen**) to automatically monitor chat logs, filter toxic content, and enforce moderation rules in real-time.",
+      "Programmed interactive 3D in-world objects using **LSL**, including an optimized virtual fashion catalog that improves user inventory management without lagging the server."
     ],
     photos: ["/medusa/photo-1.jpg", "/medusa/photo-2.jpg"]
   }
@@ -239,7 +241,7 @@ export const projectsData: ProjectItem[] = [
 
 export const hardSkillsCategories = [
   {
-    title: "Languages",
+    title: "Programming Languages",
     skills: [
       { name: "Python", devicon: "python/python-original.svg" },
       { name: "C++", devicon: "cplusplus/cplusplus-original.svg" },
