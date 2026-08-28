@@ -8,95 +8,65 @@ import { Reveal } from "@/components/reveal";
 
 const internshipProjectIds = ["ai-moderator-2026", "medusa-simulator-2026"];
 
-function ProjectIndexCard({
-  project,
-  number,
-  compact = false,
-  category,
-}: {
-  project: ProjectItem;
-  number: number;
-  compact?: boolean;
-  category: string;
-}) {
-  const cardClass = compact ? "project-index-card is-compact" : "project-index-card";
-
+function ProjectAtlasCard({ project, index }: { project: ProjectItem; index: number }) {
+  const isInternship = internshipProjectIds.includes(project.id);
   return (
-    <Reveal className={cardClass} delay={number * 0.045}>
-      <Link href={`/projects/${project.id}`} className="project-index-link">
-        <div className="project-index-media">
+    <Reveal className={`project-atlas-card atlas-card-${index + 1}${isInternship ? " is-internship" : ""}`} delay={index * 0.06}>
+      <Link href={`/projects/${project.id}`} className="project-atlas-link">
+        <div className="project-atlas-frame">
           <Image
             src={project.screenshot}
             alt={`${project.title} interface preview`}
             fill
-            sizes={compact ? "(max-width: 767px) 46vw, 31vw" : "(max-width: 767px) calc(100vw - 40px), 50vw"}
+            sizes="(max-width: 767px) 47vw, (max-width: 1100px) 42vw, 58vw"
             className="object-contain"
           />
-          <span className="project-index-corner">{String(number).padStart(2, "0")}</span>
-          <span className="project-index-view">Open project <ArrowUpRight /></span>
+          <span className="project-atlas-index">{String(index + 1).padStart(2, "0")}</span>
+          <span className="project-atlas-open">Open <ArrowUpRight /></span>
         </div>
-        <div className="project-index-copy">
-          <div className="project-index-meta">
-            <span>{category}</span>
-            <span>{project.year}</span>
+        <div className="project-atlas-cardline">
+          <div className="project-atlas-title">
+            <span>{isInternship ? "Internship work" : "Project"}</span>
+            <h3>{project.title}</h3>
           </div>
-          <h3>{project.title}</h3>
-          <p>{project.subtitle}</p>
-          <div className="project-index-foot">
-            <span>{project.technologies.slice(0, compact ? 2 : 4).join(", ")}</span>
+          <div className="project-atlas-meta">
+            <span>{project.year}</span>
+            <span>{project.technologies.slice(0, 3).join(", ")}</span>
             <ArrowUpRight aria-hidden="true" />
           </div>
         </div>
+        <p className="project-atlas-subtitle">{project.subtitle}</p>
       </Link>
     </Reveal>
   );
 }
 
 export function Projects() {
-  const internshipProjects = projectsData.filter((project) => internshipProjectIds.includes(project.id));
-  const otherProjects = projectsData.filter((project) => !internshipProjectIds.includes(project.id));
-
   return (
-    <section className="projects-index-v2" aria-label="All projects">
-      <BotanicalDecoration className="projects-index-v2-botanical" />
-
-      <div className="projects-index-v2-intro">
+    <section className="projects-atlas" aria-label="All projects">
+      <BotanicalDecoration className="projects-atlas-botanical" />
+      <header className="projects-atlas-header">
         <div>
-          <p className="section-kicker"><span>01</span><span>Project index</span></p>
-          <h2>Things I built and learned from</h2>
+          <p className="section-kicker"><span>01</span><span>Project archive</span></p>
+          <h2>Built across screens and systems</h2>
         </div>
-        <p><strong>{String(projectsData.length).padStart(2, "0")}</strong> projects across backend systems, AI tools, mobile applications, and interactive software.</p>
+        <div className="projects-atlas-count">
+          <strong>{String(projectsData.length).padStart(2, "0")}</strong>
+          <p>Projects from 2025 to 2026, covering backend systems, AI tools, mobile applications, and interactive software.</p>
+        </div>
+      </header>
+      <div className="projects-atlas-toolbar">
+        <p><span>02</span> All projects</p>
+        <p>Each frame opens the full build</p>
       </div>
-
-      <section className="project-shelf project-shelf-internship" aria-labelledby="internship-projects-title">
-        <header className="project-shelf-header">
-          <div>
-            <p className="chapter-label">02, Internship work</p>
-            <h3 id="internship-projects-title">Systems that connect code and worlds</h3>
-          </div>
-          <p>Two connected systems built during my programming internship at Medusa Technology.</p>
-        </header>
-        <div className="project-index-feature-grid">
-          {internshipProjects.map((project, index) => (
-            <ProjectIndexCard key={project.id} project={project} number={index + 1} category="Internship" />
-          ))}
-        </div>
-      </section>
-
-      <section className="project-shelf project-shelf-other" aria-labelledby="other-projects-title">
-        <header className="project-shelf-header">
-          <div>
-            <p className="chapter-label">03, Other projects</p>
-            <h3 id="other-projects-title">A wider range of experiments</h3>
-          </div>
-          <p>Academic and personal work across web, mobile, artificial intelligence, and computer vision.</p>
-        </header>
-        <div className="project-index-mini-grid">
-          {otherProjects.map((project, index) => (
-            <ProjectIndexCard key={project.id} project={project} number={index + internshipProjects.length + 1} category="Project" compact />
-          ))}
-        </div>
-      </section>
+      <div className="project-atlas-grid">
+        {projectsData.map((project, index) => <ProjectAtlasCard key={project.id} project={project} index={index} />)}
+      </div>
+      <footer className="projects-atlas-footer">
+        <span>03</span>
+        <p>Selected work is on Home. This archive keeps the rest of the work close by.</p>
+        <Link href="/#contact" className="text-action">Start a conversation <ArrowUpRight /></Link>
+      </footer>
     </section>
   );
 }
