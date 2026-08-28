@@ -1,35 +1,26 @@
-import {
-  Bot,
-  Braces,
-  Database,
-  Globe2,
-  ServerCog,
-  Smartphone,
-} from "lucide-react";
+import type { CSSProperties } from "react";
+import { hardSkillsCategories } from "@/data";
 
-const toolkit = [
-  { label: "Python", Icon: Braces },
-  { label: "FastAPI", Icon: ServerCog },
-  { label: "MariaDB", Icon: Database },
-  { label: "Ollama", Icon: Bot },
-  { label: "LSL", Icon: Globe2 },
-  { label: "Flutter", Icon: Smartphone },
-];
+const technologies = hardSkillsCategories.flatMap((category) => category.skills);
+const rows = [technologies.filter((_, index) => index % 2 === 0), technologies.filter((_, index) => index % 2 === 1)];
+
+function TechnologyMark({ skill }: { skill: (typeof technologies)[number] }) {
+  const image = "devicon" in skill && skill.devicon ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.devicon}` : undefined;
+  const shortName = skill.name === "Linden Scripting Language (LSL)" ? "LSL" : skill.name.slice(0, 3);
+  return (
+    <div className="tech-mark" role="img" aria-label={skill.name} title={skill.name}>
+      {image ? <span className="tech-mark-image" style={{ backgroundImage: `url(${image})` } as CSSProperties} /> : <span className="tech-mark-custom">{shortName}</span>}
+      <span className="sr-only">{skill.name}</span>
+    </div>
+  );
+}
 
 export function HomeToolkit() {
   return (
-    <section className="toolkit-strip" aria-label="Main technology stack">
-      <div className="toolkit-intro">
-        <p className="section-kicker"><span>01</span><span>Toolkit</span></p>
-        <p>Tools I use often.</p>
-      </div>
-      <div className="toolkit-items">
-        {toolkit.map(({ label, Icon }) => (
-          <div className="toolkit-item" key={label}>
-            <span className="toolkit-icon" aria-hidden="true"><Icon /></span>
-            <span>{label}</span>
-          </div>
-        ))}
+    <section className="toolkit-strip" aria-labelledby="toolkit-title">
+      <div className="toolkit-intro"><p className="section-kicker"><span>02</span><span id="toolkit-title">Tech stack</span></p><p>Tools I use to build and learn</p></div>
+      <div className="tech-marquee" aria-label="Technology icons">
+        {rows.map((row, rowIndex) => <div className={`tech-track tech-track-${rowIndex + 1}`} key={rowIndex}>{[...row, ...row].map((skill, index) => <TechnologyMark key={`${skill.name}-${index}`} skill={skill} />)}</div>)}
       </div>
     </section>
   );

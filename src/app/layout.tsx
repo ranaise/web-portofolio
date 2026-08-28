@@ -23,23 +23,23 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Rafa'Na'ilah Septia — Interactive Systems Portfolio", template: "%s — Rafa'Na'ilah Septia" },
-  description: "Case files documenting the backend services, AI-assisted workflows, and real-time interfaces behind interactive digital worlds.",
+  title: { default: "Rafa'Na'ilah Septia, Software Engineer Portfolio", template: "%s, Rafa'Na'ilah Septia" },
+  description: "A portfolio of backend systems, artificial intelligence projects, and interactive applications by Rafa'Na'ilah Septia.",
   keywords: ["Backend Engineer", "AI Enthusiast", "FastAPI", "LLM Integration", "Next.js", "TypeScript", "Developer Portfolio", "Software Engineer"],
   authors: [{ name: "Rafa'Na'ilah Septia" }],
-  metadataBase: new URL("https://rafanailah.dev"),
+  metadataBase: new URL("https://ranaise.vercel.app"),
   openGraph: {
-    title: "Rafa'Na'ilah Septia — Interactive Systems Portfolio",
-    description: "Case files documenting systems behind interactive digital worlds.",
-    url: "https://rafanailah.dev",
+    title: "Rafa'Na'ilah Septia, Software Engineer Portfolio",
+    description: "Backend systems, artificial intelligence projects, and interactive applications.",
+    url: "https://ranaise.vercel.app",
     siteName: "Rafa'Na'ilah Septia Portfolio",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rafa'Na'ilah Septia — Interactive Systems Portfolio",
-    description: "Case files documenting systems behind interactive digital worlds.",
+    title: "Rafa'Na'ilah Septia, Software Engineer Portfolio",
+    description: "Backend systems, artificial intelligence projects, and interactive applications.",
   },
   icons: {
     icon: "/favicon.ico",

@@ -65,8 +65,8 @@ export const profileDetails = {
   phone: "+6288215027255",
   linkedin: "https://linkedin.com/in/ranaise/",
   github: "https://github.com/ranaise/",
-  education: "Sixth-semester Informatics student at Telkom University",
-  interests: "Artificial Intelligence, Cyber Security, and building scalable real-time applications",
+  education: "Sixth semester Informatics student at Telkom University",
+  interests: "Artificial intelligence, cyber security, and scalable realtime applications",
 };
 
 export const educationDetails: EducationItem = {
@@ -81,7 +81,7 @@ export const educationDetails: EducationItem = {
 
 export const quickFacts = [
   "Informatics Student (GPA 3.73/4.00)",
-  "Programming Intern at Medusa",
+  "Programming Internship at Medusa, Completed",
   "Scholarship Awardee 2023 & 2025",
   "Adaptive Network Lab Member",
 ];
@@ -92,7 +92,7 @@ export const experienceData: ExperienceItem[] = [
     role: "Programming Intern",
     company: "Medusa Technology",
     location: "Jakarta, Indonesia",
-    duration: "Jun 2026 - Aug 2026",
+    duration: "June 2026 to August 2026",
     status: "Completed",
     isFeatured: true,
     achievements: [
@@ -359,7 +359,7 @@ export const projectDetails: Record<string, ProjectInterface> = {
     title: "AI Moderator",
     image: "/projects/ai-moderator/ai-moderator-dashboard.webp",
     alt: "AI Moderator monitoring dashboard overview",
-    description: "An internship case study in connecting public chat from a virtual world to a backend moderation workflow without hiding the operational states behind the interface.",
+    description: "An internship project connecting public chat from a virtual world to a backend moderation workflow with clear operational states in the interface.",
     workflow: "Public chat is sent by the LSL moderation object to FastAPI. The backend normalizes the message, checks safe and blocked terms, and requests AI analysis when required. A violation creates a prison session; the jailer can process an apology and release the avatar to the stored location. Dashboard endpoints expose the current state for monitoring.",
     keyLearning: "A useful AI-assisted system still needs deterministic rules, explicit state transitions, and operational visibility around the model response.",
     architecture: [
@@ -412,7 +412,7 @@ export const projectDetails: Record<string, ProjectInterface> = {
     title: "MEDUSA Algorithm Simulator",
     image: "/projects/medusa-simulator/simulator-overview.webp",
     alt: "MEDUSA Algorithm Simulator monitor, control panel, and leaderboard",
-    description: "An internship case study in turning submitted program results into synchronized, visible behavior inside a virtual world.",
+    description: "An internship project that turns submitted program results into synchronized and visible behavior inside a virtual world.",
     workflow: "A learner selects one of 12 questions, checks or submits Python code, receives a structured evaluation and score, then plays the actual result through the Simulator Master. Scene controllers and actors execute the mapped sequence and acknowledge completion, while timeout handling protects the shared state.",
     keyLearning: "Turning program output into a shared visual sequence requires the evaluator, backend state, controller, and in-world actors to agree on one traceable run lifecycle.",
     architecture: [
