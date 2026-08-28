@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { projectsData, projectDetails } from "@/data";
 import { ArchitectureFlow } from "@/components/architecture-flow";
 import { ProjectGallery } from "@/components/project-gallery";
@@ -44,7 +46,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <main className="project-dossier">
+    <>
+      <Navbar />
+      <main className="project-dossier">
       <nav className="project-dossier-nav" aria-label="Project navigation">
         <Link href="/projects"><ArrowLeft /> <span>All projects</span></Link>
         <span>Project {String(projectNumber).padStart(2, "0")} of {String(projectsData.length).padStart(2, "0")}</span>
@@ -127,6 +131,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div><p className="chapter-label">Closing note</p><h2>Built with intent</h2><p>{details.keyLearning ?? project.contribution}</p></div>
         <div className="project-dossier-footer-actions"><TechnicalTags items={project.technologies} /><div>{project.github && <Link href={project.github} target="_blank" rel="noreferrer">Source code <GithubIcon /></Link>}{project.demo && <Link href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight /></Link>}</div></div>
       </footer>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
