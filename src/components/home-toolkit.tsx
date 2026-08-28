@@ -5,7 +5,7 @@ import { BotanicalDecoration } from "@/components/botanical-decoration";
 const technologies = hardSkillsCategories.flatMap((category) => category.skills);
 const rows = [technologies.filter((_, index) => index % 2 === 0), technologies.filter((_, index) => index % 2 === 1)];
 
-function TechnologyMark({ skill }: { skill: (typeof technologies)[number] }) {
+export function TechnologyMark({ skill }: { skill: (typeof technologies)[number] }) {
   const image = "devicon" in skill && skill.devicon ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.devicon}` : undefined;
   const shortName = skill.name === "Linden Scripting Language (LSL)" ? "LSL" : skill.name.slice(0, 3);
   return (

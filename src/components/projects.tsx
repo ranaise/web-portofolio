@@ -7,5 +7,15 @@ import { TechnicalTags } from "@/components/technical-tags";
 import { BotanicalDecoration } from "@/components/botanical-decoration";
 
 export function Projects() {
-  return <section className="work-index" aria-label="Project list"><BotanicalDecoration className="projects-botanical" />{projectsData.map((project, index) => <Reveal key={project.id} className={`work-index-item ${index === 0 ? "is-featured" : ""}`} delay={(index % 2) * .04}><Link href={`/projects/${project.id}`}><div className="work-index-image"><Image src={project.screenshot} alt={`${project.title} interface`} fill sizes="(max-width: 767px) calc(100vw - 40px), 48vw" className="object-contain" /></div><div className="work-index-copy"><div className="work-index-topline"><p className="project-number">{String(index + 1).padStart(2, "0")}, {project.year}</p><span>{index === 0 ? "Featured project" : "Project"}</span></div><h2>{project.title}</h2><p>{project.subtitle}</p><TechnicalTags items={project.technologies.slice(0, 4)} className="mt-4" /><span className="case-action">View project <ArrowUpRight /></span></div></Link></Reveal>)}</section>;
+  const [featuredProject, ...otherProjects] = projectsData;
+
+  return <section className="work-index projects-index" aria-label="Project list"><BotanicalDecoration className="projects-botanical" />
+    <Reveal className="projects-featured">
+      <Link href={`/projects/${featuredProject.id}`}>
+        <div className="project-featured-image"><Image src={featuredProject.screenshot} alt={`${featuredProject.title} interface`} fill sizes="(max-width: 767px) calc(100vw - 40px), 64vw" className="object-contain" /></div>
+        <div className="project-featured-copy"><div className="project-featured-topline"><span>01</span><span>Featured project</span></div><h2>{featuredProject.title}</h2><p>{featuredProject.subtitle}</p><TechnicalTags items={featuredProject.technologies.slice(0, 4)} className="mt-4" /><span className="case-action">View project <ArrowUpRight /></span></div>
+      </Link>
+    </Reveal>
+    <div className="projects-catalog"><header className="projects-catalog-heading"><p className="section-kicker"><span>02</span><span>More projects</span></p><p>{String(otherProjects.length).padStart(2, "0")} projects</p></header>{otherProjects.map((project, index) => <Reveal key={project.id} delay={(index % 2) * .04} className="project-row"><Link href={`/projects/${project.id}`} className="project-row-link"><span className="project-row-number">{String(index + 2).padStart(2, "0")}</span><div className="project-row-copy"><h3>{project.title}</h3><p>{project.subtitle}</p><small>{project.technologies.slice(0, 3).join(", ")}</small></div><div className="project-row-image"><Image src={project.screenshot} alt={`${project.title} interface`} fill sizes="(max-width: 767px) 92px, 190px" className="object-contain" /></div><ArrowUpRight className="project-row-arrow" /></Link></Reveal>)}</div>
+  </section>;
 }

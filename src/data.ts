@@ -93,14 +93,15 @@ export const experienceData: ExperienceItem[] = [
     role: "Programming Intern",
     company: "Medusa Technology",
     location: "Jakarta, Indonesia",
-    duration: "June 2026 to August 2026",
+    duration: "June - August 2026",
     status: "Completed",
     isFeatured: true,
     achievements: [
-      "Modified and repackaged the Firestorm Viewer (**C++, XML**) to create a custom, ready-to-use client that streamlines onboarding for new Metaverse users.",
-      "Built a real-time virtual attendance API connecting in-game LSL scripts to external servers using **Python (FastAPI) and MariaDB**.",
-      "Developed an **AI Auto-Moderator** using a local LLM (**Ollama, Qwen**) to automatically monitor chat logs, filter toxic content, and enforce moderation rules in real-time.",
-      "Programmed interactive 3D in-world objects using **LSL**, including an optimized virtual fashion catalog that improves user inventory management without lagging the server."
+      "Built an interactive attendance system with **LSL and FastAPI** for check-in, activity reports, check-out, and Jakarta time records.",
+      "Created a wardrobe object with texture navigation, inventory updates, and item delivery without a separate backend.",
+      "Developed **AI Moderator** with LSL objects, FastAPI services, an AI prison workflow, and a Flet monitoring dashboard.",
+      "Implemented a virtual supermarket with trolley control, product animation, cart, checkout, delivery, and reset flows.",
+      "Built the **MEDUSA simulator** with code evaluation, scoring, actual-result playback, six animated scenes, and a leaderboard."
     ],
     photos: ["/medusa/photo-1.jpg", "/medusa/photo-2.jpg"]
   }
@@ -111,10 +112,10 @@ export const orgExperienceData: OrgExperienceItem[] = [
     id: "budi-pekerti",
     role: "Coordinator of Event Division",
     organization: "Team Budi Pekerti at Telkom University",
-    duration: "November 2023 to December 2024",
+    duration: "November 2023 - December 2024",
     tasks: [
-      "Coordinated character development programs promoting leadership, teamwork, and national values among scholarship recipients.",
-      "Managed event planning and execution while collaborating with cross-functional student committees."
+      "Coordinated character development programs for scholarship recipients.",
+      "Planned events with student committees and managed execution."
     ],
     photos: ["/team budi pekerti.png"],
   },
@@ -122,10 +123,10 @@ export const orgExperienceData: OrgExperienceItem[] = [
     id: "adaptive-network",
     role: "Study Group Member",
     organization: "Adaptive Network Laboratory at Telkom University",
-    duration: "October 2023 to December 2023",
+    duration: "October 2023 - December 2023",
     tasks: [
-      "Learned networking fundamentals including subnetting, VLAN, routing, Linux administration, and web server deployment.",
-      "Built foundational Python programming skills covering OOP, inheritance, and scripting for networking applications."
+      "Practiced subnetting, VLAN, routing, Linux, and web server deployment.",
+      "Built Python foundations in OOP, inheritance, and networking scripts."
     ],
     photos: ["/studygroup member.jpg"],
   },
