@@ -1168,7 +1168,7 @@ body,
   .about-focus-heading { align-items: flex-start; flex-direction: column; gap: .45rem; }
   .about-focus-pills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-focus-pills span { min-height: 48px; font-size: .65rem; }
-  .work-index { display: grid; gap: .85rem; }
+  .work-index { display: grid; grid-template-columns: 1fr; gap: .85rem; }
   .work-index-item.is-featured { grid-column: auto; }
   .work-index-item.is-featured > a { display: block; }
   .work-index-item.is-featured .work-index-image { min-height: 0; aspect-ratio: 1.45 / 1; border-right: 0; border-bottom: 1px solid var(--line); }
