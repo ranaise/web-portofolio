@@ -1544,3 +1544,15 @@ body,
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Full width navigation bar with content aligned to the page grid */
+.site-nav-inner {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: max(2.5rem, calc((100vw - 1180px) / 2 + 2.5rem));
+}
+
+@media (max-width: 767px) {
+  .site-nav-inner { width: 100%; padding-inline: 1.25rem; }
+}
