@@ -1058,3 +1058,122 @@ body,
   .project-hero > div:first-child { padding: 2.8rem 20px; }
   .project-section { padding: 3.2rem 20px; }
 }
+
+/* Editorial structure refinements */
+.home-section,
+.contact-section,
+.toolkit-strip,
+.work-index { position: relative; overflow: hidden; }
+.home-section > :not(.section-botanical),
+.contact-section > :not(.section-botanical),
+.toolkit-strip > :not(.strip-botanical),
+.work-index > :not(.projects-botanical) { position: relative; z-index: 1; }
+.section-botanical,
+.strip-botanical,
+.projects-botanical { pointer-events: none; }
+.section-botanical { position: absolute; width: 150px; color: color-mix(in srgb, var(--cocoa) 56%, transparent); opacity: .3; }
+.section-botanical-right { top: 1.6rem; right: -62px; transform: rotate(-20deg) scaleX(-1); }
+.section-botanical-left { bottom: -110px; left: -55px; transform: rotate(20deg); }
+.strip-botanical { position: absolute; right: -42px; bottom: -55px; width: 100px; color: color-mix(in srgb, var(--cocoa) 48%, transparent); opacity: .22; transform: rotate(-18deg) scaleX(-1); }
+
+.contact-section { background: transparent; }
+.contact-block { background: var(--surface); color: var(--foreground); box-shadow: 0 12px 30px rgba(63, 44, 31, .06); }
+.contact-block .section-kicker span:last-child { color: var(--foreground); }
+.contact-block h2 { color: var(--foreground); }
+.contact-block > div:first-child > p:last-child { color: var(--muted-foreground); }
+.contact-simple-links a { border-color: var(--line); background: var(--raised); color: var(--foreground); }
+.contact-simple-links a:hover { border-color: var(--cocoa); color: var(--cocoa); }
+
+.experience-section-heading { grid-template-columns: 120px minmax(0, 1fr); align-items: end; }
+.experience-section-heading h2 { max-width: 12ch; }
+.additional-experience { position: relative; }
+.organization-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 1.5rem; }
+.organization-heading > p:last-child { max-width: 23rem; color: var(--muted-foreground); font-size: .82rem; line-height: 1.55; }
+.organization-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.organization-card { display: grid; grid-template-columns: minmax(140px, .8fr) minmax(0, 1.2fr); min-width: 0; border: 1px solid var(--line); background: var(--surface); }
+.organization-photo { position: relative; min-height: 235px; overflow: hidden; background: var(--raised); }
+.organization-photo img { object-fit: contain !important; padding: .55rem; }
+.organization-card-copy { position: relative; padding: 1.25rem; }
+.organization-index { position: absolute; top: 1.25rem; right: 1.25rem; color: var(--cocoa); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .68rem; }
+.organization-card-copy > .chapter-label { padding-right: 2rem; }
+.organization-card-copy h3 { max-width: 11ch; margin-top: .7rem; font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400; letter-spacing: -.035em; line-height: .98; }
+.organization-card-copy > p:not(.chapter-label) { margin-top: .45rem; color: var(--muted-foreground); font-size: .76rem; line-height: 1.4; }
+.organization-card-copy ul { display: grid; gap: .6rem; margin-top: 1rem; padding: 1rem 0 0; border-top: 1px solid var(--line); list-style: none; }
+.organization-card-copy li { color: var(--muted-foreground); font-size: .72rem; line-height: 1.5; }
+.organization-card-copy li::before { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 .55rem .1rem 0; border-radius: 50%; background: var(--cocoa); }
+
+.about-layout { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(270px, .88fr); gap: 1rem; }
+.about-intro-card,
+.about-fact-panel { min-width: 0; border: 1px solid var(--line); background: var(--surface); }
+.about-intro-card { display: flex; min-height: 270px; flex-direction: column; justify-content: space-between; padding: clamp(1.35rem, 3vw, 2.5rem); }
+.about-lead { max-width: 31rem; color: var(--foreground); font-family: var(--font-serif); font-size: clamp(1.8rem, 3.2vw, 3rem); letter-spacing: -.04em; line-height: 1.03; }
+.about-stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.about-stat-row div { display: grid; gap: .2rem; }
+.about-stat-row strong { color: var(--cocoa); font-family: var(--font-serif); font-size: 1.65rem; font-weight: 400; }
+.about-stat-row span { color: var(--muted-foreground); font-family: var(--font-heading); font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; }
+.about-fact-panel { padding: clamp(1.35rem, 3vw, 2.2rem); }
+.about-fact-panel h3 { margin-top: .8rem; font-family: var(--font-serif); font-size: 1.85rem; font-weight: 400; line-height: 1; }
+.about-education { margin-top: .45rem; color: var(--muted-foreground); font-size: .8rem; }
+.about-fact-panel ul { display: grid; gap: .6rem; margin-top: 1.7rem; padding-top: 1.2rem; border-top: 1px solid var(--line); list-style: none; }
+.about-fact-panel li { color: var(--muted-foreground); font-size: .76rem; line-height: 1.4; }
+.about-fact-panel li::before { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 .55rem .1rem 0; border-radius: 50%; background: var(--forest); }
+.about-focus-list { margin-top: 1rem; padding: 1.5rem 0 0; border-top: 1px solid var(--line); }
+.about-focus-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+.about-focus-heading > p:last-child { max-width: 25rem; color: var(--muted-foreground); font-size: .78rem; }
+.about-focus-pills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; margin-top: 1rem; }
+.about-focus-pills span { display: flex; min-height: 54px; align-items: center; gap: .65rem; border: 1px solid var(--line); padding: .7rem; color: var(--foreground); font-family: var(--font-heading); font-size: .72rem; }
+.about-focus-pills small { color: var(--cocoa); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .61rem; }
+
+.work-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-top: 3rem; }
+.work-index-item > a { height: 100%; border: 1px solid var(--line); background: var(--surface); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+.work-index-item > a:hover { border-color: var(--cocoa); box-shadow: 0 16px 34px rgba(63, 44, 31, .1); transform: translateY(-5px); }
+.work-index-item.is-featured { grid-column: 1 / -1; }
+.work-index-item.is-featured > a { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
+.work-index-item.is-featured .work-index-image { height: 100%; min-height: 310px; aspect-ratio: auto; border-right: 1px solid var(--line); border-bottom: 0; }
+.work-index-item.is-featured .work-index-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.4rem, 4vw, 3rem); }
+.work-index-image { border: 0; border-bottom: 1px solid var(--line); background: linear-gradient(145deg, #e8ddcf, #f5eee5); }
+.work-index-image img { object-fit: contain !important; padding: 1.2rem; transition: transform .55s cubic-bezier(.22, 1, .36, 1); }
+.work-index-item > a:hover .work-index-image img { transform: scale(1.025); }
+.work-index-copy { padding: 1.1rem 1.2rem 1.25rem; }
+.work-index-topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.work-index-topline > span { color: var(--cocoa); font-family: var(--font-heading); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+.work-index-copy h2 { margin-top: .85rem; font-size: clamp(2rem, 3.5vw, 3.3rem); }
+.work-index-item.is-featured .work-index-copy h2 { max-width: 8ch; font-size: clamp(2.8rem, 4.6vw, 5rem); }
+.work-index-copy > p:not(.project-number) { max-width: 28rem; margin-top: .55rem; font-size: .8rem; }
+.work-index-copy .tech-tags { gap: .35rem; }
+.work-index-copy .case-action { margin-top: 1.1rem; color: var(--forest-deep); }
+.projects-botanical { position: absolute; right: -60px; bottom: -85px; z-index: 0; width: 145px; color: color-mix(in srgb, var(--cocoa) 48%, transparent); opacity: .28; transform: rotate(-22deg) scaleX(-1); }
+
+@media (max-width: 900px) {
+  .work-index-item.is-featured > a { grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr); }
+  .organization-card { grid-template-columns: minmax(120px, .74fr) minmax(0, 1.26fr); }
+}
+
+@media (max-width: 767px) {
+  .section-botanical-right { right: -70px; }
+  .section-botanical-left { left: -65px; }
+  .experience-section-heading { grid-template-columns: 1fr; }
+  .experience-section-heading h2 { max-width: 10ch; }
+  .organization-heading { align-items: flex-start; flex-direction: column; gap: .45rem; }
+  .organization-grid { grid-template-columns: 1fr; }
+  .organization-card { grid-template-columns: 42% 58%; }
+  .organization-photo { min-height: 190px; }
+  .organization-card-copy { padding: .95rem; }
+  .organization-index { top: .95rem; right: .95rem; }
+  .organization-card-copy h3 { font-size: 1.45rem; }
+  .organization-card-copy li { font-size: .67rem; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-intro-card { min-height: 250px; }
+  .about-lead { font-size: 1.8rem; }
+  .about-focus-heading { align-items: flex-start; flex-direction: column; gap: .45rem; }
+  .about-focus-pills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-focus-pills span { min-height: 48px; font-size: .65rem; }
+  .work-index { display: grid; gap: .85rem; }
+  .work-index-item.is-featured { grid-column: auto; }
+  .work-index-item.is-featured > a { display: block; }
+  .work-index-item.is-featured .work-index-image { min-height: 0; aspect-ratio: 1.45 / 1; border-right: 0; border-bottom: 1px solid var(--line); }
+  .work-index-item.is-featured .work-index-copy { padding: 1.1rem 1rem 1.25rem; }
+  .work-index-item.is-featured .work-index-copy h2 { font-size: 2.65rem; }
+  .work-index-copy { padding: .95rem 1rem 1.1rem; }
+  .work-index-copy h2 { font-size: 2.15rem; }
+}

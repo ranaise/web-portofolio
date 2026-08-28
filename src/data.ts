@@ -42,6 +42,7 @@ export interface OrgExperienceItem {
   organization: string;
   duration: string;
   tasks: string[];
+  photos?: string[];
 }
 
 export interface EducationItem {
@@ -110,21 +111,23 @@ export const orgExperienceData: OrgExperienceItem[] = [
     id: "budi-pekerti",
     role: "Coordinator of Event Division",
     organization: "Team Budi Pekerti at Telkom University",
-    duration: "Nov 2023 - Dec 2024",
+    duration: "November 2023 to December 2024",
     tasks: [
       "Coordinated character development programs promoting leadership, teamwork, and national values among scholarship recipients.",
       "Managed event planning and execution while collaborating with cross-functional student committees."
     ],
+    photos: ["/team budi pekerti.png"],
   },
   {
     id: "adaptive-network",
     role: "Study Group Member",
     organization: "Adaptive Network Laboratory at Telkom University",
-    duration: "Oct 2023 - Dec 2023",
+    duration: "October 2023 to December 2023",
     tasks: [
       "Learned networking fundamentals including subnetting, VLAN, routing, Linux administration, and web server deployment.",
       "Built foundational Python programming skills covering OOP, inheritance, and scripting for networking applications."
     ],
+    photos: ["/studygroup member.jpg"],
   },
 ];
 
