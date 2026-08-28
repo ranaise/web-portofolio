@@ -529,6 +529,9 @@ body,
     radial-gradient(circle at 8% 12%, rgba(146, 91, 57, .09), transparent 24rem),
     radial-gradient(circle at 92% 36%, rgba(51, 72, 58, .08), transparent 30rem),
     linear-gradient(120deg, rgba(255, 250, 242, .72), rgba(235, 224, 210, .24));
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-attachment: fixed;
   color: var(--foreground);
 }
 
