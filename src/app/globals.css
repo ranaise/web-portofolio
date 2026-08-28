@@ -1556,3 +1556,227 @@ body,
 @media (max-width: 767px) {
   .site-nav-inner { width: 100%; padding-inline: 1.25rem; }
 }
+
+/* Project index refresh */
+.projects-index-v2 {
+  position: relative;
+  width: min(1180px, 100%);
+  margin-inline: auto;
+  overflow: hidden;
+  padding: 2.6rem 48px 4.5rem;
+}
+.projects-index-v2-botanical {
+  position: absolute;
+  top: 8.5rem;
+  right: -3.8rem;
+  z-index: -1;
+  width: 12rem;
+  opacity: .24;
+  pointer-events: none;
+}
+.projects-index-v2-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+}
+.projects-index-v2-intro h2 {
+  max-width: 12ch;
+  margin-top: .75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 5.2vw, 5.4rem);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: .88;
+}
+.projects-index-v2-intro > p {
+  max-width: 17rem;
+  justify-self: end;
+  color: var(--muted-foreground);
+  font-family: var(--font-heading);
+  font-size: .86rem;
+  line-height: 1.65;
+}
+.projects-index-v2-intro > p strong {
+  display: block;
+  margin-bottom: .35rem;
+  color: var(--cocoa);
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: -.05em;
+  line-height: .8;
+}
+.project-shelf { position: relative; padding-top: 2.5rem; }
+.project-shelf-other { padding-top: 3.7rem; }
+.project-shelf-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+}
+.project-shelf-header h3 {
+  max-width: 16ch;
+  margin-top: .5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.4vw, 3.7rem);
+  font-weight: 400;
+  letter-spacing: -.05em;
+  line-height: .92;
+}
+.project-shelf-header > p {
+  max-width: 18rem;
+  color: var(--muted-foreground);
+  font-size: .78rem;
+  line-height: 1.65;
+}
+.project-index-feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: 1.2rem;
+  margin-top: 1.15rem;
+}
+.project-index-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.15rem;
+}
+.project-index-card { min-width: 0; }
+.project-index-link { display: block; color: var(--foreground); }
+.project-index-media {
+  position: relative;
+  aspect-ratio: 1.54 / 1;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  background: color-mix(in srgb, var(--raised) 72%, var(--surface));
+  transition: border-color .35s ease, transform .55s cubic-bezier(.22, 1, .36, 1), background .35s ease;
+}
+.project-index-card:first-child .project-index-media { aspect-ratio: 1.62 / 1; }
+.project-index-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 13%, transparent), transparent 48%, color-mix(in srgb, var(--cocoa) 8%, transparent));
+  opacity: .75;
+}
+.project-index-media img {
+  padding: .85rem;
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), filter .8s ease;
+}
+.project-index-corner,
+.project-index-view {
+  position: absolute;
+  z-index: 1;
+  color: var(--foreground);
+  font-family: var(--font-space);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.project-index-corner { top: .75rem; left: .8rem; color: var(--cocoa); }
+.project-index-view {
+  right: .7rem;
+  bottom: .65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .35rem .5rem;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .35s ease, transform .35s ease;
+  backdrop-filter: blur(8px);
+}
+.project-index-view svg { width: .8rem; }
+.project-index-copy { padding: .95rem .15rem .35rem; }
+.project-index-meta,
+.project-index-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-space);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.project-index-meta span:first-child { color: var(--cocoa); }
+.project-index-copy h3 {
+  margin-top: .6rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 2.7vw, 2.7rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .95;
+}
+.project-index-copy > p {
+  max-width: 28rem;
+  margin-top: .45rem;
+  color: var(--muted-foreground);
+  font-size: .78rem;
+  line-height: 1.55;
+}
+.project-index-foot {
+  margin-top: .9rem;
+  padding-top: .7rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 68%, transparent);
+}
+.project-index-foot span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-index-foot svg { width: .95rem; flex: 0 0 auto; color: var(--foreground); transition: transform .3s ease, color .3s ease; }
+.project-index-card:hover .project-index-media { border-color: color-mix(in srgb, var(--cocoa) 72%, var(--line)); transform: translateY(-4px); background: var(--surface); }
+.project-index-card:hover .project-index-media img { transform: scale(1.045); filter: saturate(1.04); }
+.project-index-card:hover .project-index-view { opacity: 1; transform: translateY(0); }
+.project-index-card:hover .project-index-foot svg { color: var(--cocoa); transform: translate(3px, -3px); }
+.project-index-card.is-compact .project-index-media { aspect-ratio: 1.35 / 1; }
+.project-index-card.is-compact .project-index-media img { padding: .6rem; }
+.project-index-card.is-compact .project-index-copy h3 { font-size: clamp(1.45rem, 2vw, 2rem); }
+.project-index-card.is-compact .project-index-copy > p { font-size: .72rem; }
+.project-index-card.is-compact .project-index-foot { margin-top: .7rem; }
+
+@media (max-width: 900px) {
+  .projects-index-v2 { padding-inline: 32px; }
+  .projects-index-v2-intro { grid-template-columns: minmax(0, 1fr) 220px; }
+  .project-index-feature-grid { gap: .85rem; }
+  .project-index-mini-grid { gap: .85rem; }
+}
+
+@media (max-width: 767px) {
+  .projects-index-v2 { padding: 1.8rem 20px 3.5rem; }
+  .projects-index-v2-botanical { top: 7rem; right: -5rem; width: 10rem; opacity: .17; }
+  .projects-index-v2-intro { display: block; padding-bottom: 1.45rem; }
+  .projects-index-v2-intro h2 { max-width: 10ch; margin-top: .6rem; font-size: clamp(2.9rem, 13vw, 4.2rem); }
+  .projects-index-v2-intro > p { max-width: 19rem; margin-top: 1rem; font-size: .76rem; }
+  .projects-index-v2-intro > p strong { display: inline; margin-right: .4rem; font-size: 1.9rem; }
+  .project-shelf { padding-top: 1.8rem; }
+  .project-shelf-other { padding-top: 2.8rem; }
+  .project-shelf-header { display: block; padding-bottom: .85rem; }
+  .project-shelf-header h3 { max-width: 13ch; margin-top: .45rem; font-size: clamp(2rem, 9vw, 2.8rem); }
+  .project-shelf-header > p { max-width: 21rem; margin-top: .65rem; font-size: .72rem; }
+  .project-index-feature-grid { grid-template-columns: 1fr; gap: 1.2rem; margin-top: .9rem; }
+  .project-index-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem .65rem; margin-top: .9rem; }
+  .project-index-media,
+  .project-index-card:first-child .project-index-media { aspect-ratio: 1.5 / 1; }
+  .project-index-media img { padding: .55rem; }
+  .project-index-view { display: none; }
+  .project-index-copy { padding: .75rem .05rem .1rem; }
+  .project-index-meta { font-size: .5rem; }
+  .project-index-copy h3 { margin-top: .45rem; font-size: clamp(1.8rem, 8vw, 2.35rem); }
+  .project-index-copy > p { margin-top: .35rem; font-size: .7rem; }
+  .project-index-foot { margin-top: .65rem; padding-top: .55rem; font-size: .5rem; }
+  .project-index-card.is-compact .project-index-media { aspect-ratio: 1.08 / 1; }
+  .project-index-card.is-compact .project-index-copy { padding-top: .58rem; }
+  .project-index-card.is-compact .project-index-copy h3 { margin-top: .35rem; font-size: clamp(1.2rem, 5.5vw, 1.55rem); line-height: .98; }
+  .project-index-card.is-compact .project-index-copy > p { display: none; }
+  .project-index-card.is-compact .project-index-foot { margin-top: .55rem; font-size: .45rem; }
+  .project-index-card.is-compact .project-index-corner { top: .55rem; left: .6rem; font-size: .5rem; }
+}

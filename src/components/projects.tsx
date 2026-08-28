@@ -1,22 +1,102 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import type { ProjectItem } from "@/data";
 import { projectsData } from "@/data";
-import { Reveal } from "@/components/reveal";
-import { TechnicalTags } from "@/components/technical-tags";
 import { BotanicalDecoration } from "@/components/botanical-decoration";
-import { ProjectPreview } from "@/components/project-preview";
+import { Reveal } from "@/components/reveal";
 
-export function Projects() {
-  const [featuredProject, ...otherProjects] = projectsData;
+const internshipProjectIds = ["ai-moderator-2026", "medusa-simulator-2026"];
 
-  return <section className="work-index projects-index" aria-label="Project list"><BotanicalDecoration className="projects-botanical" />
-    <Reveal className="projects-featured">
-      <Link href={`/projects/${featuredProject.id}`}>
-        <div className="project-featured-image"><ProjectPreview title={featuredProject.title} slides={[featuredProject.screenshot, "/projects/ai-moderator/ai-moderator-world-object.webp"]} /></div>
-        <div className="project-featured-copy"><div className="project-featured-topline"><span>01</span><span>Featured project</span></div><h2>{featuredProject.title}</h2><p>{featuredProject.subtitle}</p><TechnicalTags items={featuredProject.technologies.slice(0, 4)} className="mt-4" /><span className="case-action">View project <ArrowUpRight /></span></div>
+function ProjectIndexCard({
+  project,
+  number,
+  compact = false,
+  category,
+}: {
+  project: ProjectItem;
+  number: number;
+  compact?: boolean;
+  category: string;
+}) {
+  const cardClass = compact ? "project-index-card is-compact" : "project-index-card";
+
+  return (
+    <Reveal className={cardClass} delay={number * 0.045}>
+      <Link href={`/projects/${project.id}`} className="project-index-link">
+        <div className="project-index-media">
+          <Image
+            src={project.screenshot}
+            alt={`${project.title} interface preview`}
+            fill
+            sizes={compact ? "(max-width: 767px) 46vw, 31vw" : "(max-width: 767px) calc(100vw - 40px), 50vw"}
+            className="object-contain"
+          />
+          <span className="project-index-corner">{String(number).padStart(2, "0")}</span>
+          <span className="project-index-view">Open project <ArrowUpRight /></span>
+        </div>
+        <div className="project-index-copy">
+          <div className="project-index-meta">
+            <span>{category}</span>
+            <span>{project.year}</span>
+          </div>
+          <h3>{project.title}</h3>
+          <p>{project.subtitle}</p>
+          <div className="project-index-foot">
+            <span>{project.technologies.slice(0, compact ? 2 : 4).join(", ")}</span>
+            <ArrowUpRight aria-hidden="true" />
+          </div>
+        </div>
       </Link>
     </Reveal>
-    <div className="projects-catalog"><header className="projects-catalog-heading"><p className="section-kicker"><span>02</span><span>More projects</span></p><p>{String(otherProjects.length).padStart(2, "0")} projects</p></header>{otherProjects.map((project, index) => <Reveal key={project.id} delay={(index % 2) * .04} className="project-row"><Link href={`/projects/${project.id}`} className="project-row-link"><span className="project-row-number">{String(index + 2).padStart(2, "0")}</span><div className="project-row-copy"><h3>{project.title}</h3><p>{project.subtitle}</p><small>{project.technologies.slice(0, 3).join(", ")}</small></div><div className="project-row-image"><Image src={project.screenshot} alt={`${project.title} interface`} fill sizes="(max-width: 767px) 92px, 190px" className="object-contain" /></div><ArrowUpRight className="project-row-arrow" /></Link></Reveal>)}</div>
-  </section>;
+  );
+}
+
+export function Projects() {
+  const internshipProjects = projectsData.filter((project) => internshipProjectIds.includes(project.id));
+  const otherProjects = projectsData.filter((project) => !internshipProjectIds.includes(project.id));
+
+  return (
+    <section className="projects-index-v2" aria-label="All projects">
+      <BotanicalDecoration className="projects-index-v2-botanical" />
+
+      <div className="projects-index-v2-intro">
+        <div>
+          <p className="section-kicker"><span>01</span><span>Project index</span></p>
+          <h2>Things I built and learned from</h2>
+        </div>
+        <p><strong>{String(projectsData.length).padStart(2, "0")}</strong> projects across backend systems, AI tools, mobile applications, and interactive software.</p>
+      </div>
+
+      <section className="project-shelf project-shelf-internship" aria-labelledby="internship-projects-title">
+        <header className="project-shelf-header">
+          <div>
+            <p className="chapter-label">02, Internship work</p>
+            <h3 id="internship-projects-title">Systems that connect code and worlds</h3>
+          </div>
+          <p>Two connected systems built during my programming internship at Medusa Technology.</p>
+        </header>
+        <div className="project-index-feature-grid">
+          {internshipProjects.map((project, index) => (
+            <ProjectIndexCard key={project.id} project={project} number={index + 1} category="Internship" />
+          ))}
+        </div>
+      </section>
+
+      <section className="project-shelf project-shelf-other" aria-labelledby="other-projects-title">
+        <header className="project-shelf-header">
+          <div>
+            <p className="chapter-label">03, Other projects</p>
+            <h3 id="other-projects-title">A wider range of experiments</h3>
+          </div>
+          <p>Academic and personal work across web, mobile, artificial intelligence, and computer vision.</p>
+        </header>
+        <div className="project-index-mini-grid">
+          {otherProjects.map((project, index) => (
+            <ProjectIndexCard key={project.id} project={project} number={index + internshipProjects.length + 1} category="Project" compact />
+          ))}
+        </div>
+      </section>
+    </section>
+  );
 }
