@@ -1171,7 +1171,7 @@ body,
   .work-index { display: grid; grid-template-columns: 1fr; gap: .85rem; }
   .work-index-item.is-featured { grid-column: auto; }
   .work-index-item.is-featured > a { display: block; }
-  .work-index-item.is-featured .work-index-image { min-height: 0; aspect-ratio: 1.45 / 1; border-right: 0; border-bottom: 1px solid var(--line); }
+  .work-index-item.is-featured .work-index-image { height: auto; min-height: 0; aspect-ratio: 1.45 / 1; border-right: 0; border-bottom: 1px solid var(--line); }
   .work-index-item.is-featured .work-index-copy { padding: 1.1rem 1rem 1.25rem; }
   .work-index-item.is-featured .work-index-copy h2 { font-size: 2.65rem; }
   .work-index-copy { padding: .95rem 1rem 1.1rem; }
