@@ -1478,6 +1478,36 @@ body,
 .project-row-link:hover .project-row-image img { transform: scale(1.035); }
 .experience-photo-secondary:hover { transform: translateY(-6px) rotate(0deg); }
 
+.credential-card > .relative,
+.project-hero > div:nth-child(2),
+.gallery-tile > span:first-child {
+  transition: transform .55s cubic-bezier(.22, 1, .36, 1), border-color .35s ease;
+}
+.credential-card > .relative { border: 1px solid color-mix(in srgb, var(--line) 72%, transparent); }
+.project-hero > div:nth-child(2) { border: 1px solid color-mix(in srgb, var(--line) 72%, transparent); }
+.gallery-tile > span:first-child { border: 1px solid color-mix(in srgb, var(--line) 72%, transparent); }
+.credential-card img,
+.project-hero > div:nth-child(2) img,
+.gallery-tile img { transition: transform .75s cubic-bezier(.22, 1, .36, 1), filter .75s ease; }
+.credential-card:hover > .relative,
+.project-hero > div:nth-child(2):hover,
+.gallery-tile:hover > span:first-child { transform: translateY(-4px); border-color: color-mix(in srgb, var(--cocoa) 72%, var(--line)); }
+.credential-card:hover img,
+.project-hero > div:nth-child(2):hover img,
+.gallery-tile:hover img { transform: scale(1.035); filter: saturate(1.04); }
+.projects-featured > a:hover .project-preview-slide img { transform: scale(1.025); }
+.lightbox-image { animation: lightbox-image-in .45s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes lightbox-image-in { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: scale(1); } }
+
+/* Consistent motion for every media surface */
+.credential-card,
+.gallery-tile { transition: transform .55s cubic-bezier(.22, 1, .36, 1), border-color .35s ease; }
+.credential-card:hover,
+.gallery-tile:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--cocoa) 72%, var(--line)); }
+.project-hero > div:nth-child(2) img,
+.gallery-tile img,
+.credential-card img { will-change: transform; }
+
 .projects-featured > a { overflow: hidden; }
 .projects-featured > a:hover { border-color: color-mix(in srgb, var(--cocoa) 72%, var(--line)); box-shadow: none; transform: translateY(-3px); }
 .project-featured-image { border-right-color: color-mix(in srgb, var(--line) 72%, transparent); }

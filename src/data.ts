@@ -66,7 +66,7 @@ export const profileDetails = {
   phone: "+6288215027255",
   linkedin: "https://linkedin.com/in/ranaise/",
   github: "https://github.com/ranaise/",
-  education: "Sixth semester Informatics undergraduate at Telkom University",
+  education: "Seventh semester Informatics undergraduate at Telkom University",
   interests: "Web3, cybersecurity, artificial intelligence, and interactive systems",
 };
 
@@ -82,7 +82,7 @@ export const educationDetails: EducationItem = {
 
 export const quickFacts = [
   "Informatics student, GPA 3.7",
-  "Programming internship at Medusa Technology, completed",
+  "Programming intern at Medusa Technology, completed",
   "Scholarship awardee, 2023 and 2025",
   "Adaptive Network Laboratory member",
 ];
