@@ -1496,6 +1496,8 @@ body,
 .hero-botanical-right { animation-delay: -3s; }
 .section-botanical-left { animation-delay: -5s; }
 @keyframes botanical-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+.reveal-block { animation: reveal-up .7s var(--reveal-delay, 0s) cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes reveal-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 .page-intro h1 { animation: intro-rise .8s cubic-bezier(.22, 1, .36, 1) both; }
 @keyframes intro-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
