@@ -66,14 +66,14 @@ export const profileDetails = {
   phone: "+6288215027255",
   linkedin: "https://linkedin.com/in/ranaise/",
   github: "https://github.com/ranaise/",
-  education: "Sixth semester Informatics student at Telkom University",
-  interests: "Artificial intelligence, cyber security, and scalable realtime applications",
+  education: "Sixth semester Informatics undergraduate at Telkom University",
+  interests: "Web3, cybersecurity, artificial intelligence, and interactive systems",
 };
 
 export const educationDetails: EducationItem = {
   institution: "Telkom University",
   degree: "Bachelor of Informatics",
-  gpa: "3.73/4.00",
+  gpa: "3.7/4.00",
   awards: [
     "IdCloudHost Scholarship Awardee 2023",
     "Endowment Fund Scholarship Awardee 2025"
@@ -81,10 +81,10 @@ export const educationDetails: EducationItem = {
 };
 
 export const quickFacts = [
-  "Informatics Student (GPA 3.73/4.00)",
-  "Programming Internship at Medusa, Completed",
-  "Scholarship Awardee 2023 & 2025",
-  "Adaptive Network Lab Member",
+  "Informatics student, GPA 3.7",
+  "Programming internship at Medusa Technology, completed",
+  "Scholarship awardee, 2023 and 2025",
+  "Adaptive Network Laboratory member",
 ];
 
 export const experienceData: ExperienceItem[] = [

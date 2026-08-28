@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { navigationItems } from "@/data";
@@ -5,8 +8,30 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 export function Navbar() {
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+
+      if (currentScrollY <= 24) {
+        setIsHidden(false);
+      } else if (Math.abs(delta) >= 4) {
+        setIsHidden(delta > 0);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="site-nav">
+    <header className={`site-nav${isHidden ? " is-hidden" : ""}`}>
       <nav className="site-nav-inner" aria-label="Primary navigation">
         <Link href="/" className="brand-mark" aria-label="Rafa'Na'ilah home"><span>R</span><span>N</span></Link>
         <div className="desktop-nav">

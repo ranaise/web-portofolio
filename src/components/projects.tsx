@@ -1,10 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { projectsData } from "@/data";
 import { Reveal } from "@/components/reveal";
 import { TechnicalTags } from "@/components/technical-tags";
 import { BotanicalDecoration } from "@/components/botanical-decoration";
+import { ProjectPreview } from "@/components/project-preview";
 
 export function Projects() {
   const [featuredProject, ...otherProjects] = projectsData;
@@ -12,7 +13,7 @@ export function Projects() {
   return <section className="work-index projects-index" aria-label="Project list"><BotanicalDecoration className="projects-botanical" />
     <Reveal className="projects-featured">
       <Link href={`/projects/${featuredProject.id}`}>
-        <div className="project-featured-image"><Image src={featuredProject.screenshot} alt={`${featuredProject.title} interface`} fill sizes="(max-width: 767px) calc(100vw - 40px), 64vw" className="object-contain" /></div>
+        <div className="project-featured-image"><ProjectPreview title={featuredProject.title} slides={[featuredProject.screenshot, "/projects/ai-moderator/ai-moderator-world-object.webp"]} /></div>
         <div className="project-featured-copy"><div className="project-featured-topline"><span>01</span><span>Featured project</span></div><h2>{featuredProject.title}</h2><p>{featuredProject.subtitle}</p><TechnicalTags items={featuredProject.technologies.slice(0, 4)} className="mt-4" /><span className="case-action">View project <ArrowUpRight /></span></div>
       </Link>
     </Reveal>
