@@ -2418,7 +2418,7 @@ body {
   .projects-carousel-header h2 { max-width: 8ch; margin-top: .55rem; font-size: clamp(2.7rem, 13vw, 4rem); line-height: .84; }
   .projects-carousel-header > p { display: none; }
   .project-carousel-shell { display: flex; min-height: 0; flex-direction: column; margin-top: .25rem; border: 0; background: transparent; }
-  .project-carousel-viewport { order: 0; aspect-ratio: .93 / 1; border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); border-radius: .85rem 0 .85rem 0; background: color-mix(in srgb, var(--raised) 76%, var(--surface)); }
+  .project-carousel-viewport { order: 0; height: clamp(220px, 62vw, 255px); border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); border-radius: .85rem 0 .85rem 0; background: color-mix(in srgb, var(--raised) 76%, var(--surface)); }
   .project-carousel-slide { min-height: 0; }
   .project-carousel-slide::after { inset: .6rem; border-radius: .55rem 0 .55rem 0; }
   .project-carousel-slide img { padding: .95rem .85rem 1.1rem; }
@@ -2431,6 +2431,7 @@ body {
   .project-carousel-copy > div > p { max-width: 20rem; margin-top: .65rem; font-size: .72rem; line-height: 1.45; }
   .project-carousel-tags { gap: .3rem; margin-top: .75rem; }
   .project-carousel-tags .tech-tag { padding: .32rem .5rem; font-size: .53rem; }
+  .project-carousel-tags .tech-tag:nth-child(n + 5) { display: none; }
   .project-carousel-action { min-height: 34px; margin-top: .9rem; font-size: .54rem; }
   .project-carousel-controls { order: 2; align-items: center; flex-direction: row; gap: .8rem; margin-top: .85rem; }
   .project-carousel-progress { height: 1px; }
