@@ -2535,7 +2535,7 @@ body {
   .contact-block { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .6rem; align-items: center; padding-block: .85rem; }
   .contact-block h2 { margin-top: .25rem; font-size: 1.6rem; line-height: .9; }
   .contact-block > div:first-child > p:last-child { display: none; }
-  .contact-simple-links { width: auto; flex-wrap: nowrap; gap: .3rem; margin-top: 0; }
+  .contact-simple-links { width: auto; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: .3rem; margin-top: 0; }
   .contact-simple-links a { display: grid; width: 2.15rem; min-width: 2.15rem; height: 2.15rem; min-height: 2.15rem; flex: 0 0 2.15rem; grid-template-columns: 1fr; justify-items: center; gap: 0; border-radius: 50%; padding: .3rem; }
   .contact-simple-links a span,
   .contact-simple-links a svg:last-child { display: none; }
