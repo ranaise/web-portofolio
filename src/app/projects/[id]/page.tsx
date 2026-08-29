@@ -117,7 +117,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {galleries.length > 0 && <section id="gallery" className="project-dossier-section project-dossier-gallery-section">
             <div className="project-dossier-section-mark"><span>{details.architecture ? "05" : "04"}</span><p>Gallery</p></div>
-            <div className="project-dossier-section-body"><div className="project-dossier-section-heading"><h2>Screens and scenes</h2><p>Open any frame to see the workflow and implementation notes.</p></div><ProjectGallery items={galleries} /></div>
+            <div className="project-dossier-section-body"><div className="project-dossier-section-heading"><h2>Screens and scenes</h2><p>Swipe through the screens and scenes. Open a frame for details.</p></div><ProjectGallery items={galleries} /></div>
           </section>}
 
           {project.videoDemo && <section className="project-dossier-section project-dossier-demo-section">

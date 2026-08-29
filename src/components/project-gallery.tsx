@@ -13,11 +13,11 @@ export function ProjectGallery({ items }: { items: ProjectGalleryItem[] }) {
 
   return (
     <>
-      <div className="project-gallery-grid">
+      <div className="project-gallery-grid" role="region" aria-label="Screens and scenes. Swipe to browse.">
         {items.map((item, index) => (
           <button key={item.id} type="button" className={`project-gallery-card gallery-card-${(index % 3) + 1}`} onClick={() => setActive(item)}>
             <span className="project-gallery-image">
-              <Image src={item.images[0]} alt={item.label} fill sizes="(max-width: 767px) 100vw, 42vw" className="object-contain" />
+              <Image src={item.images[0]} alt={item.label} fill sizes="(max-width: 767px) 86vw, 42vw" className="object-contain" draggable={false} />
               <span className="project-gallery-hover"><ZoomIn /></span>
               {item.images.length > 1 && <span className="project-gallery-count"><Layers />{item.images.length}</span>}
             </span>
