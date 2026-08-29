@@ -30,6 +30,7 @@ export interface ExperienceItem {
   company: string;
   location: string;
   duration: string;
+  description: string;
   status: "Completed" | "Ongoing";
   isFeatured: boolean;
   achievements: string[];
@@ -93,15 +94,16 @@ export const experienceData: ExperienceItem[] = [
     role: "Programming Intern",
     company: "Medusa Technology",
     location: "Jakarta, Indonesia",
-    duration: "June - August 2026",
+    duration: "Jun 2026 - Aug 2026",
+    description: "An innovative tech company specializing in custom Metaverse solutions, 3D virtual environment development, and integration for educational institutions and corporations.",
     status: "Completed",
     isFeatured: true,
     achievements: [
-      "Built an interactive attendance system with **LSL and FastAPI** for check-in, activity reports, check-out, and Jakarta time records.",
-      "Created a wardrobe object with texture navigation, inventory updates, and item delivery without a separate backend.",
-      "Developed **AI Moderator** with LSL objects, FastAPI services, an AI prison workflow, and a Flet monitoring dashboard.",
-      "Implemented a virtual supermarket with trolley control, product animation, cart, checkout, delivery, and reset flows.",
-      "Built the **MEDUSA simulator** with code evaluation, scoring, actual-result playback, six animated scenes, and a leaderboard."
+      "Modified and repackaged the **Firestorm Viewer** using C++ and XML to create a custom, ready-to-use client that streamlines onboarding for new Metaverse users.",
+      "Built a real-time virtual attendance API connecting in-game **LSL** scripts to external servers using Python, FastAPI, and MariaDB.",
+      "Developed an **AI Auto-Moderator** using a local LLM with Ollama and Qwen to monitor chat logs, filter toxic content, and enforce moderation rules in real-time.",
+      "Programmed interactive 3D in-world objects using LSL, including an optimized virtual fashion catalog that improves user inventory management without lagging the server.",
+      "Built the **MEDUSA Algorithm Simulator** with code evaluation, scoring, actual-result playback, animated scenes, and a leaderboard."
     ],
     photos: ["/medusa/photo-1.jpg", "/medusa/photo-2.jpg"]
   }
@@ -112,7 +114,7 @@ export const orgExperienceData: OrgExperienceItem[] = [
     id: "budi-pekerti",
     role: "Coordinator of Event Division",
     organization: "Team Budi Pekerti at Telkom University",
-    duration: "November 2023 - December 2024",
+    duration: "Nov 2023 - Dec 2024",
     tasks: [
       "Coordinated character development programs for scholarship recipients.",
       "Planned events with student committees and managed execution."
@@ -123,7 +125,7 @@ export const orgExperienceData: OrgExperienceItem[] = [
     id: "adaptive-network",
     role: "Study Group Member",
     organization: "Adaptive Network Laboratory at Telkom University",
-    duration: "October 2023 - December 2023",
+    duration: "Oct 2023 - Dec 2023",
     tasks: [
       "Practiced subnetting, VLAN, routing, Linux, and web server deployment.",
       "Built Python foundations in OOP, inheritance, and networking scripts."

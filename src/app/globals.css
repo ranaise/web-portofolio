@@ -2368,3 +2368,85 @@ body {
   .projects-carousel-footer { grid-template-columns: 1.5rem minmax(0, 1fr); gap: .7rem; margin-top: 2.5rem; }
   .projects-carousel-footer .text-action { grid-column: 2; min-height: 32px; font-size: .55rem; }
 }
+
+/* Final mobile-first reel pass */
+.back-to-top-float {
+  position: fixed;
+  left: 1.15rem;
+  bottom: 1.15rem;
+  z-index: 45;
+  display: grid;
+  width: 2.55rem;
+  height: 2.55rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--foreground);
+  box-shadow: 0 10px 26px color-mix(in srgb, #2d4434 14%, transparent);
+  backdrop-filter: blur(14px);
+  transition: color .25s ease, border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.back-to-top-float svg { width: 1rem; height: 1rem; }
+.back-to-top-float:hover { border-color: var(--cocoa); background: var(--raised); color: var(--cocoa); transform: translateY(-4px); }
+.project-carousel-viewport { user-select: none; }
+.project-carousel-track { will-change: transform; }
+.project-carousel-viewport.is-dragging .project-carousel-track { transition: none; }
+.project-carousel-slide { isolation: isolate; background: radial-gradient(circle at 76% 18%, color-mix(in srgb, var(--cocoa) 14%, transparent), transparent 32%), color-mix(in srgb, var(--raised) 78%, var(--surface)); }
+.project-carousel-slide::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .48; background: linear-gradient(135deg, transparent 0 70%, color-mix(in srgb, var(--cocoa) 12%, transparent) 70% 70.4%, transparent 70.4%); pointer-events: none; }
+.project-carousel-slide img { user-select: none; -webkit-user-drag: none; }
+
+@media (min-width: 768px) {
+  .project-carousel-shell { grid-template-columns: minmax(0, 1.5fr) minmax(280px, .7fr); min-height: 31rem; border: 0; background: transparent; }
+  .project-carousel-viewport { border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); border-radius: 0 1.25rem 0 0; }
+  .project-carousel-slide { min-height: 31rem; }
+  .project-carousel-slide::after { inset: 1.15rem; border-radius: 0 .65rem 0 0; }
+  .project-carousel-slide img { padding: 2.6rem; transition: transform .9s cubic-bezier(.22, 1, .36, 1), filter .9s ease; }
+  .project-carousel-slide:hover img { transform: scale(1.018) translateY(-3px); }
+  .project-carousel-copy { border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); border-left: 0; border-radius: 0 0 1.25rem 0; background: color-mix(in srgb, var(--surface) 82%, transparent); }
+  .project-carousel-copy h3 { max-width: 7ch; }
+  .project-carousel-buttons button { border: 0; border-bottom: 1px solid var(--line); background: transparent; }
+}
+
+@media (max-width: 767px) {
+  .back-to-top-float { left: .85rem; bottom: .85rem; width: 2.3rem; height: 2.3rem; }
+  .projects-carousel-page { padding: 1.2rem 16px 2.4rem; }
+  .projects-carousel-page::before { top: 4.3rem; right: -2.1rem; width: 51%; height: 17rem; border-radius: 0 2rem 0 0; opacity: .8; }
+  .projects-carousel-botanical-right { top: 4.8rem; right: -6.2rem; width: 9.5rem; opacity: .32; }
+  .projects-carousel-botanical-left { bottom: 8.5rem; left: -6.2rem; width: 8.6rem; opacity: .23; }
+  .projects-carousel-header { padding-bottom: .85rem; border-bottom: 0; }
+  .projects-carousel-header h2 { max-width: 8ch; margin-top: .55rem; font-size: clamp(2.7rem, 13vw, 4rem); line-height: .84; }
+  .projects-carousel-header > p { display: none; }
+  .project-carousel-shell { display: flex; min-height: 0; flex-direction: column; margin-top: .25rem; border: 0; background: transparent; }
+  .project-carousel-viewport { order: 0; aspect-ratio: .93 / 1; border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); border-radius: .85rem 0 .85rem 0; background: color-mix(in srgb, var(--raised) 76%, var(--surface)); }
+  .project-carousel-slide { min-height: 0; }
+  .project-carousel-slide::after { inset: .6rem; border-radius: .55rem 0 .55rem 0; }
+  .project-carousel-slide img { padding: .95rem .85rem 1.1rem; }
+  .project-carousel-slide-number { top: .85rem; left: .9rem; font-size: .48rem; }
+  .project-carousel-slide-label { right: .9rem; bottom: .85rem; font-size: .46rem; }
+  .project-carousel-copy { order: 1; min-height: 0; padding: 1rem .1rem .15rem; border: 0; background: transparent; }
+  .project-carousel-copy-topline { gap: .4rem .65rem; font-size: .48rem; }
+  .project-carousel-copy > div { margin-top: .75rem; }
+  .project-carousel-copy h3 { max-width: 11ch; margin-top: 0; font-size: clamp(2.5rem, 12vw, 3.65rem); line-height: .84; }
+  .project-carousel-copy > div > p { max-width: 20rem; margin-top: .65rem; font-size: .72rem; line-height: 1.45; }
+  .project-carousel-tags { gap: .3rem; margin-top: .75rem; }
+  .project-carousel-tags .tech-tag { padding: .32rem .5rem; font-size: .53rem; }
+  .project-carousel-action { min-height: 34px; margin-top: .9rem; font-size: .54rem; }
+  .project-carousel-controls { order: 2; align-items: center; flex-direction: row; gap: .8rem; margin-top: .85rem; }
+  .project-carousel-progress { height: 1px; }
+  .project-carousel-buttons { gap: .35rem; }
+  .project-carousel-buttons button { width: 2.1rem; height: 2.1rem; min-width: 2.1rem; border: 1px solid color-mix(in srgb, var(--line) 76%, transparent); border-radius: 50%; background: color-mix(in srgb, var(--surface) 62%, transparent); }
+  .project-carousel-buttons button svg { width: .82rem; }
+  .project-carousel-index { order: 3; display: flex; gap: .35rem; margin-top: .85rem; padding: .15rem 0 .2rem; overflow-x: auto; scrollbar-width: none; }
+  .project-carousel-index::-webkit-scrollbar { display: none; }
+  .project-carousel-index button { flex: 0 0 1.7rem; width: 1.7rem; height: 1.7rem; padding: 0; border: 1px solid color-mix(in srgb, var(--line) 72%, transparent); border-radius: 50%; text-align: center; }
+  .project-carousel-index button:hover { transform: translateY(-2px); }
+  .project-carousel-index button span { display: grid; height: 100%; place-items: center; font-size: .52rem; }
+  .project-carousel-index button strong { display: none; }
+  .project-carousel-index button.is-active { border-color: var(--cocoa); background: var(--cocoa); color: var(--on-accent); }
+  .project-carousel-index button.is-active span { color: var(--on-accent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-carousel-track, .project-carousel-copy, .project-carousel-slide img, .back-to-top-float { animation: none; transition: none; }
+}

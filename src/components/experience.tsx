@@ -41,7 +41,7 @@ export function Experience() {
             <div><Image src={experience.photos[0]} alt="Rafa with the Medusa Technology team" fill sizes="(max-width: 767px) calc(100vw - 40px), 48vw" className="object-contain" /></div>
             <div><Image src={experience.photos[1]} alt="Virtual world environment at Medusa Technology" fill sizes="(max-width: 767px) calc(100vw - 40px), 26vw" className="object-contain" /></div>
           </div>
-          <p className="experience-summary">Built and integrated interactive virtual world systems for attendance, wardrobe, AI moderation, virtual shopping, and algorithm learning. Connected LSL objects with FastAPI and delivered monitoring, scoring, checkout, and animated result flows.</p>
+          <p className="experience-summary">{experience.description}</p>
           <ul className="contribution-list">
             {experience.achievements.map((item, index) => <li key={item}><span>0{index + 1}</span><p><RichText text={item} /></p></li>)}
           </ul>
