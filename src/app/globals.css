@@ -2587,3 +2587,57 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .status-dot, .architecture-node, .project-dossier-hero-media:hover::before, .project-gallery-card:hover .project-gallery-image::before, .credential-card:hover > .relative::before { animation: none; }
 }
+
+/* Quiet footer, aligned brand mark, and scroll reveals */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 48px 1.2rem;
+}
+.site-footer-signature {
+  color: var(--foreground);
+  font-family: var(--font-serif);
+  font-size: .98rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+.site-footer-links { display: flex; align-items: center; gap: 1rem; margin-inline: auto; }
+.site-footer-year { color: var(--muted-foreground); font-family: var(--font-space); font-size: .58rem; letter-spacing: .08em; }
+
+.brand-mark { height: 42px; min-height: 42px; padding-right: 1.25rem; }
+.brand-mark::after {
+  top: 50%;
+  height: 30px;
+  transform: translateY(-50%);
+  transition: opacity .35s ease, transform .5s cubic-bezier(.22, 1, .36, 1), background-color .35s ease;
+}
+.site-nav.is-scrolling-up .brand-mark::after { background: var(--cocoa); transform: translateY(-50%) scaleY(1.14); }
+.site-nav.is-scrolling-down .brand-mark::after { opacity: .52; transform: translateY(-50%) scaleY(.78); }
+
+.reveal-block { opacity: 0; transform: translateY(18px); animation: none; }
+.reveal-block.is-visible { animation: reveal-up .7s var(--reveal-delay, 0s) cubic-bezier(.22, 1, .36, 1) both; }
+.botanical-decoration:not(.is-visible) {
+  opacity: 0 !important;
+  transform: translateY(10px) scale(.97) !important;
+  animation: none !important;
+}
+.botanical-decoration:not(.is-visible) path { animation-play-state: paused !important; }
+.botanical-decoration.is-visible { animation: botanical-float 9s ease-in-out infinite; }
+
+@media (max-width: 767px) {
+  .brand-mark { height: 38px; min-height: 38px; padding-right: 1rem; }
+  .brand-mark::after { height: 28px; }
+  .site-footer { gap: .7rem; padding: .95rem 20px 1.1rem; }
+  .site-footer-signature { font-size: .82rem; }
+  .site-footer-links { gap: .65rem; margin-inline: 0 auto; }
+  .site-footer-links a { font-size: .55rem; }
+  .site-footer-year { font-size: .5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-block, .reveal-block.is-visible { opacity: 1; transform: none; animation: none; }
+  .botanical-decoration:not(.is-visible) { opacity: .2 !important; transform: none !important; }
+  .botanical-decoration:not(.is-visible) path { animation: none !important; stroke-dashoffset: 0; }
+}

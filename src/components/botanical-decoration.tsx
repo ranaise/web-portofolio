@@ -1,8 +1,31 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function BotanicalDecoration({ className }: { className?: string }) {
+  const decorationRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = decorationRef.current;
+    if (!node || !("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setIsVisible(true);
+      observer.disconnect();
+    }, { threshold: 0.05, rootMargin: "80px 0px" });
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={cn("botanical-decoration", className)} aria-hidden="true">
+    <div ref={decorationRef} className={cn("botanical-decoration", isVisible && "is-visible", className)} aria-hidden="true">
       <svg viewBox="0 0 180 340" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path className="botanical-stem" d="M92 324C87 261 94 202 117 145C131 110 145 75 146 20" />
         <path d="M112 164C76 147 56 124 45 91C82 99 105 120 112 164Z" />

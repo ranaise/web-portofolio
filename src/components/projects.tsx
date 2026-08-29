@@ -72,7 +72,7 @@ export function Projects() {
 
       <header className="projects-carousel-header">
         <div>
-          <p className="section-kicker"><span>01</span><span>Project reel</span></p>
+          <p className="section-kicker"><span>01</span><span>All projects</span></p>
           <h2>Built across screens and systems</h2>
         </div>
         <p><strong>08</strong> projects, moving from backend systems and AI tools to mobile applications and interactive software.</p>
@@ -83,7 +83,7 @@ export function Projects() {
         tabIndex={0}
         onKeyDown={handleKeyDown}
         aria-roledescription="carousel"
-        aria-label="Project reel"
+        aria-label="All projects"
       >
         <div
           className={`project-carousel-viewport${isDragging ? " is-dragging" : ""}`}

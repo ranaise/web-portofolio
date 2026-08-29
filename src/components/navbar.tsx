@@ -10,6 +10,7 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTi
 
 export function Navbar() {
   const [isHidden, setIsHidden] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
   const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -21,8 +22,11 @@ export function Navbar() {
 
       if (currentScrollY <= 24) {
         setIsHidden(false);
+        setScrollDirection(null);
       } else if (Math.abs(delta) >= 4) {
-        setIsHidden(delta > 0);
+        const direction = delta > 0 ? "down" : "up";
+        setIsHidden(direction === "down");
+        setScrollDirection(direction);
       }
 
       lastScrollY = currentScrollY;
@@ -33,7 +37,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className={`site-nav${isHidden ? " is-hidden" : ""}`}>
+    <header className={`site-nav${isHidden ? " is-hidden" : ""}${scrollDirection ? ` is-scrolling-${scrollDirection}` : ""}`}>
       <nav className="site-nav-inner" aria-label="Primary navigation">
         <Link href="/" className="brand-mark" aria-label="Rafa'Na'ilah home"><span>R</span><span>N</span></Link>
         <div className="desktop-nav">
