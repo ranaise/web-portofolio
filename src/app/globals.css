@@ -2776,3 +2776,81 @@ body {
   .scroll-motion-target, .scroll-motion-target.is-scroll-visible { opacity: 1; transform: none; animation: none; }
   .scroll-motion-target:not(.is-scroll-visible) .architecture-node { opacity: 1; transform: none; animation: none; }
 }
+
+/* Final interaction polish */
+.tech-marquee .tech-mark {
+  width: 2.15rem;
+  height: 2.15rem;
+  flex-basis: 2.15rem;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.tech-marquee .tech-mark:hover { border: 0; background: transparent; box-shadow: none; transform: translateY(-3px) scale(1.08); }
+.tech-marquee .tech-mark-image { width: 1.55rem; height: 1.55rem; }
+.tech-marquee .tech-mark-custom { display: grid; width: 1.55rem; height: 1.55rem; place-items: center; background: transparent; color: var(--muted-foreground); }
+.tech-marquee .tech-mark-custom svg { width: 1.55rem; height: 1.55rem; stroke-width: 1.45; }
+
+.project-carousel-slide::before { display: none; }
+
+.architecture-node { transition: transform .55s cubic-bezier(.22, 1, .36, 1), background .35s ease, border-color .35s ease, box-shadow .55s ease; }
+.architecture-node.is-active {
+  border-top-color: var(--cocoa);
+  background: color-mix(in srgb, var(--cocoa) 10%, var(--raised));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--cocoa) 11%, transparent);
+  transform: translateY(-4px);
+}
+.architecture-node.is-active .architecture-node-number { color: var(--on-accent); background: var(--cocoa); }
+.architecture-node.is-active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--cocoa);
+  transform-origin: left;
+  animation: architecture-progress 1.8s linear both;
+}
+@keyframes architecture-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.project-dossier-hero-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.45rem; }
+.project-dossier-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 38px;
+  padding: .45rem .75rem;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  color: var(--foreground);
+  font-family: var(--font-space);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transition: border-color .25s ease, color .25s ease, background .25s ease, transform .25s ease;
+}
+.project-dossier-hero-actions a:hover { border-color: var(--cocoa); background: color-mix(in srgb, var(--cocoa) 10%, transparent); color: var(--cocoa); transform: translateY(-2px); }
+.project-dossier-hero-actions svg { width: .85rem; }
+
+@media (max-width: 767px) {
+  .tech-marquee .tech-mark { width: 1.95rem; height: 1.95rem; flex-basis: 1.95rem; }
+  .tech-marquee .tech-mark-image,
+  .tech-marquee .tech-mark-custom,
+  .tech-marquee .tech-mark-custom svg { width: 1.35rem; height: 1.35rem; }
+  .architecture-node.is-active { transform: translateX(3px); }
+  .project-dossier-hero-actions { gap: .45rem; margin-top: 1.1rem; }
+  .project-dossier-hero-actions a { min-height: 34px; padding-inline: .6rem; font-size: .54rem; }
+}
+
+@media (max-width: 767px) {
+  .project-gallery-card { flex-basis: 100%; }
+  .credential-grid > .reveal-block { flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architecture-node.is-active { transform: none; }
+  .architecture-node.is-active::after { animation: none; }
+}

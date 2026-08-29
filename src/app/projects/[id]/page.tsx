@@ -74,6 +74,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div><span>Contribution</span><strong>{project.contribution}</strong></div>
       </div>
 
+      {(project.github || project.demo) && <div className="project-dossier-hero-actions">
+        {project.github && <Link href={project.github} target="_blank" rel="noreferrer">Source code <GithubIcon /></Link>}
+        {project.demo && <Link href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight /></Link>}
+      </div>}
+
       <div className="project-dossier-layout">
         <aside className="project-dossier-aside">
           <p className="chapter-label">On this page</p>
@@ -127,10 +132,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <footer className="project-dossier-footer">
-        <div><p className="chapter-label">Project takeaway</p><p className="project-dossier-footer-summary">{details.keyLearning ?? project.contribution}</p></div>
-        <div className="project-dossier-footer-actions"><TechnicalTags items={project.technologies} /><div>{project.github && <Link href={project.github} target="_blank" rel="noreferrer">Source code <GithubIcon /></Link>}{project.demo && <Link href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight /></Link>}</div></div>
-      </footer>
       </main>
       <Footer />
     </>
