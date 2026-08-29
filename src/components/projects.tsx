@@ -97,7 +97,6 @@ export function Projects() {
               <div className="project-carousel-slide" key={project.id} aria-hidden={index !== activeIndex}>
                 <Image src={project.screenshot} alt={`${project.title} interface preview`} fill sizes="(max-width: 767px) calc(100vw - 40px), 62vw" className="object-contain" draggable={false} preload={index === 0} />
                 <span className="project-carousel-slide-number">{String(index + 1).padStart(2, "0")}</span>
-                <span className="project-carousel-slide-label">Drag to browse</span>
               </div>
             ))}
           </div>

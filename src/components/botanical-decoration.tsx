@@ -15,9 +15,7 @@ export function BotanicalDecoration({ className }: { className?: string }) {
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      setIsVisible(true);
-      observer.disconnect();
+      setIsVisible(entry.isIntersecting);
     }, { threshold: 0.05, rootMargin: "80px 0px" });
 
     observer.observe(node);

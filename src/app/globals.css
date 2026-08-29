@@ -2623,8 +2623,9 @@ body {
   transform: translateY(10px) scale(.97) !important;
   animation: none !important;
 }
-.botanical-decoration:not(.is-visible) path { animation-play-state: paused !important; }
+.botanical-decoration:not(.is-visible) path { animation: none !important; stroke-dashoffset: 700 !important; }
 .botanical-decoration.is-visible { animation: botanical-float 9s ease-in-out infinite; }
+.botanical-decoration.is-visible path { animation: botanical-draw 2.4s .45s forwards cubic-bezier(.22, 1, .36, 1); }
 
 @media (max-width: 767px) {
   .brand-mark { height: 38px; min-height: 38px; padding-right: 1rem; }
@@ -2640,4 +2641,138 @@ body {
   .reveal-block, .reveal-block.is-visible { opacity: 1; transform: none; animation: none; }
   .botanical-decoration:not(.is-visible) { opacity: .2 !important; transform: none !important; }
   .botanical-decoration:not(.is-visible) path { animation: none !important; stroke-dashoffset: 0; }
+}
+
+/* Repeatable scroll motion and compact project details */
+.brand-mark { height: auto; min-height: 0; padding-right: 0; }
+.brand-mark::after { display: none !important; }
+
+.site-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 48px 1.2rem;
+}
+.site-footer-signature {
+  color: var(--muted-foreground);
+  font-family: var(--font-space);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.site-footer-links { display: none !important; }
+.site-footer-year { color: var(--muted-foreground); font-family: var(--font-space); font-size: .55rem; letter-spacing: .08em; }
+
+.scroll-motion-target {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+}
+.scroll-motion-target.is-scroll-visible {
+  animation: scroll-section-in .75s cubic-bezier(.22, 1, .36, 1) both;
+}
+.scroll-motion-target:not(.is-scroll-visible) .architecture-node {
+  opacity: 0;
+  transform: translateY(10px) scale(.98);
+  animation: none;
+}
+.scroll-motion-target.is-scroll-visible .architecture-node { animation: architecture-pop .55s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes scroll-section-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+.architecture-map { column-gap: 1.25rem; }
+.architecture-node-arrow-right {
+  top: 50%;
+  right: -.72rem;
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+  padding: .18rem;
+  border: 1px solid color-mix(in srgb, var(--cocoa) 64%, var(--line));
+  border-radius: 50%;
+  background: var(--surface);
+  transform: translateY(-50%);
+}
+.architecture-node:nth-child(4n) .architecture-node-arrow-right { display: none; }
+
+.project-dossier-footer-summary {
+  max-width: 39rem;
+  margin-top: .75rem;
+  color: var(--muted-foreground);
+  font-size: .82rem;
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .architecture-map { column-gap: 1rem; }
+  .architecture-node-arrow-right { display: none; }
+  .architecture-node:nth-child(2n + 1):not(:last-child) .architecture-node-arrow-right { display: block; }
+}
+
+@media (max-width: 767px) {
+  .site-footer { display: flex; flex-direction: row; gap: .6rem; padding: .95rem 20px 1.05rem; }
+  .site-footer-signature { font-size: .51rem; }
+  .site-footer-year { font-size: .48rem; }
+
+  .architecture-map {
+    grid-template-columns: 1fr;
+    gap: .58rem;
+    margin-top: 1rem;
+  }
+  .architecture-node {
+    display: grid;
+    grid-template-columns: 1.35rem minmax(0, 1fr);
+    align-items: center;
+    gap: .55rem;
+    min-height: 0;
+    padding: .58rem .7rem;
+    border: 1px solid color-mix(in srgb, var(--line) 74%, transparent);
+    border-left: 2px solid var(--cocoa);
+    background: color-mix(in srgb, var(--raised) 70%, var(--surface));
+  }
+  .architecture-node-number {
+    display: grid;
+    width: 1.25rem;
+    height: 1.25rem;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--cocoa) 72%, var(--line));
+    border-radius: 50%;
+    font-size: .5rem;
+  }
+  .architecture-node-label { margin-top: 0; font-size: .39rem; }
+  .architecture-node strong { margin-top: .16rem; font-size: .68rem; line-height: 1.15; }
+  .architecture-node-arrow-right { display: none !important; }
+  .architecture-node-arrow-down {
+    display: block !important;
+    right: auto;
+    bottom: -.52rem;
+    left: 50%;
+    z-index: 3;
+    width: .82rem;
+    height: .82rem;
+    padding: .08rem;
+    border: 1px solid color-mix(in srgb, var(--cocoa) 64%, var(--line));
+    border-radius: 50%;
+    background: var(--background);
+    transform: translateX(-50%);
+  }
+  .architecture-node:last-child .architecture-node-arrow-down { display: none !important; }
+
+  .project-dossier-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+    padding: 2.5rem 20px 3.2rem;
+  }
+  .project-dossier-footer-summary { margin-top: .55rem; font-size: .74rem; line-height: 1.65; }
+  .project-dossier-footer-actions { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-motion-target, .scroll-motion-target.is-scroll-visible { opacity: 1; transform: none; animation: none; }
+  .scroll-motion-target:not(.is-scroll-visible) .architecture-node { opacity: 1; transform: none; animation: none; }
 }

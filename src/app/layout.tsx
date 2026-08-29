@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollMotion } from "@/components/scroll-motion";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <ScrollMotion />
           {children}
         </ThemeProvider>
       </body>
