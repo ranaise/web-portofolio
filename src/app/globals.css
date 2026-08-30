@@ -3066,7 +3066,7 @@ body {
 .experience-entry-card { padding: 0; border: 0; background: transparent; }
 .experience-entry-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(300px, .86fr); gap: clamp(1.5rem, 3vw, 3rem); padding-top: 1.25rem; }
 .experience-entry-copy { min-width: 0; }
-.experience-page-photos { align-self: start; margin-top: 0; }
+.experience-page-photos { align-self: stretch; width: 100%; margin-top: 0; }
 .experience-page-photos > .experience-photo-trigger { min-height: 0; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
 .experience-page-photos > .experience-photo-trigger:first-child { aspect-ratio: 1.28 / 1; }
 .experience-page-photos > .experience-photo-trigger:last-child { aspect-ratio: 1.28 / 1; }
