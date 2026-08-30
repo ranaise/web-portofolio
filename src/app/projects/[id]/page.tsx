@@ -65,7 +65,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <TechnicalTags items={project.technologies} className="project-dossier-tags" />
         </div>
         <div className="project-dossier-hero-media">
-          <PhotoLightbox images={heroImages} title={`${project.title} interface preview`} description={<p>{details.alt}. Open the second frame to compare the mobile view when available.</p>} className="project-dossier-hero-media-trigger"><Image src={details.image} alt={details.alt} fill preload sizes="(max-width: 767px) 100vw, 60vw" className="object-contain" /></PhotoLightbox>
+          <PhotoLightbox images={heroImages} title={`${project.title} interface preview`} description={<p>{details.alt}.{project.mobileScreenshot ? " Open the second frame to compare the mobile view." : ""}</p>} className="project-dossier-hero-media-trigger"><Image src={details.image} alt={details.alt} fill preload sizes="(max-width: 767px) 100vw, 60vw" className="object-contain" /></PhotoLightbox>
           <span>Interface preview</span>
         </div>
       </header>
