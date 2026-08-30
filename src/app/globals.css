@@ -3084,7 +3084,7 @@ body {
 
 .site-footer { width: min(1220px, 100%); margin-inline: auto; border-top: 1px solid var(--line); }
 .site-footer-signature { color: var(--foreground); font-family: var(--font-serif); font-size: 1.05rem; letter-spacing: -.02em; text-transform: none; }
-.site-footer-copyright { color: var(--muted-foreground); font-family: var(--font-space); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+.site-footer-copyright { color: var(--muted-foreground); font-family: var(--font-space); font-size: .58rem; letter-spacing: .08em; text-transform: none; }
 
 @media (min-width: 901px) {
   .project-dossier { width: min(1280px, 100%); }

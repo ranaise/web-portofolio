@@ -95,7 +95,7 @@ export const experienceData: ExperienceItem[] = [
     company: "Medusa Technology",
     location: "Jakarta, Indonesia",
     duration: "Jun 2026 - Aug 2026",
-    description: "An innovative tech company specializing in custom Metaverse solutions, 3D virtual environment development, and integration for educational institutions and corporations.",
+    description: "Built and integrated real time Metaverse systems across a custom Firestorm client, virtual attendance services, AI moderation, interactive in world objects, and an algorithm simulator.",
     status: "Completed",
     isFeatured: true,
     achievements: [
