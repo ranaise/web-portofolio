@@ -58,7 +58,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <header className="project-dossier-hero">
         <div className="project-dossier-hero-copy">
-          <div className="project-dossier-kicker"><span>{String(projectNumber).padStart(2, "0")}</span><span>{projectType}</span><span>{project.year}</span></div>
+          <div className="project-dossier-kicker"><span>{projectType}</span><span>{project.year}</span></div>
           <h1>{project.title}</h1>
           <p className="project-dossier-subtitle">{project.subtitle}</p>
           <p className="project-dossier-overview">{project.overview}</p>
@@ -83,15 +83,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <div className="project-dossier-layout">
         <aside className="project-dossier-aside">
-          <p className="chapter-label">On this page</p>
+          <p className="chapter-label">Explore project</p>
           <nav aria-label="Project sections">
-            {sectionLinks.map((item, index) => <a key={item.href} href={item.href}><span>{String(index + 1).padStart(2, "0")}</span>{item.label}</a>)}
+            {sectionLinks.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
           </nav>
         </aside>
 
         <div className="project-dossier-content">
           <section id="overview" className="project-dossier-section project-dossier-overview-section">
-            <div className="project-dossier-section-mark"><span>01</span><p>Overview</p></div>
+            <div className="project-dossier-section-mark"><p>Overview</p></div>
             <div className="project-dossier-section-body">
               <h2>{id === "ai-moderator-2026" ? "Moderation with clear control" : id === "medusa-simulator-2026" ? "Making algorithms easier to understand" : "Project goals"}</h2>
               <div className="project-dossier-copy"><p>{details.description}</p><p>{details.workflow}</p></div>
@@ -99,7 +99,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </section>
 
           {details.architecture && <section id="architecture" className="project-dossier-section project-dossier-architecture-section">
-            <div className="project-dossier-section-mark"><span>02</span><p>Architecture</p></div>
+            <div className="project-dossier-section-mark"><p>Architecture</p></div>
             <div className="project-dossier-section-body">
               <div className="project-dossier-section-heading"><h2>{architectureTitle}</h2><p>A traceable path from input to output, with each layer visible.</p></div>
               <ArchitectureFlow steps={details.architecture} />
@@ -107,7 +107,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </section>}
 
           <section id="technical-work" className="project-dossier-section">
-            <div className="project-dossier-section-mark"><span>{details.architecture ? "03" : "02"}</span><p>Technical work</p></div>
+            <div className="project-dossier-section-mark"><p>Technical work</p></div>
             <div className="project-dossier-section-body">
               <h2>{id === "medusa-simulator-2026" ? "Execution, evaluation, and playback" : "Core technical decisions"}</h2>
               <ol className="project-logic-grid">{details.coreLogic.map((logic, index) => <li key={logic}><span>{String(index + 1).padStart(2, "0")}</span><p>{logic}</p></li>)}</ol>
@@ -115,7 +115,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </section>
 
           <section id="features" className="project-dossier-section">
-            <div className="project-dossier-section-mark"><span>{details.architecture ? "04" : "03"}</span><p>Features</p></div>
+            <div className="project-dossier-section-mark"><p>Features</p></div>
             <div className="project-dossier-section-body">
               <h2>What it can do</h2>
               <div className="project-feature-grid">{details.features.map((feature, index) => <article key={feature.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{feature.title}</h3><p>{feature.desc}</p></article>)}</div>
@@ -123,12 +123,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </section>
 
           {galleries.length > 0 && <section id="gallery" className="project-dossier-section project-dossier-gallery-section">
-            <div className="project-dossier-section-mark"><span>{details.architecture ? "05" : "04"}</span><p>Gallery</p></div>
+            <div className="project-dossier-section-mark"><p>Gallery</p></div>
             <div className="project-dossier-section-body"><div className="project-dossier-section-heading"><h2>Screens and scenes</h2><p>Swipe through the screens and scenes. Open a frame for details.</p></div><ProjectGallery items={galleries} /></div>
           </section>}
 
           {project.videoDemo && <section className="project-dossier-section project-dossier-demo-section">
-            <div className="project-dossier-section-mark"><span>{details.architecture ? "06" : "05"}</span><p>Demo</p></div>
+            <div className="project-dossier-section-mark"><p>Demo</p></div>
             <div className="project-dossier-section-body"><h2>See it in motion</h2><video controls preload="metadata" poster={project.screenshot}><source src={project.videoDemo} type="video/mp4" /></video></div>
           </section>}
         </div>

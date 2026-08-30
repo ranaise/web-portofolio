@@ -73,7 +73,7 @@ export function Projects() {
 
       <header className="projects-carousel-header">
         <div>
-          <p className="section-kicker"><span>01</span><span>All projects</span></p>
+          <p className="section-kicker"><span>All projects</span></p>
           <h2>Built across screens and systems</h2>
         </div>
         <p><strong>08</strong> projects, moving from backend systems and AI tools to mobile applications and interactive software.</p>

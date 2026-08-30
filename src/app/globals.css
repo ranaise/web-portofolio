@@ -3209,6 +3209,166 @@ body {
   backdrop-filter: none;
 }
 
+/* Restored editorial layouts and calmer media interactions. */
+.section-kicker > span:only-child { color: var(--foreground); }
+.technology-icon-brand { background-size: contain; }
+
+.photo-lightbox-overlay {
+  inset: auto .65rem .65rem auto;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: transparent;
+  opacity: 0;
+}
+.photo-lightbox-overlay svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--foreground);
+  filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--background) 85%, transparent));
+}
+.experience-photo-trigger:hover img,
+.organization-photo-trigger:hover img,
+.credential-photo-trigger:hover img { transform: scale(1.018); filter: none; }
+
+.experience-photo-collage { position: relative; min-height: 320px; }
+.experience-photo-collage > .experience-photo { position: absolute; width: auto; height: auto; }
+.experience-photo-collage > .experience-photo-main { inset: 0 18% 5% 0; }
+.experience-photo-collage > .experience-photo-secondary { inset: auto 0 0 auto; width: 44%; height: 54%; }
+
+.experience-feature > .experience-entry-card {
+  min-width: 0;
+  padding: 1.35rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.experience-page-photos { grid-template-columns: 1.22fr .78fr; gap: .6rem; margin-top: 1rem; }
+.experience-page-photos > .experience-photo-trigger {
+  position: relative;
+  min-height: 215px;
+  aspect-ratio: auto !important;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--raised);
+}
+.experience-summary { margin-top: 1.1rem; }
+
+.credential-photo-frame {
+  margin: .7rem .7rem 0;
+  padding: .45rem;
+  border: 1px solid color-mix(in srgb, var(--cocoa) 52%, var(--line));
+  background: color-mix(in srgb, var(--raised) 72%, #fff);
+  box-shadow: inset 0 0 0 4px var(--surface);
+}
+.credential-photo-frame .credential-photo-trigger {
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  background: #fff;
+}
+
+.project-dossier-layout { display: block; padding-inline: 48px; }
+.project-dossier-aside {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: .9rem 0;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--background) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+.project-dossier-aside nav { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; margin-top: 0; }
+.project-dossier-aside a { display: inline-flex; padding: .3rem 0; }
+.project-dossier-aside a:hover { padding-left: 0; color: var(--foreground); }
+.project-dossier-section {
+  display: block;
+  padding: clamp(3.2rem, 6vw, 5rem) 0;
+}
+.project-dossier-section-mark { padding-top: 0; }
+.project-dossier-section-mark p { margin: 0 0 .8rem; color: var(--cocoa); }
+.project-dossier-section-body { margin-top: 0; }
+.project-dossier-section-body > h2,
+.project-dossier-section-heading h2 { max-width: 18ch; }
+.project-dossier-section-heading { align-items: end; }
+.project-dossier-section-heading > p { max-width: 22rem; }
+
+@media (min-width: 901px) {
+  .organization-grid { gap: 1rem; }
+  .organization-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .organization-card:last-child { border-bottom: 1px solid var(--line); }
+  .organization-card-topline {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .85rem 1rem .75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .organization-card-topline .chapter-label { display: block; }
+  .organization-photo { grid-column: 1; grid-row: 2; margin: 0; aspect-ratio: 1.7 / 1; border-bottom: 1px solid var(--line); }
+  .organization-card-copy { grid-column: 1; grid-row: 3; padding: 1rem 1rem 1.1rem; }
+}
+
+@media (max-width: 900px) {
+  .project-dossier-layout { padding-inline: 32px; }
+  .project-dossier-aside { overflow-x: auto; }
+  .project-dossier-aside > p { flex: 0 0 auto; }
+  .project-dossier-aside nav { flex: 0 0 auto; flex-wrap: nowrap; }
+}
+
+@media (max-width: 767px) {
+  .experience-photo-collage { min-height: 245px; }
+  .experience-photo-collage > .experience-photo-main { inset: 0 12% 9% 0; }
+  .experience-photo-collage > .experience-photo-secondary { width: 46%; height: 49%; }
+  .experience-feature > .experience-entry-card { padding: 1rem; }
+  .experience-page-photos { grid-template-columns: 1.2fr .8fr; gap: .45rem; }
+  .experience-page-photos > .experience-photo-trigger { min-height: 130px; }
+  .experience-summary { margin-top: .9rem; }
+
+  .credential-photo-frame { margin: .55rem .55rem 0; padding: .32rem; }
+
+  .project-dossier-layout { padding-inline: 20px; }
+  .project-dossier-aside { gap: 1rem; padding: .72rem 0; }
+  .project-dossier-aside nav { gap: .85rem; }
+  .project-dossier-aside a { font-size: .52rem; white-space: nowrap; }
+  .project-dossier-section { padding: 2.45rem 0; }
+  .project-dossier-section-mark p { margin-bottom: .65rem; }
+  .project-dossier-section-body { margin-top: 0; }
+
+  .architecture-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: .45rem;
+    margin-top: 1rem;
+  }
+  .architecture-node {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    display: grid;
+    grid-template-columns: 1.45rem minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: .28rem .4rem;
+    min-height: 70px;
+    padding: .5rem;
+  }
+  .architecture-node-topline { grid-column: 1 / -1; }
+  .architecture-node-label { display: none; }
+  .architecture-node-number { width: 1.05rem; height: 1.05rem; font-size: .42rem; }
+  .architecture-node-icon { grid-column: 1; grid-row: 2; width: 1.4rem; height: 1.4rem; }
+  .architecture-node-icon svg { width: .68rem; height: .68rem; }
+  .architecture-node-content { grid-column: 2; grid-row: 2; }
+  .architecture-node strong { font-size: .61rem; line-height: 1.08; }
+  .architecture-node-content small { display: none; }
+  .architecture-node-arrow { display: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .photo-lightbox-overlay,
   .photo-lightbox-overlay svg,

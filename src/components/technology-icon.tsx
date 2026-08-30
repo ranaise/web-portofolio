@@ -48,6 +48,16 @@ const deviconByTechnology: Record<string, string> = {
   Git: "git/git-original.svg",
 };
 
+const officialBrandByTechnology: Record<string, string> = {
+  "Groq API": "https://github.com/groq.png?size=96",
+  Streamlit: "https://cdn.simpleicons.org/streamlit/FF4B4B",
+  Ollama: "https://cdn.simpleicons.org/ollama",
+  Flet: "https://github.com/flet-dev.png?size=96",
+  Qwen: "https://cdn.simpleicons.org/qwen/615CED",
+  "Llama 3": "https://cdn.simpleicons.org/meta/0866FF",
+  "Firestorm/OpenSim": "https://github.com/FirestormViewer.png?size=96",
+};
+
 function renderFallbackIcon(name: string, className?: string): ReactNode {
   const normalized = name.toLowerCase();
   if (normalized.includes("streamlit") || normalized.includes("dashboard") || normalized.includes("monitoring")) return <PanelTop className={className} aria-hidden="true" />;
@@ -73,7 +83,12 @@ function renderFallbackIcon(name: string, className?: string): ReactNode {
 }
 
 export function TechnologyIcon({ name, className }: { name: string; className?: string }) {
+  const officialBrand = officialBrandByTechnology[name];
   const devicon = deviconByTechnology[name];
+
+  if (officialBrand) {
+    return <span className={cn("technology-icon-image technology-icon-brand", className)} aria-hidden="true" style={{ backgroundImage: `url(${officialBrand})` } as CSSProperties} />;
+  }
 
   if (devicon) {
     return <span className={cn("technology-icon-image", className)} aria-hidden="true" style={{ backgroundImage: `url(https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${devicon})` } as CSSProperties} />;

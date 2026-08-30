@@ -16,7 +16,7 @@ export function Experience() {
     <section id="experience" className="experience-page-content home-experience-block">
       <BotanicalDecoration className="section-botanical section-botanical-right experience-botanical" />
       <header className="experience-section-heading">
-        <p className="section-kicker"><span>02</span><span>Experience</span></p>
+        <p className="section-kicker"><span>Experience</span></p>
         <div>
           <p className="chapter-label">Professional experience</p>
           <h2>{experience.role} at {experience.company}</h2>
@@ -38,24 +38,20 @@ export function Experience() {
             </div>
             <span>Programming</span>
           </header>
-          <div className="experience-entry-grid">
-            <div className="experience-entry-copy">
-              <p className="experience-summary">{experience.description}</p>
-              <ul className="contribution-list">
-                {experience.achievements.map((item, index) => <li key={item}><span>0{index + 1}</span><p><RichText text={item} /></p></li>)}
-              </ul>
-            </div>
-            <div className="experience-page-photos">
-              <PhotoLightbox images={[experience.photos[0]]} title="Medusa Technology team" description={<p>Rafa&apos;Na&apos;ilah during the programming internship at Medusa Technology.</p>} className="experience-photo-trigger"><Image src={experience.photos[0]} alt="Rafa with the Medusa Technology team" fill sizes="(max-width: 767px) calc(100vw - 40px), 48vw" className="object-contain" /></PhotoLightbox>
-              <PhotoLightbox images={[experience.photos[1]]} title="Virtual world environment" description={<p>A virtual world environment built during the internship.</p>} className="experience-photo-trigger"><Image src={experience.photos[1]} alt="Virtual world environment at Medusa Technology" fill sizes="(max-width: 767px) calc(100vw - 40px), 26vw" className="object-contain" /></PhotoLightbox>
-            </div>
+          <div className="experience-page-photos">
+            <PhotoLightbox images={[experience.photos[0]]} title="Medusa Technology team" description={<p>Rafa&apos;Na&apos;ilah during the programming internship at Medusa Technology.</p>} className="experience-photo-trigger"><Image src={experience.photos[0]} alt="Rafa with the Medusa Technology team" fill sizes="(max-width: 767px) calc(100vw - 40px), 48vw" className="object-contain" /></PhotoLightbox>
+            <PhotoLightbox images={[experience.photos[1]]} title="Virtual world environment" description={<p>A virtual world environment built during the internship.</p>} className="experience-photo-trigger"><Image src={experience.photos[1]} alt="Virtual world environment at Medusa Technology" fill sizes="(max-width: 767px) calc(100vw - 40px), 26vw" className="object-contain" /></PhotoLightbox>
           </div>
+          <p className="experience-summary">{experience.description}</p>
+          <ul className="contribution-list">
+            {experience.achievements.map((item, index) => <li key={item}><span>0{index + 1}</span><p><RichText text={item} /></p></li>)}
+          </ul>
         </article>
       </Reveal>
 
       <section className="additional-experience">
         <header className="organization-heading">
-          <div><p className="section-kicker"><span>03</span><span>Organization</span></p><h2>Leadership and learning outside class</h2></div>
+          <div><p className="section-kicker"><span>Organization</span></p><h2>Leadership and learning outside class</h2></div>
           <p>Two experiences that shaped how I work with people and systems.</p>
         </header>
         <div className="organization-grid">
