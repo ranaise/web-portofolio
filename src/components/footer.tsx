@@ -5,8 +5,8 @@ export function Footer() {
   return <>
     <Link href="/#home" className="back-to-top-float" aria-label="Back to top" title="Back to top"><ArrowUp /></Link>
     <footer className="site-footer">
-      <p className="site-footer-signature">Still learning.</p>
-      <span className="site-footer-year">2026</span>
+      <p className="site-footer-signature">Learning through what I build</p>
+      <p className="site-footer-copyright">© 2026 Rafa&apos;Na&apos;ilah Septia</p>
     </footer>
   </>;
 }

@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { projectsData } from "@/data";
 import { BotanicalDecoration } from "@/components/botanical-decoration";
 import { TechnicalTags } from "@/components/technical-tags";
+import { PhotoLightbox } from "@/components/photo-lightbox";
 
 const autoplayDelay = 4800;
 const internshipProjectIds = ["ai-moderator-2026", "medusa-simulator-2026"];
@@ -95,8 +96,7 @@ export function Projects() {
           <div className="project-carousel-track" style={{ transform: `translate3d(calc(-${activeIndex * 100}% + ${dragOffset}px), 0, 0)` }}>
             {projectsData.map((project, index) => (
               <div className="project-carousel-slide" key={project.id} aria-hidden={index !== activeIndex}>
-                <Image src={project.screenshot} alt={`${project.title} interface preview`} fill sizes="(max-width: 767px) calc(100vw - 40px), 62vw" className="object-contain" draggable={false} preload={index === 0} />
-                <span className="project-carousel-slide-number">{String(index + 1).padStart(2, "0")}</span>
+                <PhotoLightbox images={[project.screenshot, ...(project.mobileScreenshot ? [project.mobileScreenshot] : [])]} title={`${project.title} interface preview`} description={<p>{project.overview}</p>} className="project-carousel-media-trigger"><Image src={project.screenshot} alt={`${project.title} interface preview`} fill sizes="(max-width: 767px) calc(100vw - 40px), 62vw" className="object-contain" draggable={false} preload={index === 0} /><span className="project-carousel-slide-number">{String(index + 1).padStart(2, "0")}</span></PhotoLightbox>
               </div>
             ))}
           </div>

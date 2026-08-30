@@ -1,17 +1,14 @@
-import type { CSSProperties } from "react";
-import { Braces, CodeXml, FileCode2 } from "lucide-react";
 import { hardSkillsCategories } from "@/data";
 import { BotanicalDecoration } from "@/components/botanical-decoration";
+import { TechnologyIcon } from "@/components/technology-icon";
 
 const technologies = hardSkillsCategories.flatMap((category) => category.skills);
 const rows = [technologies.filter((_, index) => index % 2 === 0), technologies.filter((_, index) => index % 2 === 1)];
 
 export function TechnologyMark({ skill }: { skill: (typeof technologies)[number] }) {
-  const image = "devicon" in skill && skill.devicon ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.devicon}` : undefined;
-  const CustomIcon = skill.name.includes("XML") ? FileCode2 : skill.name.includes("Linden") ? CodeXml : Braces;
   return (
     <div className="tech-mark" role="img" aria-label={skill.name} title={skill.name}>
-      {image ? <span className="tech-mark-image" style={{ backgroundImage: `url(${image})` } as CSSProperties} /> : <span className="tech-mark-custom"><CustomIcon aria-hidden="true" /></span>}
+      <TechnologyIcon name={skill.name} />
       <span className="sr-only">{skill.name}</span>
     </div>
   );

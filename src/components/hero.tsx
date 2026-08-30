@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { profileDetails } from "@/data";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { BotanicalDecoration } from "@/components/botanical-decoration";
+import { PhotoLightbox } from "@/components/photo-lightbox";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -31,7 +32,7 @@ export function Hero() {
       </motion.div>
       <div className="home-portrait-wrap">
         <motion.div className="home-portrait-frame" initial={{ opacity: 0, y: 28, rotate: 1.5 }} animate={{ opacity: 1, y: 0, rotate: 0 }} transition={{ duration: 0.82, delay: 0.12, ease }}>
-          <div className="home-portrait"><Image src="/profile/rafa-portrait.webp" alt="Portrait of Rafa'Na'ilah Septia" fill preload sizes="(max-width: 767px) 76vw, 34vw" className="object-contain" /></div>
+          <PhotoLightbox images={["/profile/rafa-portrait.webp"]} title="Portrait of Rafa'Na'ilah Septia" description={<p>Portrait of Rafa&apos;Na&apos;ilah Septia.</p>} className="home-portrait"><Image src="/profile/rafa-portrait.webp" alt="Portrait of Rafa'Na'ilah Septia" fill preload sizes="(max-width: 767px) 76vw, 34vw" className="object-contain" /></PhotoLightbox>
           <div className="portrait-footer"><span>Portfolio</span><span>2026</span></div>
         </motion.div>
         <motion.div className="portrait-botanical-panel" initial={{ opacity: 0, scaleY: .75 }} animate={{ opacity: 1, scaleY: 1 }} transition={{ duration: .8, delay: .35, ease }}><BotanicalDecoration /></motion.div>

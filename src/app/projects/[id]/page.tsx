@@ -10,6 +10,7 @@ import { projectsData, projectDetails } from "@/data";
 import { ArchitectureFlow } from "@/components/architecture-flow";
 import { ProjectGallery } from "@/components/project-gallery";
 import { TechnicalTags } from "@/components/technical-tags";
+import { PhotoLightbox } from "@/components/photo-lightbox";
 
 interface PageProps { params: Promise<{ id: string }>; }
 
@@ -37,6 +38,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const isInternship = id === "ai-moderator-2026" || id === "medusa-simulator-2026";
   const projectType = isInternship ? "Internship project" : "Academic and personal project";
   const architectureTitle = id === "medusa-simulator-2026" ? "From code to visible results" : id === "ai-moderator-2026" ? "From chat to clear action" : "How the system is connected";
+  const heroImages = [details.image, ...(project.mobileScreenshot ? [project.mobileScreenshot] : [])];
   const sectionLinks = [
     { href: "#overview", label: "Overview" },
     ...(details.architecture ? [{ href: "#architecture", label: "Architecture" }] : []),
@@ -63,7 +65,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <TechnicalTags items={project.technologies} className="project-dossier-tags" />
         </div>
         <div className="project-dossier-hero-media">
-          <Image src={details.image} alt={details.alt} fill preload sizes="(max-width: 767px) 100vw, 60vw" className="object-contain" />
+          <PhotoLightbox images={heroImages} title={`${project.title} interface preview`} description={<p>{details.alt}. Open the second frame to compare the mobile view when available.</p>} className="project-dossier-hero-media-trigger"><Image src={details.image} alt={details.alt} fill preload sizes="(max-width: 767px) 100vw, 60vw" className="object-contain" /></PhotoLightbox>
           <span>Interface preview</span>
         </div>
       </header>
