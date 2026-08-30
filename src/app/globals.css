@@ -3115,6 +3115,7 @@ body {
   .organization-card-topline { grid-column: 1; grid-row: 1; }
   .organization-card-copy { grid-column: 2; grid-row: 1; padding-right: 0; }
   .organization-photo { grid-column: 2; grid-row: 2; margin: 0 0 1rem; }
+  .project-dossier-hero-media-trigger { height: 300px; min-height: 300px; }
 }
 
 @media (max-width: 767px) {
@@ -3132,7 +3133,7 @@ body {
 
   .photo-lightbox-overlay { opacity: .8; inset: auto .55rem .55rem auto; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: color-mix(in srgb, var(--forest-deep) 76%, transparent); }
   .photo-lightbox-overlay svg { width: .9rem; height: .9rem; transform: none; }
-  .project-dossier-hero-media-trigger { min-height: 100%; }
+  .project-dossier-hero-media-trigger { height: 270px; min-height: 270px; }
   .lightbox-content { width: calc(100% - .75rem); max-height: calc(100svh - .75rem); border-radius: .9rem; }
   .lightbox-stage { min-height: min(52svh, 390px); }
   .lightbox-stage::after { inset: .65rem; }
@@ -3184,6 +3185,28 @@ body {
   .site-footer { gap: .8rem; padding: 1rem 20px 1.1rem; }
   .site-footer-signature { font-size: .76rem; }
   .site-footer-copyright { font-size: .47rem; letter-spacing: .045em; text-align: right; }
+}
+
+/* Final interaction polish. Keep technology marks visually light and ensure
+   the media button has a real box when its parent only declares min-height. */
+.tech-icon-item,
+.tech-icon-item:hover,
+.tech-icon-item:focus-visible {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.tech-icon-item:hover,
+.tech-icon-item:focus-visible { transform: translateY(-3px) scale(1.08); }
+.experience-feature > .experience-entry-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

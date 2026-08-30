@@ -62,7 +62,7 @@ export function Experience() {
           {orgExperienceData.map((item, index) => <Reveal key={item.id} delay={index * .08} className="organization-card">
             <div className="organization-card-topline"><span className="organization-index">0{index + 1}</span><p className="chapter-label">{item.duration}</p></div>
             <div className="organization-card-copy"><h3>{item.role}</h3><p>{item.organization}</p><ul>{item.tasks.map((task) => <li key={task}>{task}</li>)}</ul></div>
-            <div className="organization-photo">{item.photos?.[0] && <PhotoLightbox images={[item.photos[0]]} title={`${item.role} at ${item.organization}`} description={<p>Documentation of Rafa&apos;Na&apos;ilah&apos;s experience as {item.role} at {item.organization}.</p>} className="organization-photo-trigger"><Image src={item.photos[0]} alt={`${item.role} certificate`} fill sizes="(max-width: 767px) calc(100vw - 40px), 40vw" className="object-contain" /></PhotoLightbox>}</div>
+            <div className="organization-photo">{item.photos?.[0] && <PhotoLightbox images={[item.photos[0]]} title={`${item.role} at ${item.organization}`} description={<p>Documentation of Rafa&apos;Na&apos;ilah&apos;s experience as {item.role} at {item.organization}.</p>} className="organization-photo-trigger"><Image src={item.photos[0]} alt={`${item.organization} documentation`} fill sizes="(max-width: 767px) calc(100vw - 40px), 40vw" className="object-contain" /></PhotoLightbox>}</div>
           </Reveal>)}
         </div>
       </section>

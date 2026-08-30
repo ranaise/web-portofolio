@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import {
   Activity,
+  AppWindow,
   BrainCircuit,
   Bot,
   Boxes,
@@ -50,6 +51,7 @@ const deviconByTechnology: Record<string, string> = {
 function renderFallbackIcon(name: string, className?: string): ReactNode {
   const normalized = name.toLowerCase();
   if (normalized.includes("streamlit") || normalized.includes("dashboard") || normalized.includes("monitoring")) return <PanelTop className={className} aria-hidden="true" />;
+  if (normalized.includes("flet")) return <AppWindow className={className} aria-hidden="true" />;
   if (normalized.includes("groq")) return <Zap className={className} aria-hidden="true" />;
   if (normalized.includes("ollama")) return <Bot className={className} aria-hidden="true" />;
   if (normalized.includes("qwen") || normalized.includes("llama") || normalized.includes("llm")) return <BrainCircuit className={className} aria-hidden="true" />;
