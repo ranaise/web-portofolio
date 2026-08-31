@@ -3394,7 +3394,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr);
   gap: 1rem;
-  align-items: stretch;
+  align-items: start;
 }
 .experience-page-collage {
   position: relative;
