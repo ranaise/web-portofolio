@@ -19,7 +19,7 @@ export function LightboxDialog({ isOpen, onClose, title, images, initialIndex = 
       {images.length > 1 && <><Button variant="outline" size="icon" className="lightbox-nav lightbox-nav-previous" onClick={() => move(-1)} aria-label="Previous image"><ChevronLeft /></Button><Button variant="outline" size="icon" className="lightbox-nav lightbox-nav-next" onClick={() => move(1)} aria-label="Next image"><ChevronRight /></Button></>}
     </div>
     <div className="lightbox-panel">
-      <div className="lightbox-panel-kicker"><span>View detail</span><span>Use arrows to browse</span></div>
+      {images.length > 1 && <div className="lightbox-panel-kicker"><span>Use arrows to browse</span></div>}
       <DialogTitle className="lightbox-title">{title}</DialogTitle>
       {description && <DialogDescription className="lightbox-description">{description}</DialogDescription>}
       {images.length > 1 && <div className="lightbox-thumbnails" aria-label="Choose image">{images.map((image, imageIndex) => <button key={image} type="button" className={imageIndex === index ? "is-active" : undefined} onClick={() => setIndex(imageIndex)} aria-label={`View image ${imageIndex + 1}`} aria-current={imageIndex === index ? "true" : undefined}><span><Image src={image} alt="" fill sizes="76px" className="object-contain" /></span></button>)}</div>}

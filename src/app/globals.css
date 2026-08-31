@@ -3369,6 +3369,71 @@ body {
   .architecture-node-arrow { display: none !important; }
 }
 
+/* Photo hovers stay tactile without washing the artwork in a colour overlay. */
+.photo-lightbox-overlay,
+.project-gallery-hover { background: transparent !important; }
+.project-gallery-grid .project-gallery-image::before,
+.project-dossier-hero-media::before { display: none !important; }
+.photo-lightbox-overlay svg,
+.project-gallery-hover svg {
+  color: var(--foreground);
+  filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--background) 86%, transparent));
+}
+.lightbox-panel > .lightbox-title:first-child { margin-top: 0; }
+.photo-lightbox-trigger:hover img,
+.project-gallery-card:hover .project-gallery-image img,
+.home-portrait-frame:hover .home-portrait img,
+.home-project-card:hover .home-project-media img,
+.project-atlas-card:hover .project-atlas-frame img,
+.project-dossier-hero-media:hover img,
+.credential-card:hover img,
+.projects-featured > a:hover .project-preview-slide img { filter: none !important; }
+
+/* The experience page uses the same clear visual rhythm as the home preview. */
+.experience-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+.experience-page-collage {
+  position: relative;
+  min-width: 0;
+  min-height: 380px;
+  overflow: visible;
+}
+.experience-page-collage > .experience-photo { position: absolute; width: auto; height: auto; }
+.experience-page-collage > .experience-photo-main { inset: 0 17% 6% 0; }
+.experience-page-collage > .experience-photo-secondary { inset: auto 0 0 auto; width: 43%; height: 55%; }
+.experience-page-collage > .experience-photo-secondary::before { content: ""; position: absolute; z-index: 1; inset: 7px; border: 1px solid color-mix(in srgb, var(--cocoa) 50%, transparent); pointer-events: none; }
+.experience-meta-inline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .35rem .75rem;
+  margin-top: 1rem;
+  padding-bottom: .95rem;
+  border-bottom: 1px solid var(--line);
+}
+.experience-meta-inline strong { font-family: var(--font-serif); font-size: 1rem; font-weight: 400; letter-spacing: -.025em; }
+.experience-meta-inline span:not(.completed-label) { color: var(--muted-foreground); font-size: .72rem; }
+.experience-meta-inline .completed-label { margin-left: auto; }
+
+@media (max-width: 900px) {
+  .experience-feature { grid-template-columns: 1fr; gap: 1rem; }
+  .experience-page-collage { min-height: 280px; }
+}
+
+@media (max-width: 767px) {
+  .experience-page-collage { min-height: 245px; }
+  .experience-page-collage > .experience-photo-main { inset: 0 12% 9% 0; }
+  .experience-page-collage > .experience-photo-secondary { width: 46%; height: 49%; }
+  .experience-meta-inline { margin-top: .85rem; padding-bottom: .8rem; }
+  .experience-meta-inline strong { font-size: .9rem; }
+  .experience-meta-inline span:not(.completed-label) { font-size: .67rem; }
+  .experience-meta-inline .completed-label { margin-left: auto; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .photo-lightbox-overlay,
   .photo-lightbox-overlay svg,

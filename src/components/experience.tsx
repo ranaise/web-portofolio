@@ -24,12 +24,10 @@ export function Experience() {
       </header>
 
       <Reveal className="experience-feature">
-        <aside className="experience-meta">
-          <p className="chapter-label">Internship</p>
-          <strong>{experience.duration}</strong>
-          <span>{experience.location}</span>
-          <span className="completed-label">{experience.status}</span>
-        </aside>
+        <div className="experience-page-collage experience-photo-collage">
+          <PhotoLightbox images={[experience.photos[0]]} title="Medusa Technology team" description={<p>Rafa&apos;Na&apos;ilah during the programming internship at Medusa Technology.</p>} className="experience-photo experience-photo-main"><Image src={experience.photos[0]} alt="Rafa with the Medusa Technology team" fill sizes="(max-width: 767px) calc(100vw - 40px), 52vw" className="object-contain" /></PhotoLightbox>
+          <PhotoLightbox images={[experience.photos[1]]} title="Virtual world environment" description={<p>A virtual world environment built during the internship.</p>} className="experience-photo experience-photo-secondary"><Image src={experience.photos[1]} alt="Virtual world environment at Medusa Technology" fill sizes="(max-width: 767px) 42vw, 24vw" className="object-contain" /></PhotoLightbox>
+        </div>
         <article className="experience-entry-card">
           <header className="experience-title">
             <div>
@@ -38,10 +36,7 @@ export function Experience() {
             </div>
             <span>Programming</span>
           </header>
-          <div className="experience-page-photos">
-            <PhotoLightbox images={[experience.photos[0]]} title="Medusa Technology team" description={<p>Rafa&apos;Na&apos;ilah during the programming internship at Medusa Technology.</p>} className="experience-photo-trigger"><Image src={experience.photos[0]} alt="Rafa with the Medusa Technology team" fill sizes="(max-width: 767px) calc(100vw - 40px), 48vw" className="object-contain" /></PhotoLightbox>
-            <PhotoLightbox images={[experience.photos[1]]} title="Virtual world environment" description={<p>A virtual world environment built during the internship.</p>} className="experience-photo-trigger"><Image src={experience.photos[1]} alt="Virtual world environment at Medusa Technology" fill sizes="(max-width: 767px) calc(100vw - 40px), 26vw" className="object-contain" /></PhotoLightbox>
-          </div>
+          <div className="experience-meta-inline"><strong>{experience.duration}</strong><span>{experience.location}</span><span className="completed-label">{experience.status}</span></div>
           <p className="experience-summary">{experience.description}</p>
           <ul className="contribution-list">
             {experience.achievements.map((item, index) => <li key={item}><span>0{index + 1}</span><p><RichText text={item} /></p></li>)}
