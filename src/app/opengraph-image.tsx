@@ -1,12 +1,15 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const alt = "Rafa'Na'ilah Septia, backend engineer and AI enthusiast portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const portraitUrl = "https://www.ranaise.site/profile/rafa-portrait.webp";
+export default async function Image() {
+  const portrait = await readFile(join(process.cwd(), "public/profile/rafa-portrait.webp"));
+  const portraitSrc = `data:image/webp;base64,${portrait.toString("base64")}`;
 
-export default function Image() {
   return new ImageResponse(
     (
       <div
@@ -229,7 +232,7 @@ export default function Image() {
             }}
           >
             <img
-              src={portraitUrl}
+              src={portraitSrc}
               width="170"
               height="228"
               alt=""
