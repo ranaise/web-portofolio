@@ -39,11 +39,13 @@ export const metadata: Metadata = {
     siteName: "Rafa'Na'ilah Septia Portfolio",
     type: "website",
     locale: "en_US",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Rafa'Na'ilah Septia portfolio preview" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rafa'Na'ilah Septia, Software Engineer Portfolio",
     description: "Backend systems, artificial intelligence projects, and interactive applications.",
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: "/rns-logo.svg",
