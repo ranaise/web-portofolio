@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://rafanailah.dev/sitemap.xml",
+    sitemap: "https://www.ranaise.site/sitemap.xml",
   };
 }

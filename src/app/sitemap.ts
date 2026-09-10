@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { projectsData } from "@/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rafanailah.dev";
+  const baseUrl = "https://www.ranaise.site";
   return [
     {
       url: baseUrl,

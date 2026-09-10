@@ -28,11 +28,14 @@ export const metadata: Metadata = {
   description: "A portfolio of backend systems, artificial intelligence projects, and interactive applications by Rafa'Na'ilah Septia.",
   keywords: ["Backend Engineer", "AI Enthusiast", "FastAPI", "LLM Integration", "Next.js", "TypeScript", "Developer Portfolio", "Software Engineer"],
   authors: [{ name: "Rafa'Na'ilah Septia" }],
-  metadataBase: new URL("https://ranaise.vercel.app"),
+  metadataBase: new URL("https://www.ranaise.site"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Rafa'Na'ilah Septia, Software Engineer Portfolio",
     description: "Backend systems, artificial intelligence projects, and interactive applications.",
-    url: "https://ranaise.vercel.app",
+    url: "https://www.ranaise.site",
     siteName: "Rafa'Na'ilah Septia Portfolio",
     type: "website",
     locale: "en_US",

@@ -24,7 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params;
   const project = projectsData.find((item) => item.id === id);
   if (!project) return {};
-  return { title: project.title, description: project.overview, openGraph: { title: project.title, description: project.overview, images: [project.screenshot] } };
+  const canonicalUrl = `https://www.ranaise.site/projects/${project.id}`;
+  return { title: project.title, description: project.overview, alternates: { canonical: `/projects/${project.id}` }, openGraph: { title: project.title, description: project.overview, url: canonicalUrl, images: [project.screenshot] } };
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
