@@ -119,7 +119,7 @@ export default async function Image() {
               letterSpacing: 2,
             }}
           >
-            RNS
+            RN
           </div>
           <div
             style={{
@@ -250,7 +250,7 @@ export default async function Image() {
               letterSpacing: 3,
             }}
           >
-            RNS, 2026
+            RN, 2026
           </div>
         </div>
 
