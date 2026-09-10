@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
   <title id="title">RN monogram</title>
-  <desc id="desc">The RN monogram used in the portfolio navigation.</desc>
-  <text x="5" y="44" fill="#24362b" font-family="Georgia, Times New Roman, serif" font-size="38" letter-spacing="-3">R</text>
-  <text x="31" y="51" fill="#24362b" font-family="Georgia, Times New Roman, serif" font-size="38" letter-spacing="-3">N</text>
-  <path d="M83 9v46" fill="none" stroke="#925b39" stroke-width="1.5" />
+  <desc id="desc">The RN monogram used in the portfolio navigation, on a circular forest green background.</desc>
+  <circle cx="32" cy="32" r="29" fill="#24362b" />
+  <circle cx="32" cy="32" r="25.5" fill="none" stroke="#ad7655" stroke-width="1.2" />
+  <text x="32" y="40" text-anchor="middle" fill="#fffaf2" font-family="Georgia, Times New Roman, serif" font-size="23" font-weight="400" letter-spacing="-1.5">RN</text>
 </svg>
