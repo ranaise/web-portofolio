@@ -7,8 +7,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const portrait = await readFile(join(process.cwd(), "public/profile/rafa-portrait.webp"));
-  const portraitSrc = `data:image/webp;base64,${portrait.toString("base64")}`;
+  const portrait = await readFile(join(process.cwd(), "public/projects/about-profile.png"));
+  const portraitSrc = `data:image/png;base64,${portrait.toString("base64")}`;
 
   return new ImageResponse(
     (
