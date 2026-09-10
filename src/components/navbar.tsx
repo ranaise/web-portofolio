@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { navigationItems } from "@/data";
@@ -35,7 +36,7 @@ export function Navbar() {
   return (
     <header className={`site-nav${isHidden ? " is-hidden" : ""}`}>
       <nav className="site-nav-inner" aria-label="Primary navigation">
-        <Link href="/" className="brand-mark" aria-label="Rafa'Na'ilah home"><span>R</span><span>N</span></Link>
+        <Link href="/" className="rns-logo-link" aria-label="RNS, Rafa'Na'ilah Septia home"><Image src="/rns-logo.svg" alt="RNS" width={48} height={48} className="rns-logo" preload /></Link>
         <div className="desktop-nav">
           {navigationItems.map((item) => <Link key={item.label} href={item.href} className="nav-link">{item.label}</Link>)}
           <Button variant="ghost" size="icon" className="theme-toggle" onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")} aria-label="Toggle color theme"><Sun className="hidden size-4 dark:block" /><Moon className="size-4 dark:hidden" /></Button>

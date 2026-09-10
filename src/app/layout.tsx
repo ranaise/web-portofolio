@@ -46,7 +46,9 @@ export const metadata: Metadata = {
     description: "Backend systems, artificial intelligence projects, and interactive applications.",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/rns-logo.svg",
+    shortcut: "/rns-logo.svg",
+    apple: "/rns-logo.svg",
   },
 };
 
